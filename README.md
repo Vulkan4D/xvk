@@ -1,6 +1,4 @@
-# `xvk` - a fast and lightweight Vulkan wrapper / dynamic loader
-
-`xvk` works on both Windows and Linux and is compiler-agnostic (only requires a C++11 compatible compiler)
+# `xvk` a fast Vulkan wrapper / dynamic loader
 
 Using `xvk` is probably the easiest and fastest way to get started with making your first Vulkan application, but is also very fast and zero-cost abstraction for all performance-critical functions. 
 
