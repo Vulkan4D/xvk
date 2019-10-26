@@ -41,7 +41,7 @@ namespace xvk { namespace Base {
 	class LoaderBase {
 	protected:
 		#ifdef _WIN32
-			HMODULE vulkanLib = nullptr;
+			HINSTANCE vulkanLib = nullptr;
 		#else
 			void* vulkanLib = nullptr;
 		#endif
