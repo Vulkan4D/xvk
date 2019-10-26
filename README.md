@@ -18,8 +18,9 @@ No seriously, it's the easiest way to implement Vulkan in your project...
 
 ## Adding it to your project
 ```bash
-# Simply run this command from within your project's source or include directory
-git submodule add --recursive git@github.com:Vulkan4D/xvk.git
+# Simply run these two commands from within your project's source or include directory
+git submodule add git@github.com:Vulkan4D/xvk.git
+git submodule update --init --recursive
 ```
 
 If you are NOT already using `git` for your project, simply run `git init` first

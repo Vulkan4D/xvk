@@ -1,3 +1,7 @@
+// xvk Interface Generator
+// This tool will generate the entire xvkInterface.hpp file based on the definitions in the vulkan headers
+// You do not need to build nor run this script, a pre-generated file is already included in the repository
+
 #include <regex>
 #include <iostream>
 #include <fstream>
