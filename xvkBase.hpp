@@ -1,7 +1,9 @@
 #pragma once
 
 // This include is needed for loading libraries dynamically. In GCC for linux you need to add -ldl in your compiler options
-#ifndef _WIN32
+#ifdef _WIN32
+	#include <windows.h>
+#else
 	#include <dlfcn.h>
 #endif
 

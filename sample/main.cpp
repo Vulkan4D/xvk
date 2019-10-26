@@ -28,11 +28,11 @@ void glfwStuff() {
 	}
 	
 	// Required vulkan extensions for GLFW
-	uint glfwExtensionCount = 0;
+	uint32_t glfwExtensionCount = 0;
 	const char** glfwExtensions;
 	glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
 	vulkanRequiredExtensions.reserve(glfwExtensionCount);
-	for (uint i = 0; i < glfwExtensionCount; i++) {
+	for (uint32_t i = 0; i < glfwExtensionCount; i++) {
 		vulkanRequiredExtensions.push_back(glfwExtensions[i]);
 	}
 }
@@ -65,9 +65,9 @@ int main() {
 	VkInstanceCreateInfo createInfo;
 	createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
 	createInfo.pApplicationInfo = &appInfo;
-	createInfo.enabledExtensionCount = (uint)vulkanRequiredExtensions.size();
+	createInfo.enabledExtensionCount = (uint32_t)vulkanRequiredExtensions.size();
 	createInfo.ppEnabledExtensionNames = vulkanRequiredExtensions.data();
-	createInfo.enabledLayerCount = (uint)vulkanRequiredLayers.size();
+	createInfo.enabledLayerCount = (uint32_t)vulkanRequiredLayers.size();
 	createInfo.ppEnabledLayerNames = vulkanRequiredLayers.data();
 	
 	// Create the Vulkan instance
