@@ -1,7 +1,9 @@
 #pragma once
 
 // This include is needed for loading libraries dynamically. In GCC for linux you need to add -ldl in your compiler options
-#include <dlfcn.h>
+#ifndef _WIN32
+	#include <dlfcn.h>
+#endif
 
 // Here we automatically include the vulkan header if it is not already included
 #ifndef VULKAN_H_

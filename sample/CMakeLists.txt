@@ -20,7 +20,13 @@ set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/../glfw" "${CMAKE_BINARY_DIR}/glfw")
 # find_package(glfw3 3.3 REQUIRED)
 
-target_link_libraries(xvkSampleApplication
-	dl
-	glfw
-)
+if(WIN32)
+	target_link_libraries(xvkSampleApplication
+		glfw
+	)
+else()
+	target_link_libraries(xvkSampleApplication
+		dl
+		glfw
+	)
+endif()
