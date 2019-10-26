@@ -54,7 +54,7 @@ int main() {
 	VkSurfaceKHR vulkanSurface;
 	
 	// Prepare structs for the Vulkan Instance
-	VkApplicationInfo appInfo;
+	VkApplicationInfo appInfo{};
 	appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
 	appInfo.pApplicationName = APPLICATION_NAME;
 	appInfo.applicationVersion = APPLICATION_VERSION;
@@ -62,7 +62,7 @@ int main() {
 	appInfo.engineVersion = ENGINE_VERSION;
 	appInfo.apiVersion = VULKAN_API_VERSION;
 
-	VkInstanceCreateInfo createInfo;
+	VkInstanceCreateInfo createInfo{};
 	createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
 	createInfo.pApplicationInfo = &appInfo;
 	createInfo.enabledExtensionCount = (uint32_t)vulkanRequiredExtensions.size();
