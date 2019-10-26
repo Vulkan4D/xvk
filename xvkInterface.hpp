@@ -6,7 +6,7 @@
 
 #include "xvkBase.hpp"
 
-namespace xvk::Interface {
+namespace xvk { namespace Interface {
 	
 	class LoaderInterface : public xvk::Base::LoaderBase {
 	public:
@@ -2372,4 +2372,4 @@ namespace xvk::Interface {
 
 		}
 	};
-}
+}}

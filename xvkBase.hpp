@@ -37,7 +37,7 @@
 	#endif
 #endif
 
-namespace xvk::Base {
+namespace xvk { namespace Base {
 	class LoaderBase {
 	protected:
 		#ifdef _WIN32
@@ -134,4 +134,4 @@ namespace xvk::Base {
 		}
 		
 	};
-}
+}}

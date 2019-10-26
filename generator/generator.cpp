@@ -153,7 +153,7 @@ out << R"(#pragma once
 
 #include "xvkBase.hpp"
 
-namespace xvk::Interface {
+namespace xvk { namespace Interface {
 	
 	class LoaderInterface : public xvk::Base::LoaderBase {
 	public:
@@ -187,7 +187,7 @@ namespace xvk::Interface {
 )" << deviceFunctionLoaders.str() << R"(
 		}
 	};
-}
+}}
 )";
 	out.close();
 	cout << "xvk interface was successfully generated into '" << argv[2] << "'" << endl;
