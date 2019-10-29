@@ -12,7 +12,7 @@
 
 using namespace std;
 
-#define GENERATOR_VERSION "0.1.0"
+#define GENERATOR_VERSION "0.2.0"
 
 const regex versionLineMatchRegex{R"(\s*#define\s*VK_HEADER_VERSION\s+(\d+)\s*.*)"};
 const regex lineMatchRegex{R"(\s*typedef\s*(void|VkResult)\s*\(VKAPI_PTR\s*\*PFN_vk(.*)\)\(\s*(.*)\s*\);)"}; // 1 = return type, 2 = function name, 3 = args
@@ -67,21 +67,21 @@ int main(int argc, char** argv) {
 	// Global functions
 	stringstream globalFunctionDefinitions(""), globalFunctionLoaders("");
 	for (auto func : globalFunctions) {
-		globalFunctionDefinitions << "		/* " << func.returnType << " */ DEF_XVK_INTERFACE_FUNC( vk" << func.name << " ) // " << func.args << endl;
-		globalFunctionLoaders << "			LOAD_XVK_GLOBAL_FUNC( vk" << func.name << " )" << endl;
+		globalFunctionDefinitions << "		/* " << func.returnType << " */ XVK_DEF_INTERFACE_FUNC( vk" << func.name << " ) // " << func.args << endl;
+		globalFunctionLoaders << "			XVK_LOAD_GLOBAL_FUNC( vk" << func.name << " )" << endl;
 	}
 	
 	// Instance functions
 	stringstream instanceFunctionDefinitions(""), instanceFunctionLoaders(""), instanceAbstractionFunctions("");
 	for (auto func : instanceFunctions) {
-		instanceFunctionDefinitions << "		/* " << func.returnType << " */ DEF_XVK_INTERFACE_FUNC( vk" << func.name << " ) // " << func.args << endl;
-		instanceFunctionLoaders << "			LOAD_XVK_INSTANCE_FUNC( vk" << func.name << " )" << endl;
+		instanceFunctionDefinitions << "		/* " << func.returnType << " */ XVK_DEF_INTERFACE_FUNC( vk" << func.name << " ) // " << func.args << endl;
+		instanceFunctionLoaders << "			XVK_LOAD_INSTANCE_FUNC( vk" << func.name << " )" << endl;
 		// instance abstraction
 		string inputArgs = func.args;
 		int forwardedArgsCount = 0;
 		stringstream forwardedArgs("");
 		cmatch handleMatch;
-		if (regex_match(func.args.c_str(), handleMatch, regex(R"(VkInstance\s*instance,\s*(.*))"))) {
+		if (regex_match(func.args.c_str(), handleMatch, regex(R"(VkInstance\s*instance,?\s*(.*))"))) {
 			inputArgs = handleMatch[1];
 			forwardedArgs << "handle";
 			forwardedArgsCount++;
@@ -110,14 +110,14 @@ int main(int argc, char** argv) {
 	// Device functions
 	stringstream deviceFunctionDefinitions(""), deviceFunctionLoaders(""), deviceAbstractionFunctions("");
 	for (auto func : deviceFunctions) {
-		deviceFunctionDefinitions << "		/* " << func.returnType << " */ DEF_XVK_INTERFACE_FUNC( vk" << func.name << " ) // " << func.args << endl;
-		deviceFunctionLoaders << "			LOAD_XVK_DEVICE_FUNC( vk" << func.name << " )" << endl;
+		deviceFunctionDefinitions << "		/* " << func.returnType << " */ XVK_DEF_INTERFACE_FUNC( vk" << func.name << " ) // " << func.args << endl;
+		deviceFunctionLoaders << "			XVK_LOAD_DEVICE_FUNC( vk" << func.name << " )" << endl;
 		// device abstraction
 		string inputArgs = func.args;
 		int forwardedArgsCount = 0;
 		stringstream forwardedArgs("");
 		cmatch handleMatch;
-		if (regex_match(func.args.c_str(), handleMatch, regex(R"(VkDevice\s*device,\s*(.*))"))) {
+		if (regex_match(func.args.c_str(), handleMatch, regex(R"(VkDevice\s*device,?\s*(.*))"))) {
 			inputArgs = handleMatch[1];
 			forwardedArgs << "handle";
 			forwardedArgsCount++;
@@ -156,7 +156,7 @@ out << R"(#pragma once
 namespace xvk { namespace Interface {
 	
 	class LoaderInterface : public xvk::Base::LoaderBase {
-	public:
+	XVK_INTERFACE_LOADER_RAW_FUNCTIONS_ACCESSIBILITY:
 )" << globalFunctionDefinitions.str() << R"(
 	protected: 
 		using LoaderBase::LoaderBase;
@@ -167,8 +167,10 @@ namespace xvk { namespace Interface {
 	};
 	
 	class InstanceInterface : public xvk::Base::InstanceBase {
-	public:
-)" << instanceFunctionDefinitions.str() << instanceAbstractionFunctions.str() << R"(
+	XVK_INTERFACE_RAW_FUNCTIONS_ACCESSIBILITY:
+)" << instanceFunctionDefinitions.str() << R"(
+	XVK_INTERFACE_ABSTRACTED_FUNCTIONS_ACCESSIBILITY:
+)" << instanceAbstractionFunctions.str() << R"(
 	protected: 
 		using InstanceBase::InstanceBase;
 		virtual ~InstanceInterface(){}
@@ -178,8 +180,10 @@ namespace xvk { namespace Interface {
 	};
 	
 	class DeviceInterface : public xvk::Base::DeviceBase {
-	public:
-)" << deviceFunctionDefinitions.str() << deviceAbstractionFunctions.str() << R"(
+	XVK_INTERFACE_RAW_FUNCTIONS_ACCESSIBILITY:
+)" << deviceFunctionDefinitions.str() << R"(
+	XVK_INTERFACE_ABSTRACTED_FUNCTIONS_ACCESSIBILITY:
+)" << deviceAbstractionFunctions.str() << R"(
 	protected: 
 		using DeviceBase::DeviceBase;
 		virtual ~DeviceInterface(){}

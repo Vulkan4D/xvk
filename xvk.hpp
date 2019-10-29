@@ -20,7 +20,7 @@ namespace xvk {
 		}
 		~Instance() {
 			if (handle != VK_NULL_HANDLE) {
-				vkDestroyInstance(handle, nullptr);
+				DestroyInstance(nullptr);
 				handle = VK_NULL_HANDLE;
 			}
 		}
@@ -50,8 +50,8 @@ namespace xvk {
 		}
 		~Device() {
 			if (handle != VK_NULL_HANDLE) {
-				vkDeviceWaitIdle(handle);
-				vkDestroyDevice(handle, nullptr);
+				DeviceWaitIdle();
+				DestroyDevice(nullptr);
 				handle = VK_NULL_HANDLE;
 			}
 		}
@@ -63,7 +63,7 @@ namespace xvk {
 		
 		void operator()(Instance* instance, VkPhysicalDevice physicalDevice, const VkDeviceCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator = nullptr){
 			this->instance = instance;
-			if (instance->vkCreateDevice(physicalDevice, pCreateInfo, pAllocator, &handle) != VK_SUCCESS) {
+			if (instance->CreateDevice(physicalDevice, pCreateInfo, pAllocator, &handle) != VK_SUCCESS) {
 				throw std::runtime_error("Failed to create Vulkan Device");
 				return;
 			}
