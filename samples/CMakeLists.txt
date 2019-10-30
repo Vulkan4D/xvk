@@ -30,4 +30,3 @@ endif()
 
 add_subdirectory("1_basic_vulkan_init")
 add_subdirectory("2_basic_glfw_window")
-add_subdirectory("3_triangle")

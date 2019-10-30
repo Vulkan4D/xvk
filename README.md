@@ -98,6 +98,5 @@ cmake --build .
 #	(you may have to add /Debug or /Release for MSVC builds)
 samples_bin/1_basic_vulkan_init
 samples_bin/2_basic_glfw_window
-# samples_bin/3_triangle (coming soon)
 # ... more samples to come in the future
 ```
