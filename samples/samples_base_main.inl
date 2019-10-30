@@ -12,6 +12,7 @@
 void ApplicationInit();
 void KeyInputCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 void Draw(xvk::Instance* instance, xvk::Device* device, VkCommandBuffer cmdBuffer, VkImage image, VkImageSubresourceRange imageSubresourceRange);
+void Cleanup(xvk::Instance* instance, xvk::Device* device);
 
 #define APPLICATION_NAME "xvk sample application"
 #define VULKAN_API_VERSION VK_API_VERSION_1_1
@@ -87,6 +88,9 @@ VkSemaphore imageAvailableSemaphore, renderingFinishedSemaphore;
 VkSwapchainKHR swapChain;
 VkCommandPool presentQueueCmdPool;
 std::vector<VkCommandBuffer> presentQueueCmdBuffers {};
+VkSurfaceFormatKHR selectedSurfaceFormat;
+VkExtent2D swapChainExtent;
+// VkRenderPass renderPass;
 
 void CreateSwapChainAndRecordCommandBuffers(xvk::Instance* instance, xvk::Device* device) {
 	
@@ -118,7 +122,7 @@ void CreateSwapChainAndRecordCommandBuffers(xvk::Instance* instance, xvk::Device
 	}
 	
 	// Select a surface format
-	VkSurfaceFormatKHR selectedSurfaceFormat  = surfaceFormats[0]; // Select the first supported format by default
+	selectedSurfaceFormat = surfaceFormats[0]; // Select the first supported format by default
 	// If only one format is available and is undefined, it means that there is no preference, we may use our own preferred format.
 	if(surfaceFormats.size() == 1 && surfaceFormats[0].format == VK_FORMAT_UNDEFINED) {
 		selectedSurfaceFormat = {
@@ -136,7 +140,6 @@ void CreateSwapChainAndRecordCommandBuffers(xvk::Instance* instance, xvk::Device
 	}
 	
 	// Select swap chain extent (surface resolution)
-	VkExtent2D swapChainExtent;
 	if (surfaceCapabilities.currentExtent.width == -1) {
 		swapChainExtent = { 1280, 720 }; // Our preferred size
 		if (swapChainExtent.width < surfaceCapabilities.minImageExtent.width) {
@@ -545,13 +548,64 @@ int main() {
 	};
 	if (device.CreateCommandPool(&cmdPoolCreateInfo, nullptr, &presentQueueCmdPool))
 		throw std::runtime_error("Failed to create command pool");
-	
+		
 	CreateSwapChainAndRecordCommandBuffers(&instance, &device);
+	
+	// // RenderPass
+	// VkAttachmentDescription attachmentDescriptions[] {
+	// 	{
+	// 		0, // flags
+	// 		selectedSurfaceFormat.format,
+	// 		VK_SAMPLE_COUNT_1_BIT, // samples
+	// 		VK_ATTACHMENT_LOAD_OP_CLEAR, // loadOp
+	// 		VK_ATTACHMENT_STORE_OP_STORE, // storeOp
+	// 		VK_ATTACHMENT_LOAD_OP_DONT_CARE, // stencilLoadOp
+	// 		VK_ATTACHMENT_STORE_OP_DONT_CARE, // stencilStoreOp
+	// 		VK_IMAGE_LAYOUT_PRESENT_SRC_KHR, // initialLayout
+	// 		VK_IMAGE_LAYOUT_PRESENT_SRC_KHR // finalLayout
+	// 	},
+	// };
+	
+	// // Subpass
+	// VkAttachmentReference colorAttachmentReferences[] {
+	// 	{
+	// 		0, // attachment
+	// 		VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL // layout
+	// 	},
+	// };
+	// VkSubpassDescription subpassDescriptions[] {
+	// 	{
+	// 		0, // flags
+	// 		VK_PIPELINE_BIND_POINT_GRAPHICS, // pipelineBindPoint
+	// 		0, // inputAttachmentCount
+	// 		nullptr, // inputAttachments
+	// 		1, // colorAttachmentCount
+	// 		colorAttachmentReferences, // colorAttachments
+	// 		nullptr, // resolveAttachments
+	// 		nullptr, // depthStencilAttachment
+	// 		0, // preserveAttachmentCount
+	// 		nullptr // preserveAttachments
+	// 	},
+	// };
+	// VkRenderPassCreateInfo renderPassCreateInfo {
+	// 	VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO,
+	// 	nullptr, // pNext
+	// 	0, // flags
+	// 	1, // attachmentCount
+	// 	attachmentDescriptions, // attachments
+	// 	1, // subpassCount
+	// 	subpassDescriptions, // subpasses
+	// 	0, // dependencyCount
+	// 	nullptr // dependencies
+	// };
+	// if (device.CreateRenderPass(&renderPassCreateInfo, nullptr, &renderPass) != VK_SUCCESS)
+	// 	throw std::runtime_error("Failed to create render pass");
 	
 	// Running...
 	while (!glfwWindowShouldClose(window)) {
 		glfwPollEvents();
 		
+		// Get next swap chain image
 		uint32_t imageIndex;
 		VkResult result = device.AcquireNextImageKHR(
 			swapChain, // swap chain
@@ -572,8 +626,8 @@ int main() {
 				throw std::runtime_error("Failed to acquire swap chain image");
 				break;
 		}
-			
-		// Submit
+		
+		// Submit present queue
 		VkPipelineStageFlags waitDstStageMask = VK_PIPELINE_STAGE_TRANSFER_BIT;
 		VkSubmitInfo submitInfo {
 			VK_STRUCTURE_TYPE_SUBMIT_INFO,
@@ -589,6 +643,7 @@ int main() {
 		if (device.QueueSubmit(presentQueue, 1, &submitInfo, VK_NULL_HANDLE) != VK_SUCCESS)
 			throw std::runtime_error("Failed to submit queue");
 		
+		// Finished rendering, present image
 		VkPresentInfoKHR presentInfo {
 			VK_STRUCTURE_TYPE_PRESENT_INFO_KHR,
 			nullptr,// pNext
@@ -615,6 +670,9 @@ int main() {
 	
 	// Wait for device to finish processing...
 	device.DeviceWaitIdle();
+	
+	// Destroy render pass
+	// device.DestroyRenderPass(renderPass, nullptr);
 	
 	// Free command buffers (not necessary here, since destroying a command pool frees its command buffers)
 	device.FreeCommandBuffers(presentQueueCmdPool, (uint32_t)presentQueueCmdBuffers.size(), presentQueueCmdBuffers.data());

@@ -1,5 +1,10 @@
 # `xvk` a fast Vulkan wrapper / dynamic loader
 
+`xvk` is a zero-cost **Vulkan Dynamic Loader** with only two very lightweight abstractions (for `VkInstance` and `VkDevice`) that do not require the developer to re-learn new functions. 
+It literally does not have any public functions other than the ones from the classical Vulkan C API. 
+
+Developers have the full flexibily of implementing higher-level abstractions around `xvk`'s dynamically loaded Vulkan functions that are very fast and safe (literally faster than using the functions from the usual linked vulkan loader). 
+
 `xvk` is platform & compiler agnostic (except for a few `if WIN32` here and there, but this should be enough to compile/run anywhere)
 
 Using `xvk` is probably the easiest and fastest way to get started with making your first Vulkan application, but is also very fast and zero-cost abstraction for performance-critical functions. 
