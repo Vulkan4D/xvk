@@ -4,3 +4,9 @@
 [submodule "Vulkan-Headers"]
 	path = Vulkan-Headers
 	url = https://github.com/KhronosGroup/Vulkan-Headers.git
+[submodule "glm"]
+	path = glm
+	url = https://github.com/g-truc/glm.git
+[submodule "glslang"]
+	path = glslang
+	url = https://github.com/KhronosGroup/glslang.git
