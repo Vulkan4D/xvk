@@ -6,7 +6,7 @@ namespace xvk {
 	
 	class Loader : public xvk::Interface::LoaderInterface {
 	public:
-		Loader() {}
+		using LoaderInterface::LoaderInterface;
 	};
 	
 	class Instance : public xvk::Interface::InstanceInterface {

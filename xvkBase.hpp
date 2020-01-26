@@ -51,63 +51,88 @@
 // Function loading macros
 #define XVK_DEF_INTERFACE_FUNC(func) \
 	PFN_##func func = 0;
-#define XVK_LOAD_GLOBAL_FUNC(func) \
-	if (!(func = (PFN_##func) vkGetInstanceProcAddr(nullptr, #func))){\
-		throw std::runtime_error("Failed to load vulkan global function pointer for " #func);\
-	}
+#ifdef XVK_USE_QT_VULKAN_LOADER
+	#define XVK_LOAD_GLOBAL_FUNC(func)
+#else
+	#define XVK_LOAD_GLOBAL_FUNC(func) \
+		if (!(func = (PFN_##func) vkGetInstanceProcAddr(nullptr, #func))){\
+			throw std::runtime_error("Failed to load vulkan global function pointer for " #func);\
+		}
+#endif
 #define XVK_LOAD_INSTANCE_FUNC(func) \
 	func = (PFN_##func) loader->vkGetInstanceProcAddr(handle, #func);
 #define XVK_LOAD_DEVICE_FUNC(func) \
 	func = (PFN_##func) instance->vkGetDeviceProcAddr(handle, #func);
 
+#ifdef XVK_USE_QT_VULKAN_LOADER
+	#include <QVulkanInstance>
+#endif
+
 namespace xvk { namespace Base {
 	class LoaderBase {
 	protected:
-		#ifdef _WIN32
-			HINSTANCE vulkanLib = nullptr;
-		#else
-			void* vulkanLib = nullptr;
+		#ifndef XVK_USE_QT_VULKAN_LOADER
+			#ifdef _WIN32
+				HINSTANCE vulkanLib = nullptr;
+			#else
+				void* vulkanLib = nullptr;
+			#endif
+			LoaderBase() {}
 		#endif
-		
-		LoaderBase() {}
 		
 		virtual void LoadFunctionPointersInterface() = 0;
 		
-		~LoaderBase() {
-			// Unload vulkan loader library
-			if (vulkanLib) {
-				#ifdef _WIN32
-					FreeLibrary(vulkanLib);
-				#else
-					dlclose(vulkanLib);
-				#endif
-				vulkanLib = nullptr;
-			}
+		virtual ~LoaderBase() {
+			#ifndef XVK_USE_QT_VULKAN_LOADER
+				// Unload vulkan loader library
+				if (vulkanLib) {
+					#ifdef _WIN32
+						FreeLibrary(vulkanLib);
+					#else
+						dlclose(vulkanLib);
+					#endif
+					vulkanLib = nullptr;
+				}
+			#endif
 		}
 		
 	public:
 	
-		XVK_DEF_INTERFACE_FUNC( vkGetInstanceProcAddr )
+		#ifdef XVK_USE_QT_VULKAN_LOADER
+			QVulkanInstance* qtVulkanInstance; 
+			LoaderBase(QVulkanInstance* inst) : qtVulkanInstance(inst) {}
+
+			PFN_vkVoidFunction vkGetInstanceProcAddr(VkInstance, const char* funcName) {
+				return qtVulkanInstance->getInstanceProcAddr(funcName);
+			}
+		#else
+			XVK_DEF_INTERFACE_FUNC( vkGetInstanceProcAddr )
+		#endif
 		
 		bool operator()() {
-			if (vulkanLib) return true;
-			#ifdef _WIN32
-				vulkanLib = LoadLibrary("vulkan-1.dll");
-			#else
-				vulkanLib = dlopen("libvulkan.so", RTLD_NOW);
+
+			#ifndef XVK_USE_QT_VULKAN_LOADER
+				if (vulkanLib) return true;
+				#ifdef _WIN32
+					vulkanLib = LoadLibrary("vulkan-1.dll");
+				#else
+					vulkanLib = dlopen("libvulkan.so", RTLD_NOW);
+				#endif
+				if (!vulkanLib) {
+					return false;
+				}
+				#ifdef _WIN32
+					vkGetInstanceProcAddr = (PFN_vkGetInstanceProcAddr)GetProcAddress(vulkanLib, "vkGetInstanceProcAddr");
+				#else
+					vkGetInstanceProcAddr = (PFN_vkGetInstanceProcAddr)dlsym(vulkanLib, "vkGetInstanceProcAddr");
+				#endif
+				if (!vkGetInstanceProcAddr) {
+					return false;
+				}
 			#endif
-			if (!vulkanLib) {
-				return false;
-			}
-			#ifdef _WIN32
-				vkGetInstanceProcAddr = (PFN_vkGetInstanceProcAddr)GetProcAddress(vulkanLib, "vkGetInstanceProcAddr");
-			#else
-				vkGetInstanceProcAddr = (PFN_vkGetInstanceProcAddr)dlsym(vulkanLib, "vkGetInstanceProcAddr");
-			#endif
-			if (!vkGetInstanceProcAddr) {
-				return false;
-			}
+
 			LoadFunctionPointersInterface();
+			
 			return true;
 		}
 		
