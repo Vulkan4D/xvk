@@ -32,11 +32,33 @@
 ////////////////////////////////////////////////////////////////////
 
 
-// This include is needed for loading libraries dynamically. In GCC for linux you need to add -ldl in your compiler options
+// This include is needed for loading libraries dynamically. In GCC for linux you need to add -ldl in your compiler options. 
+// XVK_EXPORT and XVK_IMPORT are available to define in cases where you want to compile/include xvk in a shared library and use it in the linking program
 #ifdef _WIN32
 	#include <windows.h>
+	#ifndef __XVK_DLLEXPORT
+	#define __XVK_DLLEXPORT __declspec(dllexport)
+	#endif
+	#ifndef __XVK_DLLIMPORT
+	#define __XVK_DLLIMPORT __declspec(dllimport)
+	#endif
 #else
 	#include <dlfcn.h>
+	#ifndef __XVK_DLLEXPORT
+	#define __XVK_DLLEXPORT
+	#endif
+	#ifndef __XVK_DLLIMPORT
+	#define __XVK_DLLIMPORT
+	#endif
+#endif
+#ifdef XVK_EXPORT
+	#define XVK_LIB __XVK_DLLEXPORT
+#endif
+#ifdef XVK_IMPORT
+	#define XVK_LIB __XVK_DLLIMPORT
+#endif
+#ifndef XVK_LIB
+	#define XVK_LIB
 #endif
 
 // for std::runtime_error
@@ -49,16 +71,34 @@
 #endif
 
 // Function loading macros
-#define XVK_DEF_INTERFACE_FUNC(func) \
-	PFN_##func func = 0;
-#define XVK_LOAD_GLOBAL_FUNC(func) \
-	if (!(func = (PFN_##func) vkGetInstanceProcAddr(nullptr, #func))){\
-		throw std::runtime_error("Failed to load vulkan global function pointer for " #func);\
-	}
-#define XVK_LOAD_INSTANCE_FUNC(func) \
-	func = (PFN_##func) loader->vkGetInstanceProcAddr(handle, #func);
-#define XVK_LOAD_DEVICE_FUNC(func) \
-	func = (PFN_##func) instance->vkGetDeviceProcAddr(handle, #func);
+#define XVK_DEF_INTERFACE_FUNC(func) PFN_##func func = 0;
+#ifdef XVK_EXPOSE_NATIVE_VULKAN_FUNCTIONS_NAMESPACE
+	#define XVK_DEF_INTERFACE_FUNC_H(func) extern XVK_LIB PFN_##func func;
+	#define XVK_DEF_INTERFACE_FUNC_C(func) PFN_##func func = 0;
+	#define XVK_LOAD_GLOBAL_FUNC(func) \
+		if (!(this->func = (PFN_##func) vkGetInstanceProcAddr(nullptr, #func))){\
+			throw std::runtime_error("Failed to load vulkan global function pointer for " #func);\
+		}\
+		XVK_EXPOSE_NATIVE_VULKAN_FUNCTIONS_NAMESPACE::func = this->func;
+	#define XVK_LOAD_INSTANCE_FUNC(func) \
+		this->func = (PFN_##func) loader->vkGetInstanceProcAddr(handle, #func);\
+		XVK_EXPOSE_NATIVE_VULKAN_FUNCTIONS_NAMESPACE::func = this->func;
+	#define XVK_LOAD_DEVICE_FUNC(func) \
+		this->func = (PFN_##func) instance->vkGetDeviceProcAddr(handle, #func);\
+		XVK_EXPOSE_NATIVE_VULKAN_FUNCTIONS_NAMESPACE::func = this->func;
+	#include "xvkInterface.h"
+#else
+	#define XVK_DEF_INTERFACE_FUNC_H(func)
+	#define XVK_DEF_INTERFACE_FUNC_C(func)
+	#define XVK_LOAD_GLOBAL_FUNC(func) \
+		if (!(func = (PFN_##func) vkGetInstanceProcAddr(nullptr, #func))){\
+			throw std::runtime_error("Failed to load vulkan global function pointer for " #func);\
+		}
+	#define XVK_LOAD_INSTANCE_FUNC(func) \
+		func = (PFN_##func) loader->vkGetInstanceProcAddr(handle, #func);
+	#define XVK_LOAD_DEVICE_FUNC(func) \
+		func = (PFN_##func) instance->vkGetDeviceProcAddr(handle, #func);
+#endif
 
 namespace xvk { namespace Base {
 	class LoaderBase {
