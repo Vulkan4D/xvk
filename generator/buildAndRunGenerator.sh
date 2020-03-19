@@ -3,4 +3,4 @@ mkdir -p build
 cd build
 cmake .. &&\
 cmake --build . &&\
-./generateXvkInterface "../../Vulkan-Headers/include/vulkan/vulkan_core.h" "../../xvkInterface"
+./generateXvkInterface "../../Vulkan-Headers/include/vulkan" "../../xvkInterface"

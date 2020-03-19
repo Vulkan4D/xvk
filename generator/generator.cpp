@@ -12,21 +12,41 @@
 
 using namespace std;
 
-#define GENERATOR_VERSION "0.2.1"
+#define GENERATOR_VERSION "0.3.0"
 
 const regex versionLineMatchRegex{R"(\s*#define\s*VK_HEADER_VERSION\s+(\d+)\s*.*)"};
 const regex lineMatchRegex{R"(\s*typedef\s*(void|VkResult)\s*\(VKAPI_PTR\s*\*PFN_vk(.*)\)\(\s*(.*)\s*\);)"}; // 1 = return type, 2 = function name, 3 = args
 const regex instanceFuncMatchRegex{R"(^(VkInstance|VkPhysicalDevice).*)"};
 const regex deviceFuncMatchRegex{R"(^(VkDevice|VkQueue|VkCommandBuffer).*)"};
 const regex funcNameIgnoreRegex{R"(VoidFunction)"};
-const regex argsRegex{R"(\s*(const\s+|)(\w+)(\s+|\s*\*+\s*|\s*\*+\s*const\**\s+)(\w+)(\[\d+\]|)(,(.+)|)$)"}; // 1 = const, 2 = type, 3 = pointer, 4 = name, 5 = arr, 7 = remainingArgs
+const regex argsRegex{R"(\s*(const\s+|const\s+struct\s+|struct\s+|)(\w+)(\s+|\s*\*+\s*|\s*\*+\s*const\**\s+)(\w+)(\[\d+\]|)(,(.+)|)$)"}; // 1 = const, 2 = type, 3 = pointer, 4 = name, 5 = arr, 7 = remainingArgs
 const regex outputFileNameRegex{R"(.*/([^/]+)$)"}; // 1 = the file name
+
+const std::map<std::string, std::string> includedHeaderFiles {
+	// filename : ifdef
+	{"vulkan_core.h", ""},
+	{"vulkan_beta.h", "VK_ENABLE_BETA_EXTENSIONS"},
+	{"vulkan_android.h", "VK_USE_PLATFORM_ANDROID_KHR"},
+	{"vulkan_fuchsia.h", "VK_USE_PLATFORM_FUCHSIA"},
+	{"vulkan_ios.h", "VK_USE_PLATFORM_IOS_MVK"},
+	{"vulkan_macos.h", "VK_USE_PLATFORM_MACOS_MVK"},
+	{"vulkan_metal.h", "VK_USE_PLATFORM_METAL_EXT"},
+	{"vulkan_vi.h", "VK_USE_PLATFORM_VI_NN"},
+	{"vulkan_wayland.h", "VK_USE_PLATFORM_WAYLAND_KHR"},
+	{"vulkan_win32.h", "VK_USE_PLATFORM_WIN32_KHR"},
+	{"vulkan_xcb.h", "VK_USE_PLATFORM_XCB_KHR"},
+	{"vulkan_xlib.h", "VK_USE_PLATFORM_XLIB_KHR"},
+	{"vulkan_xlib_xrandr.h", "VK_USE_PLATFORM_XLIB_XRANDR_EXT"},
+	{"vulkan_ggp.h", "VK_USE_PLATFORM_GGP"},
+};
 
 struct FuncLine{
 	string returnType;
 	string name;
 	string args;
-	FuncLine(string returnType, string name, string args) : returnType(returnType), name(name), args(args) {}
+	bool isCustomString;
+	FuncLine(string returnType, string name, string args) : returnType(returnType), name(name), args(args), isCustomString(false) {}
+	FuncLine(string customString) : returnType(""), name(""), args(customString), isCustomString(true) {}
 };
 
 int main(int argc, char** argv) {
@@ -34,40 +54,61 @@ int main(int argc, char** argv) {
 	string vulkanCoreHeaderVersion = "";
 	
 	if (argc < 3) {
-		cerr << "You must pass two arguments, the first is the path to vulkan_core.h from the official vulkan headers, the second is the path to the output file xvkInterface.hpp" << endl;
+		cerr << "You must pass two arguments, the first is the path to vulkan's include directory containing vulkan_core.h from the official vulkan headers, the second is the path to the output file xvkInterface.hpp" << endl;
 		return 1;
 	}
 	
 	// Read vulkan core header
-	ifstream vulkanCoreHeader(argv[1], fstream::in);
-	for (string line; getline(vulkanCoreHeader, line);) {
-		cmatch lineMatch;
-		if (vulkanCoreHeaderVersion == "" && regex_match(line.c_str(), lineMatch, versionLineMatchRegex)) {
-			vulkanCoreHeaderVersion = lineMatch[1].str();
-			continue;
+	for (auto[filename, ifdef] : includedHeaderFiles) {
+		if (ifdef != "") {
+			instanceFunctions.emplace_back(std::string("#ifdef ") + ifdef);
+			deviceFunctions.emplace_back(std::string("#ifdef ") + ifdef);
+			globalFunctions.emplace_back(std::string("#ifdef ") + ifdef);
 		}
-		if (regex_match(line.c_str(), lineMatch, lineMatchRegex)) {
-			string returnType = lineMatch[1].str();
-			string funcName = lineMatch[2].str();
-			string funcArgs = lineMatch[3].str();
-			cmatch argsMatch;
-			if (regex_match(funcName.c_str(), argsMatch, funcNameIgnoreRegex)) continue;
-			if (regex_match(funcArgs.c_str(), argsMatch, instanceFuncMatchRegex)) {
-				instanceFunctions.emplace_back(returnType, funcName, funcArgs);
-			} else if (regex_match(funcArgs.c_str(), argsMatch, deviceFuncMatchRegex)) {
-				deviceFunctions.emplace_back(returnType, funcName, funcArgs);
-			} else {
-				globalFunctions.emplace_back(returnType, funcName, funcArgs);
+		std::string filepath = std::string(argv[1]) + "/" + filename;
+		ifstream vulkanCoreHeader(filepath, fstream::in);
+		for (string line; getline(vulkanCoreHeader, line);) {
+			
+			cmatch lineMatch;
+			if (vulkanCoreHeaderVersion == "" && regex_match(line.c_str(), lineMatch, versionLineMatchRegex)) {
+				vulkanCoreHeaderVersion = lineMatch[1].str();
+				continue;
+			}
+			if (regex_match(line.c_str(), lineMatch, lineMatchRegex)) {
+				string returnType = lineMatch[1].str();
+				string funcName = lineMatch[2].str();
+				string funcArgs = lineMatch[3].str();
+				cmatch argsMatch;
+				if (regex_match(funcName.c_str(), argsMatch, funcNameIgnoreRegex)) continue;
+				if (regex_match(funcArgs.c_str(), argsMatch, instanceFuncMatchRegex)) {
+					instanceFunctions.emplace_back(returnType, funcName, funcArgs);
+				} else if (regex_match(funcArgs.c_str(), argsMatch, deviceFuncMatchRegex)) {
+					deviceFunctions.emplace_back(returnType, funcName, funcArgs);
+				} else {
+					globalFunctions.emplace_back(returnType, funcName, funcArgs);
+				}
 			}
 		}
+		vulkanCoreHeader.close();
+		if (ifdef != "") {
+			instanceFunctions.emplace_back("#endif\n");
+			deviceFunctions.emplace_back("#endif\n");
+			globalFunctions.emplace_back("#endif\n");
+		}
 	}
-	vulkanCoreHeader.close();
 	
 	// Generate lines
 	
 	// Global functions
 	stringstream globalFunctionDefinitions(""), globalFunctionDefinitions_h(""), globalFunctionDefinitions_cpp(""), globalFunctionLoaders("");
 	for (auto func : globalFunctions) {
+		if (func.isCustomString) {
+			globalFunctionDefinitions << "		" << func.args << endl;
+			globalFunctionDefinitions_h << "	" << func.args << endl;
+			globalFunctionDefinitions_cpp << "	" << func.args << endl;
+			globalFunctionLoaders << "			" << func.args << endl;
+			continue;
+		}
 		globalFunctionDefinitions << "		/* " << func.returnType << " */ XVK_DEF_INTERFACE_FUNC( vk" << func.name << " ) // " << func.args << endl;
 		globalFunctionDefinitions_h << "	/* " << func.returnType << " */ XVK_DEF_INTERFACE_FUNC_H( vk" << func.name << " ) // " << func.args << endl;
 		globalFunctionDefinitions_cpp << "	XVK_DEF_INTERFACE_FUNC_C( vk" << func.name << " )"<< endl;
@@ -77,6 +118,14 @@ int main(int argc, char** argv) {
 	// Instance functions
 	stringstream instanceFunctionDefinitions(""), instanceFunctionDefinitions_h(""), instanceFunctionDefinitions_cpp(""), instanceFunctionLoaders(""), instanceAbstractionFunctions("");
 	for (auto func : instanceFunctions) {
+		if (func.isCustomString) {
+			instanceFunctionDefinitions << "		" << func.args << endl;
+			instanceFunctionDefinitions_h << "	" << func.args << endl;
+			instanceFunctionDefinitions_cpp << "	" << func.args << endl;
+			instanceFunctionLoaders << "			" << func.args << endl;
+			instanceAbstractionFunctions << endl << "		" << func.args << endl;
+			continue;
+		}
 		instanceFunctionDefinitions << "		/* " << func.returnType << " */ XVK_DEF_INTERFACE_FUNC( vk" << func.name << " ) // " << func.args << endl;
 		instanceFunctionDefinitions_h << "	/* " << func.returnType << " */ XVK_DEF_INTERFACE_FUNC_H( vk" << func.name << " ) // " << func.args << endl;
 		instanceFunctionDefinitions_cpp << "	XVK_DEF_INTERFACE_FUNC_C( vk" << func.name << " )"<< endl;
@@ -115,6 +164,14 @@ int main(int argc, char** argv) {
 	// Device functions
 	stringstream deviceFunctionDefinitions(""), deviceFunctionDefinitions_h(""), deviceFunctionDefinitions_cpp(""), deviceFunctionLoaders(""), deviceAbstractionFunctions("");
 	for (auto func : deviceFunctions) {
+		if (func.isCustomString) {
+			deviceFunctionDefinitions << "		" << func.args << endl;
+			deviceFunctionDefinitions_h << "	" << func.args << endl;
+			deviceFunctionDefinitions_cpp << "	" << func.args << endl;
+			deviceFunctionLoaders << "			" << func.args << endl;
+			deviceAbstractionFunctions << endl << "		" << func.args << endl;
+			continue;
+		}
 		deviceFunctionDefinitions << "		/* " << func.returnType << " */ XVK_DEF_INTERFACE_FUNC( vk" << func.name << " ) // " << func.args << endl;
 		deviceFunctionDefinitions_h << "	/* " << func.returnType << " */ XVK_DEF_INTERFACE_FUNC_H( vk" << func.name << " ) // " << func.args << endl;
 		deviceFunctionDefinitions_cpp << "	XVK_DEF_INTERFACE_FUNC_C( vk" << func.name << " )"<< endl;
