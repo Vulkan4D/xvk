@@ -9,9 +9,11 @@ namespace XVK_EXPOSE_NATIVE_VULKAN_FUNCTIONS_NAMESPACE {
 	XVK_DEF_INTERFACE_FUNC_C( vkGetInstanceProcAddr )
 	XVK_DEF_INTERFACE_FUNC_C( vkGetDeviceProcAddr )
 
+	
 	#ifdef VK_USE_PLATFORM_ANDROID_KHR
 	#endif
 
+	
 	#ifdef VK_ENABLE_BETA_EXTENSIONS
 	#endif
 
@@ -19,44 +21,57 @@ namespace XVK_EXPOSE_NATIVE_VULKAN_FUNCTIONS_NAMESPACE {
 	XVK_DEF_INTERFACE_FUNC_C( vkEnumerateInstanceExtensionProperties )
 	XVK_DEF_INTERFACE_FUNC_C( vkEnumerateInstanceLayerProperties )
 	XVK_DEF_INTERFACE_FUNC_C( vkEnumerateInstanceVersion )
+	
 	#ifdef VK_USE_PLATFORM_FUCHSIA
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_GGP
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_IOS_MVK
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_MACOS_MVK
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_METAL_EXT
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_VI_NN
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_WAYLAND_KHR
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_WIN32_KHR
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_XCB_KHR
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_XLIB_KHR
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_XLIB_XRANDR_EXT
 	#endif
 
 
+	
 	#ifdef VK_USE_PLATFORM_ANDROID_KHR
 	XVK_DEF_INTERFACE_FUNC_C( vkCreateAndroidSurfaceKHR )
 	#endif
 
+	
 	#ifdef VK_ENABLE_BETA_EXTENSIONS
 	#endif
 
@@ -130,58 +145,71 @@ namespace XVK_EXPOSE_NATIVE_VULKAN_FUNCTIONS_NAMESPACE {
 	XVK_DEF_INTERFACE_FUNC_C( vkGetPhysicalDeviceCooperativeMatrixPropertiesNV )
 	XVK_DEF_INTERFACE_FUNC_C( vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV )
 	XVK_DEF_INTERFACE_FUNC_C( vkCreateHeadlessSurfaceEXT )
+	
 	#ifdef VK_USE_PLATFORM_FUCHSIA
 	XVK_DEF_INTERFACE_FUNC_C( vkCreateImagePipeSurfaceFUCHSIA )
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_GGP
 	XVK_DEF_INTERFACE_FUNC_C( vkCreateStreamDescriptorSurfaceGGP )
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_IOS_MVK
 	XVK_DEF_INTERFACE_FUNC_C( vkCreateIOSSurfaceMVK )
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_MACOS_MVK
 	XVK_DEF_INTERFACE_FUNC_C( vkCreateMacOSSurfaceMVK )
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_METAL_EXT
 	XVK_DEF_INTERFACE_FUNC_C( vkCreateMetalSurfaceEXT )
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_VI_NN
 	XVK_DEF_INTERFACE_FUNC_C( vkCreateViSurfaceNN )
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_WAYLAND_KHR
 	XVK_DEF_INTERFACE_FUNC_C( vkCreateWaylandSurfaceKHR )
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_WIN32_KHR
 	XVK_DEF_INTERFACE_FUNC_C( vkCreateWin32SurfaceKHR )
 	XVK_DEF_INTERFACE_FUNC_C( vkGetPhysicalDeviceSurfacePresentModes2EXT )
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_XCB_KHR
 	XVK_DEF_INTERFACE_FUNC_C( vkCreateXcbSurfaceKHR )
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_XLIB_KHR
 	XVK_DEF_INTERFACE_FUNC_C( vkCreateXlibSurfaceKHR )
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_XLIB_XRANDR_EXT
 	XVK_DEF_INTERFACE_FUNC_C( vkAcquireXlibDisplayEXT )
 	XVK_DEF_INTERFACE_FUNC_C( vkGetRandROutputDisplayEXT )
 	#endif
 
 
+	
 	#ifdef VK_USE_PLATFORM_ANDROID_KHR
 	XVK_DEF_INTERFACE_FUNC_C( vkGetAndroidHardwareBufferPropertiesANDROID )
 	XVK_DEF_INTERFACE_FUNC_C( vkGetMemoryAndroidHardwareBufferANDROID )
 	#endif
 
+	
 	#ifdef VK_ENABLE_BETA_EXTENSIONS
 	XVK_DEF_INTERFACE_FUNC_C( vkCreateDeferredOperationKHR )
 	XVK_DEF_INTERFACE_FUNC_C( vkDestroyDeferredOperationKHR )
@@ -484,27 +512,35 @@ namespace XVK_EXPOSE_NATIVE_VULKAN_FUNCTIONS_NAMESPACE {
 	XVK_DEF_INTERFACE_FUNC_C( vkCmdBindPipelineShaderGroupNV )
 	XVK_DEF_INTERFACE_FUNC_C( vkCreateIndirectCommandsLayoutNV )
 	XVK_DEF_INTERFACE_FUNC_C( vkDestroyIndirectCommandsLayoutNV )
+	
 	#ifdef VK_USE_PLATFORM_FUCHSIA
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_GGP
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_IOS_MVK
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_MACOS_MVK
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_METAL_EXT
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_VI_NN
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_WAYLAND_KHR
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_WIN32_KHR
 	XVK_DEF_INTERFACE_FUNC_C( vkGetMemoryWin32HandleKHR )
 	XVK_DEF_INTERFACE_FUNC_C( vkGetMemoryWin32HandlePropertiesKHR )
@@ -518,12 +554,15 @@ namespace XVK_EXPOSE_NATIVE_VULKAN_FUNCTIONS_NAMESPACE {
 	XVK_DEF_INTERFACE_FUNC_C( vkGetDeviceGroupSurfacePresentModes2EXT )
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_XCB_KHR
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_XLIB_KHR
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_XLIB_XRANDR_EXT
 	#endif
 

@@ -10,9 +10,11 @@ namespace xvk { namespace Interface {
 	
 	class LoaderInterface : public xvk::Base::LoaderBase {
 	XVK_INTERFACE_LOADER_RAW_FUNCTIONS_ACCESSIBILITY:
+		
 		#ifdef VK_USE_PLATFORM_ANDROID_KHR
 		#endif
 
+		
 		#ifdef VK_ENABLE_BETA_EXTENSIONS
 		#endif
 
@@ -20,36 +22,47 @@ namespace xvk { namespace Interface {
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkEnumerateInstanceExtensionProperties ) // const char* pLayerName, uint32_t* pPropertyCount, VkExtensionProperties* pProperties
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkEnumerateInstanceLayerProperties ) // uint32_t* pPropertyCount, VkLayerProperties* pProperties
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkEnumerateInstanceVersion ) // uint32_t* pApiVersion
+		
 		#ifdef VK_USE_PLATFORM_FUCHSIA
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_GGP
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_IOS_MVK
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_MACOS_MVK
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_METAL_EXT
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_VI_NN
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_WAYLAND_KHR
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_WIN32_KHR
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_XCB_KHR
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_XLIB_KHR
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_XLIB_XRANDR_EXT
 		#endif
 
@@ -58,9 +71,11 @@ namespace xvk { namespace Interface {
 		using LoaderBase::LoaderBase;
 		virtual ~LoaderInterface(){}
 		void LoadFunctionPointersInterface() {
+			
 			#ifdef VK_USE_PLATFORM_ANDROID_KHR
 			#endif
 
+			
 			#ifdef VK_ENABLE_BETA_EXTENSIONS
 			#endif
 
@@ -68,36 +83,47 @@ namespace xvk { namespace Interface {
 			XVK_LOAD_GLOBAL_FUNC( vkEnumerateInstanceExtensionProperties )
 			XVK_LOAD_GLOBAL_FUNC( vkEnumerateInstanceLayerProperties )
 			XVK_LOAD_GLOBAL_FUNC( vkEnumerateInstanceVersion )
+			
 			#ifdef VK_USE_PLATFORM_FUCHSIA
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_GGP
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_IOS_MVK
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_MACOS_MVK
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_METAL_EXT
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_VI_NN
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_WAYLAND_KHR
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_WIN32_KHR
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_XCB_KHR
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_XLIB_KHR
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_XLIB_XRANDR_EXT
 			#endif
 
@@ -107,10 +133,12 @@ namespace xvk { namespace Interface {
 	
 	class InstanceInterface : public xvk::Base::InstanceBase {
 	XVK_INTERFACE_RAW_FUNCTIONS_ACCESSIBILITY:
+		
 		#ifdef VK_USE_PLATFORM_ANDROID_KHR
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkCreateAndroidSurfaceKHR ) // VkInstance instance, const VkAndroidSurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
 		#endif
 
+		
 		#ifdef VK_ENABLE_BETA_EXTENSIONS
 		#endif
 
@@ -184,47 +212,58 @@ namespace xvk { namespace Interface {
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkGetPhysicalDeviceCooperativeMatrixPropertiesNV ) // VkPhysicalDevice physicalDevice, uint32_t* pPropertyCount, VkCooperativeMatrixPropertiesNV* pProperties
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV ) // VkPhysicalDevice physicalDevice, uint32_t* pCombinationCount, VkFramebufferMixedSamplesCombinationNV* pCombinations
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkCreateHeadlessSurfaceEXT ) // VkInstance instance, const VkHeadlessSurfaceCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
+		
 		#ifdef VK_USE_PLATFORM_FUCHSIA
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkCreateImagePipeSurfaceFUCHSIA ) // VkInstance instance, const VkImagePipeSurfaceCreateInfoFUCHSIA* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_GGP
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkCreateStreamDescriptorSurfaceGGP ) // VkInstance instance, const VkStreamDescriptorSurfaceCreateInfoGGP* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_IOS_MVK
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkCreateIOSSurfaceMVK ) // VkInstance instance, const VkIOSSurfaceCreateInfoMVK* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_MACOS_MVK
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkCreateMacOSSurfaceMVK ) // VkInstance instance, const VkMacOSSurfaceCreateInfoMVK* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_METAL_EXT
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkCreateMetalSurfaceEXT ) // VkInstance instance, const VkMetalSurfaceCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_VI_NN
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkCreateViSurfaceNN ) // VkInstance instance, const VkViSurfaceCreateInfoNN* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_WAYLAND_KHR
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkCreateWaylandSurfaceKHR ) // VkInstance instance, const VkWaylandSurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_WIN32_KHR
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkCreateWin32SurfaceKHR ) // VkInstance instance, const VkWin32SurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkGetPhysicalDeviceSurfacePresentModes2EXT ) // VkPhysicalDevice physicalDevice, const VkPhysicalDeviceSurfaceInfo2KHR* pSurfaceInfo, uint32_t* pPresentModeCount, VkPresentModeKHR* pPresentModes
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_XCB_KHR
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkCreateXcbSurfaceKHR ) // VkInstance instance, const VkXcbSurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_XLIB_KHR
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkCreateXlibSurfaceKHR ) // VkInstance instance, const VkXlibSurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_XLIB_XRANDR_EXT
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkAcquireXlibDisplayEXT ) // VkPhysicalDevice physicalDevice, Display* dpy, VkDisplayKHR display
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkGetRandROutputDisplayEXT ) // VkPhysicalDevice physicalDevice, Display* dpy, RROutput rrOutput, VkDisplayKHR* pDisplay
@@ -232,6 +271,8 @@ namespace xvk { namespace Interface {
 
 
 	XVK_INTERFACE_ABSTRACTED_FUNCTIONS_ACCESSIBILITY:
+
+		
 
 		#ifdef VK_USE_PLATFORM_ANDROID_KHR
 
@@ -242,6 +283,8 @@ namespace xvk { namespace Interface {
 
 		#endif
 
+
+		
 
 		#ifdef VK_ENABLE_BETA_EXTENSIONS
 
@@ -598,6 +641,8 @@ namespace xvk { namespace Interface {
 			return vkCreateHeadlessSurfaceEXT(handle, pCreateInfo, pAllocator, pSurface);
 		}
 
+		
+
 		#ifdef VK_USE_PLATFORM_FUCHSIA
 
 		inline VkResult CreateImagePipeSurfaceFUCHSIA (const VkImagePipeSurfaceCreateInfoFUCHSIA* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface) {
@@ -607,6 +652,8 @@ namespace xvk { namespace Interface {
 
 		#endif
 
+
+		
 
 		#ifdef VK_USE_PLATFORM_GGP
 
@@ -618,6 +665,8 @@ namespace xvk { namespace Interface {
 		#endif
 
 
+		
+
 		#ifdef VK_USE_PLATFORM_IOS_MVK
 
 		inline VkResult CreateIOSSurfaceMVK (const VkIOSSurfaceCreateInfoMVK* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface) {
@@ -627,6 +676,8 @@ namespace xvk { namespace Interface {
 
 		#endif
 
+
+		
 
 		#ifdef VK_USE_PLATFORM_MACOS_MVK
 
@@ -638,6 +689,8 @@ namespace xvk { namespace Interface {
 		#endif
 
 
+		
+
 		#ifdef VK_USE_PLATFORM_METAL_EXT
 
 		inline VkResult CreateMetalSurfaceEXT (const VkMetalSurfaceCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface) {
@@ -647,6 +700,8 @@ namespace xvk { namespace Interface {
 
 		#endif
 
+
+		
 
 		#ifdef VK_USE_PLATFORM_VI_NN
 
@@ -658,6 +713,8 @@ namespace xvk { namespace Interface {
 		#endif
 
 
+		
+
 		#ifdef VK_USE_PLATFORM_WAYLAND_KHR
 
 		inline VkResult CreateWaylandSurfaceKHR (const VkWaylandSurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface) {
@@ -667,6 +724,8 @@ namespace xvk { namespace Interface {
 
 		#endif
 
+
+		
 
 		#ifdef VK_USE_PLATFORM_WIN32_KHR
 
@@ -683,6 +742,8 @@ namespace xvk { namespace Interface {
 		#endif
 
 
+		
+
 		#ifdef VK_USE_PLATFORM_XCB_KHR
 
 		inline VkResult CreateXcbSurfaceKHR (const VkXcbSurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface) {
@@ -693,6 +754,8 @@ namespace xvk { namespace Interface {
 		#endif
 
 
+		
+
 		#ifdef VK_USE_PLATFORM_XLIB_KHR
 
 		inline VkResult CreateXlibSurfaceKHR (const VkXlibSurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface) {
@@ -702,6 +765,8 @@ namespace xvk { namespace Interface {
 
 		#endif
 
+
+		
 
 		#ifdef VK_USE_PLATFORM_XLIB_XRANDR_EXT
 
@@ -722,10 +787,12 @@ namespace xvk { namespace Interface {
 		using InstanceBase::InstanceBase;
 		virtual ~InstanceInterface(){}
 		void LoadFunctionPointersInterface() override {
+			
 			#ifdef VK_USE_PLATFORM_ANDROID_KHR
 			XVK_LOAD_INSTANCE_FUNC( vkCreateAndroidSurfaceKHR )
 			#endif
 
+			
 			#ifdef VK_ENABLE_BETA_EXTENSIONS
 			#endif
 
@@ -799,47 +866,58 @@ namespace xvk { namespace Interface {
 			XVK_LOAD_INSTANCE_FUNC( vkGetPhysicalDeviceCooperativeMatrixPropertiesNV )
 			XVK_LOAD_INSTANCE_FUNC( vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV )
 			XVK_LOAD_INSTANCE_FUNC( vkCreateHeadlessSurfaceEXT )
+			
 			#ifdef VK_USE_PLATFORM_FUCHSIA
 			XVK_LOAD_INSTANCE_FUNC( vkCreateImagePipeSurfaceFUCHSIA )
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_GGP
 			XVK_LOAD_INSTANCE_FUNC( vkCreateStreamDescriptorSurfaceGGP )
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_IOS_MVK
 			XVK_LOAD_INSTANCE_FUNC( vkCreateIOSSurfaceMVK )
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_MACOS_MVK
 			XVK_LOAD_INSTANCE_FUNC( vkCreateMacOSSurfaceMVK )
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_METAL_EXT
 			XVK_LOAD_INSTANCE_FUNC( vkCreateMetalSurfaceEXT )
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_VI_NN
 			XVK_LOAD_INSTANCE_FUNC( vkCreateViSurfaceNN )
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_WAYLAND_KHR
 			XVK_LOAD_INSTANCE_FUNC( vkCreateWaylandSurfaceKHR )
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_WIN32_KHR
 			XVK_LOAD_INSTANCE_FUNC( vkCreateWin32SurfaceKHR )
 			XVK_LOAD_INSTANCE_FUNC( vkGetPhysicalDeviceSurfacePresentModes2EXT )
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_XCB_KHR
 			XVK_LOAD_INSTANCE_FUNC( vkCreateXcbSurfaceKHR )
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_XLIB_KHR
 			XVK_LOAD_INSTANCE_FUNC( vkCreateXlibSurfaceKHR )
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_XLIB_XRANDR_EXT
 			XVK_LOAD_INSTANCE_FUNC( vkAcquireXlibDisplayEXT )
 			XVK_LOAD_INSTANCE_FUNC( vkGetRandROutputDisplayEXT )
@@ -851,11 +929,13 @@ namespace xvk { namespace Interface {
 	
 	class DeviceInterface : public xvk::Base::DeviceBase {
 	XVK_INTERFACE_RAW_FUNCTIONS_ACCESSIBILITY:
+		
 		#ifdef VK_USE_PLATFORM_ANDROID_KHR
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkGetAndroidHardwareBufferPropertiesANDROID ) // VkDevice device, const struct AHardwareBuffer* buffer, VkAndroidHardwareBufferPropertiesANDROID* pProperties
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkGetMemoryAndroidHardwareBufferANDROID ) // VkDevice device, const VkMemoryGetAndroidHardwareBufferInfoANDROID* pInfo, struct AHardwareBuffer** pBuffer
 		#endif
 
+		
 		#ifdef VK_ENABLE_BETA_EXTENSIONS
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkCreateDeferredOperationKHR ) // VkDevice device, const VkAllocationCallbacks* pAllocator, VkDeferredOperationKHR* pDeferredOperation
 		/* void */ XVK_DEF_INTERFACE_FUNC( vkDestroyDeferredOperationKHR ) // VkDevice device, VkDeferredOperationKHR operation, const VkAllocationCallbacks* pAllocator
@@ -1158,27 +1238,35 @@ namespace xvk { namespace Interface {
 		/* void */ XVK_DEF_INTERFACE_FUNC( vkCmdBindPipelineShaderGroupNV ) // VkCommandBuffer commandBuffer, VkPipelineBindPoint pipelineBindPoint, VkPipeline pipeline, uint32_t groupIndex
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkCreateIndirectCommandsLayoutNV ) // VkDevice device, const VkIndirectCommandsLayoutCreateInfoNV* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkIndirectCommandsLayoutNV* pIndirectCommandsLayout
 		/* void */ XVK_DEF_INTERFACE_FUNC( vkDestroyIndirectCommandsLayoutNV ) // VkDevice device, VkIndirectCommandsLayoutNV indirectCommandsLayout, const VkAllocationCallbacks* pAllocator
+		
 		#ifdef VK_USE_PLATFORM_FUCHSIA
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_GGP
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_IOS_MVK
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_MACOS_MVK
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_METAL_EXT
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_VI_NN
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_WAYLAND_KHR
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_WIN32_KHR
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkGetMemoryWin32HandleKHR ) // VkDevice device, const VkMemoryGetWin32HandleInfoKHR* pGetWin32HandleInfo, HANDLE* pHandle
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkGetMemoryWin32HandlePropertiesKHR ) // VkDevice device, VkExternalMemoryHandleTypeFlagBits handleType, HANDLE handle, VkMemoryWin32HandlePropertiesKHR* pMemoryWin32HandleProperties
@@ -1192,17 +1280,22 @@ namespace xvk { namespace Interface {
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkGetDeviceGroupSurfacePresentModes2EXT ) // VkDevice device, const VkPhysicalDeviceSurfaceInfo2KHR* pSurfaceInfo, VkDeviceGroupPresentModeFlagsKHR* pModes
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_XCB_KHR
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_XLIB_KHR
 		#endif
 
+		
 		#ifdef VK_USE_PLATFORM_XLIB_XRANDR_EXT
 		#endif
 
 
 	XVK_INTERFACE_ABSTRACTED_FUNCTIONS_ACCESSIBILITY:
+
+		
 
 		#ifdef VK_USE_PLATFORM_ANDROID_KHR
 
@@ -1218,6 +1311,8 @@ namespace xvk { namespace Interface {
 
 		#endif
 
+
+		
 
 		#ifdef VK_ENABLE_BETA_EXTENSIONS
 
@@ -2719,40 +2814,56 @@ namespace xvk { namespace Interface {
 			vkDestroyIndirectCommandsLayoutNV(handle, indirectCommandsLayout, pAllocator);
 		}
 
+		
+
 		#ifdef VK_USE_PLATFORM_FUCHSIA
 
 		#endif
 
+
+		
 
 		#ifdef VK_USE_PLATFORM_GGP
 
 		#endif
 
 
+		
+
 		#ifdef VK_USE_PLATFORM_IOS_MVK
 
 		#endif
 
+
+		
 
 		#ifdef VK_USE_PLATFORM_MACOS_MVK
 
 		#endif
 
 
+		
+
 		#ifdef VK_USE_PLATFORM_METAL_EXT
 
 		#endif
 
+
+		
 
 		#ifdef VK_USE_PLATFORM_VI_NN
 
 		#endif
 
 
+		
+
 		#ifdef VK_USE_PLATFORM_WAYLAND_KHR
 
 		#endif
 
+
+		
 
 		#ifdef VK_USE_PLATFORM_WIN32_KHR
 
@@ -2809,15 +2920,21 @@ namespace xvk { namespace Interface {
 		#endif
 
 
+		
+
 		#ifdef VK_USE_PLATFORM_XCB_KHR
 
 		#endif
 
 
+		
+
 		#ifdef VK_USE_PLATFORM_XLIB_KHR
 
 		#endif
 
+
+		
 
 		#ifdef VK_USE_PLATFORM_XLIB_XRANDR_EXT
 
@@ -2828,11 +2945,13 @@ namespace xvk { namespace Interface {
 		using DeviceBase::DeviceBase;
 		virtual ~DeviceInterface(){}
 		void LoadFunctionPointersInterface() override {
+			
 			#ifdef VK_USE_PLATFORM_ANDROID_KHR
 			XVK_LOAD_DEVICE_FUNC( vkGetAndroidHardwareBufferPropertiesANDROID )
 			XVK_LOAD_DEVICE_FUNC( vkGetMemoryAndroidHardwareBufferANDROID )
 			#endif
 
+			
 			#ifdef VK_ENABLE_BETA_EXTENSIONS
 			XVK_LOAD_DEVICE_FUNC( vkCreateDeferredOperationKHR )
 			XVK_LOAD_DEVICE_FUNC( vkDestroyDeferredOperationKHR )
@@ -3135,27 +3254,35 @@ namespace xvk { namespace Interface {
 			XVK_LOAD_DEVICE_FUNC( vkCmdBindPipelineShaderGroupNV )
 			XVK_LOAD_DEVICE_FUNC( vkCreateIndirectCommandsLayoutNV )
 			XVK_LOAD_DEVICE_FUNC( vkDestroyIndirectCommandsLayoutNV )
+			
 			#ifdef VK_USE_PLATFORM_FUCHSIA
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_GGP
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_IOS_MVK
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_MACOS_MVK
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_METAL_EXT
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_VI_NN
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_WAYLAND_KHR
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_WIN32_KHR
 			XVK_LOAD_DEVICE_FUNC( vkGetMemoryWin32HandleKHR )
 			XVK_LOAD_DEVICE_FUNC( vkGetMemoryWin32HandlePropertiesKHR )
@@ -3169,12 +3296,15 @@ namespace xvk { namespace Interface {
 			XVK_LOAD_DEVICE_FUNC( vkGetDeviceGroupSurfacePresentModes2EXT )
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_XCB_KHR
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_XLIB_KHR
 			#endif
 
+			
 			#ifdef VK_USE_PLATFORM_XLIB_XRANDR_EXT
 			#endif
 

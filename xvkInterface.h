@@ -9,9 +9,11 @@ namespace XVK_EXPOSE_NATIVE_VULKAN_FUNCTIONS_NAMESPACE {
 	XVK_DEF_INTERFACE_FUNC_H( vkGetInstanceProcAddr )
 	XVK_DEF_INTERFACE_FUNC_H( vkGetDeviceProcAddr )
 
+	
 	#ifdef VK_USE_PLATFORM_ANDROID_KHR
 	#endif
 
+	
 	#ifdef VK_ENABLE_BETA_EXTENSIONS
 	#endif
 
@@ -19,44 +21,57 @@ namespace XVK_EXPOSE_NATIVE_VULKAN_FUNCTIONS_NAMESPACE {
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkEnumerateInstanceExtensionProperties ) // const char* pLayerName, uint32_t* pPropertyCount, VkExtensionProperties* pProperties
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkEnumerateInstanceLayerProperties ) // uint32_t* pPropertyCount, VkLayerProperties* pProperties
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkEnumerateInstanceVersion ) // uint32_t* pApiVersion
+	
 	#ifdef VK_USE_PLATFORM_FUCHSIA
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_GGP
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_IOS_MVK
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_MACOS_MVK
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_METAL_EXT
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_VI_NN
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_WAYLAND_KHR
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_WIN32_KHR
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_XCB_KHR
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_XLIB_KHR
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_XLIB_XRANDR_EXT
 	#endif
 
 
+	
 	#ifdef VK_USE_PLATFORM_ANDROID_KHR
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkCreateAndroidSurfaceKHR ) // VkInstance instance, const VkAndroidSurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
 	#endif
 
+	
 	#ifdef VK_ENABLE_BETA_EXTENSIONS
 	#endif
 
@@ -130,58 +145,71 @@ namespace XVK_EXPOSE_NATIVE_VULKAN_FUNCTIONS_NAMESPACE {
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkGetPhysicalDeviceCooperativeMatrixPropertiesNV ) // VkPhysicalDevice physicalDevice, uint32_t* pPropertyCount, VkCooperativeMatrixPropertiesNV* pProperties
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV ) // VkPhysicalDevice physicalDevice, uint32_t* pCombinationCount, VkFramebufferMixedSamplesCombinationNV* pCombinations
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkCreateHeadlessSurfaceEXT ) // VkInstance instance, const VkHeadlessSurfaceCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
+	
 	#ifdef VK_USE_PLATFORM_FUCHSIA
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkCreateImagePipeSurfaceFUCHSIA ) // VkInstance instance, const VkImagePipeSurfaceCreateInfoFUCHSIA* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_GGP
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkCreateStreamDescriptorSurfaceGGP ) // VkInstance instance, const VkStreamDescriptorSurfaceCreateInfoGGP* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_IOS_MVK
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkCreateIOSSurfaceMVK ) // VkInstance instance, const VkIOSSurfaceCreateInfoMVK* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_MACOS_MVK
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkCreateMacOSSurfaceMVK ) // VkInstance instance, const VkMacOSSurfaceCreateInfoMVK* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_METAL_EXT
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkCreateMetalSurfaceEXT ) // VkInstance instance, const VkMetalSurfaceCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_VI_NN
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkCreateViSurfaceNN ) // VkInstance instance, const VkViSurfaceCreateInfoNN* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_WAYLAND_KHR
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkCreateWaylandSurfaceKHR ) // VkInstance instance, const VkWaylandSurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_WIN32_KHR
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkCreateWin32SurfaceKHR ) // VkInstance instance, const VkWin32SurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkGetPhysicalDeviceSurfacePresentModes2EXT ) // VkPhysicalDevice physicalDevice, const VkPhysicalDeviceSurfaceInfo2KHR* pSurfaceInfo, uint32_t* pPresentModeCount, VkPresentModeKHR* pPresentModes
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_XCB_KHR
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkCreateXcbSurfaceKHR ) // VkInstance instance, const VkXcbSurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_XLIB_KHR
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkCreateXlibSurfaceKHR ) // VkInstance instance, const VkXlibSurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_XLIB_XRANDR_EXT
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkAcquireXlibDisplayEXT ) // VkPhysicalDevice physicalDevice, Display* dpy, VkDisplayKHR display
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkGetRandROutputDisplayEXT ) // VkPhysicalDevice physicalDevice, Display* dpy, RROutput rrOutput, VkDisplayKHR* pDisplay
 	#endif
 
 
+	
 	#ifdef VK_USE_PLATFORM_ANDROID_KHR
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkGetAndroidHardwareBufferPropertiesANDROID ) // VkDevice device, const struct AHardwareBuffer* buffer, VkAndroidHardwareBufferPropertiesANDROID* pProperties
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkGetMemoryAndroidHardwareBufferANDROID ) // VkDevice device, const VkMemoryGetAndroidHardwareBufferInfoANDROID* pInfo, struct AHardwareBuffer** pBuffer
 	#endif
 
+	
 	#ifdef VK_ENABLE_BETA_EXTENSIONS
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkCreateDeferredOperationKHR ) // VkDevice device, const VkAllocationCallbacks* pAllocator, VkDeferredOperationKHR* pDeferredOperation
 	/* void */ XVK_DEF_INTERFACE_FUNC_H( vkDestroyDeferredOperationKHR ) // VkDevice device, VkDeferredOperationKHR operation, const VkAllocationCallbacks* pAllocator
@@ -484,27 +512,35 @@ namespace XVK_EXPOSE_NATIVE_VULKAN_FUNCTIONS_NAMESPACE {
 	/* void */ XVK_DEF_INTERFACE_FUNC_H( vkCmdBindPipelineShaderGroupNV ) // VkCommandBuffer commandBuffer, VkPipelineBindPoint pipelineBindPoint, VkPipeline pipeline, uint32_t groupIndex
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkCreateIndirectCommandsLayoutNV ) // VkDevice device, const VkIndirectCommandsLayoutCreateInfoNV* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkIndirectCommandsLayoutNV* pIndirectCommandsLayout
 	/* void */ XVK_DEF_INTERFACE_FUNC_H( vkDestroyIndirectCommandsLayoutNV ) // VkDevice device, VkIndirectCommandsLayoutNV indirectCommandsLayout, const VkAllocationCallbacks* pAllocator
+	
 	#ifdef VK_USE_PLATFORM_FUCHSIA
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_GGP
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_IOS_MVK
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_MACOS_MVK
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_METAL_EXT
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_VI_NN
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_WAYLAND_KHR
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_WIN32_KHR
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkGetMemoryWin32HandleKHR ) // VkDevice device, const VkMemoryGetWin32HandleInfoKHR* pGetWin32HandleInfo, HANDLE* pHandle
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkGetMemoryWin32HandlePropertiesKHR ) // VkDevice device, VkExternalMemoryHandleTypeFlagBits handleType, HANDLE handle, VkMemoryWin32HandlePropertiesKHR* pMemoryWin32HandleProperties
@@ -518,12 +554,15 @@ namespace XVK_EXPOSE_NATIVE_VULKAN_FUNCTIONS_NAMESPACE {
 	/* VkResult */ XVK_DEF_INTERFACE_FUNC_H( vkGetDeviceGroupSurfacePresentModes2EXT ) // VkDevice device, const VkPhysicalDeviceSurfaceInfo2KHR* pSurfaceInfo, VkDeviceGroupPresentModeFlagsKHR* pModes
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_XCB_KHR
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_XLIB_KHR
 	#endif
 
+	
 	#ifdef VK_USE_PLATFORM_XLIB_XRANDR_EXT
 	#endif
 

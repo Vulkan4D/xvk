@@ -61,8 +61,11 @@ int main(int argc, char** argv) {
 	// Read vulkan core header
 	for (auto[filename, ifdef] : includedHeaderFiles) {
 		if (ifdef != "") {
+			instanceFunctions.emplace_back("");
 			instanceFunctions.emplace_back(std::string("#ifdef ") + ifdef);
+			deviceFunctions.emplace_back("");
 			deviceFunctions.emplace_back(std::string("#ifdef ") + ifdef);
+			globalFunctions.emplace_back("");
 			globalFunctions.emplace_back(std::string("#ifdef ") + ifdef);
 		}
 		std::string filepath = std::string(argv[1]) + "/" + filename;
@@ -205,13 +208,6 @@ int main(int argc, char** argv) {
 			)" << (func.returnType == "void" ? "" : "return ") << "vk" << func.name << "(" << forwardedArgs.str() << ");" << R"(
 		})" << endl;
 		
-	}
-	
-	// Output files
-	string outputFileName {""};
-	cmatch fileNameMatch;
-	if (regex_match(argv[2], fileNameMatch, outputFileNameRegex)) {
-		outputFileName = fileNameMatch[1].str();
 	}
 	
 	// Write to files
