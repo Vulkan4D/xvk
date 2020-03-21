@@ -245,22 +245,26 @@ namespace xvk { namespace Interface {
 		
 		#ifdef VK_USE_PLATFORM_WAYLAND_KHR
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkCreateWaylandSurfaceKHR ) // VkInstance instance, const VkWaylandSurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
+		/* VkBool32 */ XVK_DEF_INTERFACE_FUNC( vkGetPhysicalDeviceWaylandPresentationSupportKHR ) // VkPhysicalDevice physicalDevice, uint32_t queueFamilyIndex, struct wl_display* display
 		#endif
 
 		
 		#ifdef VK_USE_PLATFORM_WIN32_KHR
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkCreateWin32SurfaceKHR ) // VkInstance instance, const VkWin32SurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
+		/* VkBool32 */ XVK_DEF_INTERFACE_FUNC( vkGetPhysicalDeviceWin32PresentationSupportKHR ) // VkPhysicalDevice physicalDevice, uint32_t queueFamilyIndex
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkGetPhysicalDeviceSurfacePresentModes2EXT ) // VkPhysicalDevice physicalDevice, const VkPhysicalDeviceSurfaceInfo2KHR* pSurfaceInfo, uint32_t* pPresentModeCount, VkPresentModeKHR* pPresentModes
 		#endif
 
 		
 		#ifdef VK_USE_PLATFORM_XCB_KHR
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkCreateXcbSurfaceKHR ) // VkInstance instance, const VkXcbSurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
+		/* VkBool32 */ XVK_DEF_INTERFACE_FUNC( vkGetPhysicalDeviceXcbPresentationSupportKHR ) // VkPhysicalDevice physicalDevice, uint32_t queueFamilyIndex, xcb_connection_t* connection, xcb_visualid_t visual_id
 		#endif
 
 		
 		#ifdef VK_USE_PLATFORM_XLIB_KHR
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkCreateXlibSurfaceKHR ) // VkInstance instance, const VkXlibSurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface
+		/* VkBool32 */ XVK_DEF_INTERFACE_FUNC( vkGetPhysicalDeviceXlibPresentationSupportKHR ) // VkPhysicalDevice physicalDevice, uint32_t queueFamilyIndex, Display* dpy, VisualID visualID
 		#endif
 
 		
@@ -722,6 +726,11 @@ namespace xvk { namespace Interface {
 			return vkCreateWaylandSurfaceKHR(handle, pCreateInfo, pAllocator, pSurface);
 		}
 
+		inline VkBool32 GetPhysicalDeviceWaylandPresentationSupportKHR (VkPhysicalDevice physicalDevice, uint32_t queueFamilyIndex, struct wl_display* display) {
+			XVK_CHECK_FUNC(vkGetPhysicalDeviceWaylandPresentationSupportKHR)
+			return vkGetPhysicalDeviceWaylandPresentationSupportKHR(physicalDevice, queueFamilyIndex, display);
+		}
+
 		#endif
 
 
@@ -732,6 +741,11 @@ namespace xvk { namespace Interface {
 		inline VkResult CreateWin32SurfaceKHR (const VkWin32SurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface) {
 			XVK_CHECK_FUNC(vkCreateWin32SurfaceKHR)
 			return vkCreateWin32SurfaceKHR(handle, pCreateInfo, pAllocator, pSurface);
+		}
+
+		inline VkBool32 GetPhysicalDeviceWin32PresentationSupportKHR (VkPhysicalDevice physicalDevice, uint32_t queueFamilyIndex) {
+			XVK_CHECK_FUNC(vkGetPhysicalDeviceWin32PresentationSupportKHR)
+			return vkGetPhysicalDeviceWin32PresentationSupportKHR(physicalDevice, queueFamilyIndex);
 		}
 
 		inline VkResult GetPhysicalDeviceSurfacePresentModes2EXT (VkPhysicalDevice physicalDevice, const VkPhysicalDeviceSurfaceInfo2KHR* pSurfaceInfo, uint32_t* pPresentModeCount, VkPresentModeKHR* pPresentModes) {
@@ -751,6 +765,11 @@ namespace xvk { namespace Interface {
 			return vkCreateXcbSurfaceKHR(handle, pCreateInfo, pAllocator, pSurface);
 		}
 
+		inline VkBool32 GetPhysicalDeviceXcbPresentationSupportKHR (VkPhysicalDevice physicalDevice, uint32_t queueFamilyIndex, xcb_connection_t* connection, xcb_visualid_t visual_id) {
+			XVK_CHECK_FUNC(vkGetPhysicalDeviceXcbPresentationSupportKHR)
+			return vkGetPhysicalDeviceXcbPresentationSupportKHR(physicalDevice, queueFamilyIndex, connection, visual_id);
+		}
+
 		#endif
 
 
@@ -761,6 +780,11 @@ namespace xvk { namespace Interface {
 		inline VkResult CreateXlibSurfaceKHR (const VkXlibSurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface) {
 			XVK_CHECK_FUNC(vkCreateXlibSurfaceKHR)
 			return vkCreateXlibSurfaceKHR(handle, pCreateInfo, pAllocator, pSurface);
+		}
+
+		inline VkBool32 GetPhysicalDeviceXlibPresentationSupportKHR (VkPhysicalDevice physicalDevice, uint32_t queueFamilyIndex, Display* dpy, VisualID visualID) {
+			XVK_CHECK_FUNC(vkGetPhysicalDeviceXlibPresentationSupportKHR)
+			return vkGetPhysicalDeviceXlibPresentationSupportKHR(physicalDevice, queueFamilyIndex, dpy, visualID);
 		}
 
 		#endif
@@ -899,22 +923,26 @@ namespace xvk { namespace Interface {
 			
 			#ifdef VK_USE_PLATFORM_WAYLAND_KHR
 			XVK_LOAD_INSTANCE_FUNC( vkCreateWaylandSurfaceKHR )
+			XVK_LOAD_INSTANCE_FUNC( vkGetPhysicalDeviceWaylandPresentationSupportKHR )
 			#endif
 
 			
 			#ifdef VK_USE_PLATFORM_WIN32_KHR
 			XVK_LOAD_INSTANCE_FUNC( vkCreateWin32SurfaceKHR )
+			XVK_LOAD_INSTANCE_FUNC( vkGetPhysicalDeviceWin32PresentationSupportKHR )
 			XVK_LOAD_INSTANCE_FUNC( vkGetPhysicalDeviceSurfacePresentModes2EXT )
 			#endif
 
 			
 			#ifdef VK_USE_PLATFORM_XCB_KHR
 			XVK_LOAD_INSTANCE_FUNC( vkCreateXcbSurfaceKHR )
+			XVK_LOAD_INSTANCE_FUNC( vkGetPhysicalDeviceXcbPresentationSupportKHR )
 			#endif
 
 			
 			#ifdef VK_USE_PLATFORM_XLIB_KHR
 			XVK_LOAD_INSTANCE_FUNC( vkCreateXlibSurfaceKHR )
+			XVK_LOAD_INSTANCE_FUNC( vkGetPhysicalDeviceXlibPresentationSupportKHR )
 			#endif
 
 			
@@ -939,6 +967,7 @@ namespace xvk { namespace Interface {
 		#ifdef VK_ENABLE_BETA_EXTENSIONS
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkCreateDeferredOperationKHR ) // VkDevice device, const VkAllocationCallbacks* pAllocator, VkDeferredOperationKHR* pDeferredOperation
 		/* void */ XVK_DEF_INTERFACE_FUNC( vkDestroyDeferredOperationKHR ) // VkDevice device, VkDeferredOperationKHR operation, const VkAllocationCallbacks* pAllocator
+		/* uint32_t */ XVK_DEF_INTERFACE_FUNC( vkGetDeferredOperationMaxConcurrencyKHR ) // VkDevice device, VkDeferredOperationKHR operation
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkGetDeferredOperationResultKHR ) // VkDevice device, VkDeferredOperationKHR operation
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkDeferredOperationJoinKHR ) // VkDevice device, VkDeferredOperationKHR operation
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkCreateAccelerationStructureKHR ) // VkDevice                                           device, const VkAccelerationStructureCreateInfoKHR*        pCreateInfo, const VkAllocationCallbacks*       pAllocator, VkAccelerationStructureKHR*                        pAccelerationStructure
@@ -955,6 +984,7 @@ namespace xvk { namespace Interface {
 		/* void */ XVK_DEF_INTERFACE_FUNC( vkCmdCopyMemoryToAccelerationStructureKHR ) // VkCommandBuffer commandBuffer, const VkCopyMemoryToAccelerationStructureInfoKHR* pInfo
 		/* void */ XVK_DEF_INTERFACE_FUNC( vkCmdTraceRaysKHR ) // VkCommandBuffer commandBuffer, const VkStridedBufferRegionKHR* pRaygenShaderBindingTable, const VkStridedBufferRegionKHR* pMissShaderBindingTable, const VkStridedBufferRegionKHR* pHitShaderBindingTable, const VkStridedBufferRegionKHR* pCallableShaderBindingTable, uint32_t width, uint32_t height, uint32_t depth
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkCreateRayTracingPipelinesKHR ) // VkDevice device, VkPipelineCache pipelineCache, uint32_t createInfoCount, const VkRayTracingPipelineCreateInfoKHR* pCreateInfos, const VkAllocationCallbacks* pAllocator, VkPipeline* pPipelines
+		/* VkDeviceAddress */ XVK_DEF_INTERFACE_FUNC( vkGetAccelerationStructureDeviceAddressKHR ) // VkDevice device, const VkAccelerationStructureDeviceAddressInfoKHR* pInfo
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkGetRayTracingCaptureReplayShaderGroupHandlesKHR ) // VkDevice device, VkPipeline pipeline, uint32_t firstGroup, uint32_t groupCount, size_t dataSize, void* pData
 		/* void */ XVK_DEF_INTERFACE_FUNC( vkCmdTraceRaysIndirectKHR ) // VkCommandBuffer commandBuffer, const VkStridedBufferRegionKHR* pRaygenShaderBindingTable, const VkStridedBufferRegionKHR* pMissShaderBindingTable, const VkStridedBufferRegionKHR* pHitShaderBindingTable, const VkStridedBufferRegionKHR* pCallableShaderBindingTable, VkBuffer buffer, VkDeviceSize offset
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkGetDeviceAccelerationStructureCompatibilityKHR ) // VkDevice device, const VkAccelerationStructureVersionKHR* version
@@ -1106,6 +1136,9 @@ namespace xvk { namespace Interface {
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkGetSemaphoreCounterValue ) // VkDevice device, VkSemaphore semaphore, uint64_t* pValue
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkWaitSemaphores ) // VkDevice device, const VkSemaphoreWaitInfo* pWaitInfo, uint64_t timeout
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkSignalSemaphore ) // VkDevice device, const VkSemaphoreSignalInfo* pSignalInfo
+		/* VkDeviceAddress */ XVK_DEF_INTERFACE_FUNC( vkGetBufferDeviceAddress ) // VkDevice device, const VkBufferDeviceAddressInfo* pInfo
+		/* uint64_t */ XVK_DEF_INTERFACE_FUNC( vkGetBufferOpaqueCaptureAddress ) // VkDevice device, const VkBufferDeviceAddressInfo* pInfo
+		/* uint64_t */ XVK_DEF_INTERFACE_FUNC( vkGetDeviceMemoryOpaqueCaptureAddress ) // VkDevice device, const VkDeviceMemoryOpaqueCaptureAddressInfo* pInfo
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkCreateSwapchainKHR ) // VkDevice device, const VkSwapchainCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSwapchainKHR* pSwapchain
 		/* void */ XVK_DEF_INTERFACE_FUNC( vkDestroySwapchainKHR ) // VkDevice device, VkSwapchainKHR swapchain, const VkAllocationCallbacks* pAllocator
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkGetSwapchainImagesKHR ) // VkDevice device, VkSwapchainKHR swapchain, uint32_t* pSwapchainImageCount, VkImage* pSwapchainImages
@@ -1150,6 +1183,9 @@ namespace xvk { namespace Interface {
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkGetSemaphoreCounterValueKHR ) // VkDevice device, VkSemaphore semaphore, uint64_t* pValue
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkWaitSemaphoresKHR ) // VkDevice device, const VkSemaphoreWaitInfo* pWaitInfo, uint64_t timeout
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkSignalSemaphoreKHR ) // VkDevice device, const VkSemaphoreSignalInfo* pSignalInfo
+		/* VkDeviceAddress */ XVK_DEF_INTERFACE_FUNC( vkGetBufferDeviceAddressKHR ) // VkDevice device, const VkBufferDeviceAddressInfo* pInfo
+		/* uint64_t */ XVK_DEF_INTERFACE_FUNC( vkGetBufferOpaqueCaptureAddressKHR ) // VkDevice device, const VkBufferDeviceAddressInfo* pInfo
+		/* uint64_t */ XVK_DEF_INTERFACE_FUNC( vkGetDeviceMemoryOpaqueCaptureAddressKHR ) // VkDevice device, const VkDeviceMemoryOpaqueCaptureAddressInfo* pInfo
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkGetPipelineExecutablePropertiesKHR ) // VkDevice                        device, const VkPipelineInfoKHR*        pPipelineInfo, uint32_t* pExecutableCount, VkPipelineExecutablePropertiesKHR* pProperties
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkGetPipelineExecutableStatisticsKHR ) // VkDevice                        device, const VkPipelineExecutableInfoKHR*  pExecutableInfo, uint32_t* pStatisticCount, VkPipelineExecutableStatisticKHR* pStatistics
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkGetPipelineExecutableInternalRepresentationsKHR ) // VkDevice                        device, const VkPipelineExecutableInfoKHR*  pExecutableInfo, uint32_t* pInternalRepresentationCount, VkPipelineExecutableInternalRepresentationKHR* pInternalRepresentations
@@ -1164,6 +1200,7 @@ namespace xvk { namespace Interface {
 		/* void */ XVK_DEF_INTERFACE_FUNC( vkCmdBeginQueryIndexedEXT ) // VkCommandBuffer commandBuffer, VkQueryPool queryPool, uint32_t query, VkQueryControlFlags flags, uint32_t index
 		/* void */ XVK_DEF_INTERFACE_FUNC( vkCmdEndQueryIndexedEXT ) // VkCommandBuffer commandBuffer, VkQueryPool queryPool, uint32_t query, uint32_t index
 		/* void */ XVK_DEF_INTERFACE_FUNC( vkCmdDrawIndirectByteCountEXT ) // VkCommandBuffer commandBuffer, uint32_t instanceCount, uint32_t firstInstance, VkBuffer counterBuffer, VkDeviceSize counterBufferOffset, uint32_t counterOffset, uint32_t vertexStride
+		/* uint32_t */ XVK_DEF_INTERFACE_FUNC( vkGetImageViewHandleNVX ) // VkDevice device, const VkImageViewHandleInfoNVX* pInfo
 		/* void */ XVK_DEF_INTERFACE_FUNC( vkCmdDrawIndirectCountAMD ) // VkCommandBuffer commandBuffer, VkBuffer buffer, VkDeviceSize offset, VkBuffer countBuffer, VkDeviceSize countBufferOffset, uint32_t maxDrawCount, uint32_t stride
 		/* void */ XVK_DEF_INTERFACE_FUNC( vkCmdDrawIndexedIndirectCountAMD ) // VkCommandBuffer commandBuffer, VkBuffer buffer, VkDeviceSize offset, VkBuffer countBuffer, VkDeviceSize countBufferOffset, uint32_t maxDrawCount, uint32_t stride
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkGetShaderInfoAMD ) // VkDevice device, VkPipeline pipeline, VkShaderStageFlagBits shaderStage, VkShaderInfoTypeAMD infoType, size_t* pInfoSize, void* pInfo
@@ -1230,6 +1267,7 @@ namespace xvk { namespace Interface {
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkQueueSetPerformanceConfigurationINTEL ) // VkQueue queue, VkPerformanceConfigurationINTEL configuration
 		/* VkResult */ XVK_DEF_INTERFACE_FUNC( vkGetPerformanceParameterINTEL ) // VkDevice device, VkPerformanceParameterTypeINTEL parameter, VkPerformanceValueINTEL* pValue
 		/* void */ XVK_DEF_INTERFACE_FUNC( vkSetLocalDimmingAMD ) // VkDevice device, VkSwapchainKHR swapChain, VkBool32 localDimmingEnable
+		/* VkDeviceAddress */ XVK_DEF_INTERFACE_FUNC( vkGetBufferDeviceAddressEXT ) // VkDevice device, const VkBufferDeviceAddressInfo* pInfo
 		/* void */ XVK_DEF_INTERFACE_FUNC( vkCmdSetLineStippleEXT ) // VkCommandBuffer commandBuffer, uint32_t lineStippleFactor, uint16_t lineStipplePattern
 		/* void */ XVK_DEF_INTERFACE_FUNC( vkResetQueryPoolEXT ) // VkDevice device, VkQueryPool queryPool, uint32_t firstQuery, uint32_t queryCount
 		/* void */ XVK_DEF_INTERFACE_FUNC( vkGetGeneratedCommandsMemoryRequirementsNV ) // VkDevice device, const VkGeneratedCommandsMemoryRequirementsInfoNV* pInfo, VkMemoryRequirements2* pMemoryRequirements
@@ -1326,6 +1364,11 @@ namespace xvk { namespace Interface {
 			vkDestroyDeferredOperationKHR(handle, operation, pAllocator);
 		}
 
+		inline uint32_t GetDeferredOperationMaxConcurrencyKHR (VkDeferredOperationKHR operation) {
+			XVK_CHECK_FUNC(vkGetDeferredOperationMaxConcurrencyKHR)
+			return vkGetDeferredOperationMaxConcurrencyKHR(handle, operation);
+		}
+
 		inline VkResult GetDeferredOperationResultKHR (VkDeferredOperationKHR operation) {
 			XVK_CHECK_FUNC(vkGetDeferredOperationResultKHR)
 			return vkGetDeferredOperationResultKHR(handle, operation);
@@ -1404,6 +1447,11 @@ namespace xvk { namespace Interface {
 		inline VkResult CreateRayTracingPipelinesKHR (VkPipelineCache pipelineCache, uint32_t createInfoCount, const VkRayTracingPipelineCreateInfoKHR* pCreateInfos, const VkAllocationCallbacks* pAllocator, VkPipeline* pPipelines) {
 			XVK_CHECK_FUNC(vkCreateRayTracingPipelinesKHR)
 			return vkCreateRayTracingPipelinesKHR(handle, pipelineCache, createInfoCount, pCreateInfos, pAllocator, pPipelines);
+		}
+
+		inline VkDeviceAddress GetAccelerationStructureDeviceAddressKHR (const VkAccelerationStructureDeviceAddressInfoKHR* pInfo) {
+			XVK_CHECK_FUNC(vkGetAccelerationStructureDeviceAddressKHR)
+			return vkGetAccelerationStructureDeviceAddressKHR(handle, pInfo);
 		}
 
 		inline VkResult GetRayTracingCaptureReplayShaderGroupHandlesKHR (VkPipeline pipeline, uint32_t firstGroup, uint32_t groupCount, size_t dataSize, void* pData) {
@@ -2154,6 +2202,21 @@ namespace xvk { namespace Interface {
 			return vkSignalSemaphore(handle, pSignalInfo);
 		}
 
+		inline VkDeviceAddress GetBufferDeviceAddress (const VkBufferDeviceAddressInfo* pInfo) {
+			XVK_CHECK_FUNC(vkGetBufferDeviceAddress)
+			return vkGetBufferDeviceAddress(handle, pInfo);
+		}
+
+		inline uint64_t GetBufferOpaqueCaptureAddress (const VkBufferDeviceAddressInfo* pInfo) {
+			XVK_CHECK_FUNC(vkGetBufferOpaqueCaptureAddress)
+			return vkGetBufferOpaqueCaptureAddress(handle, pInfo);
+		}
+
+		inline uint64_t GetDeviceMemoryOpaqueCaptureAddress (const VkDeviceMemoryOpaqueCaptureAddressInfo* pInfo) {
+			XVK_CHECK_FUNC(vkGetDeviceMemoryOpaqueCaptureAddress)
+			return vkGetDeviceMemoryOpaqueCaptureAddress(handle, pInfo);
+		}
+
 		inline VkResult CreateSwapchainKHR (const VkSwapchainCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSwapchainKHR* pSwapchain) {
 			XVK_CHECK_FUNC(vkCreateSwapchainKHR)
 			return vkCreateSwapchainKHR(handle, pCreateInfo, pAllocator, pSwapchain);
@@ -2374,6 +2437,21 @@ namespace xvk { namespace Interface {
 			return vkSignalSemaphoreKHR(handle, pSignalInfo);
 		}
 
+		inline VkDeviceAddress GetBufferDeviceAddressKHR (const VkBufferDeviceAddressInfo* pInfo) {
+			XVK_CHECK_FUNC(vkGetBufferDeviceAddressKHR)
+			return vkGetBufferDeviceAddressKHR(handle, pInfo);
+		}
+
+		inline uint64_t GetBufferOpaqueCaptureAddressKHR (const VkBufferDeviceAddressInfo* pInfo) {
+			XVK_CHECK_FUNC(vkGetBufferOpaqueCaptureAddressKHR)
+			return vkGetBufferOpaqueCaptureAddressKHR(handle, pInfo);
+		}
+
+		inline uint64_t GetDeviceMemoryOpaqueCaptureAddressKHR (const VkDeviceMemoryOpaqueCaptureAddressInfo* pInfo) {
+			XVK_CHECK_FUNC(vkGetDeviceMemoryOpaqueCaptureAddressKHR)
+			return vkGetDeviceMemoryOpaqueCaptureAddressKHR(handle, pInfo);
+		}
+
 		inline VkResult GetPipelineExecutablePropertiesKHR (const VkPipelineInfoKHR*        pPipelineInfo, uint32_t* pExecutableCount, VkPipelineExecutablePropertiesKHR* pProperties) {
 			XVK_CHECK_FUNC(vkGetPipelineExecutablePropertiesKHR)
 			return vkGetPipelineExecutablePropertiesKHR(handle, pPipelineInfo, pExecutableCount, pProperties);
@@ -2442,6 +2520,11 @@ namespace xvk { namespace Interface {
 		inline void CmdDrawIndirectByteCountEXT (VkCommandBuffer commandBuffer, uint32_t instanceCount, uint32_t firstInstance, VkBuffer counterBuffer, VkDeviceSize counterBufferOffset, uint32_t counterOffset, uint32_t vertexStride) {
 			XVK_CHECK_FUNC(vkCmdDrawIndirectByteCountEXT)
 			vkCmdDrawIndirectByteCountEXT(commandBuffer, instanceCount, firstInstance, counterBuffer, counterBufferOffset, counterOffset, vertexStride);
+		}
+
+		inline uint32_t GetImageViewHandleNVX (const VkImageViewHandleInfoNVX* pInfo) {
+			XVK_CHECK_FUNC(vkGetImageViewHandleNVX)
+			return vkGetImageViewHandleNVX(handle, pInfo);
 		}
 
 		inline void CmdDrawIndirectCountAMD (VkCommandBuffer commandBuffer, VkBuffer buffer, VkDeviceSize offset, VkBuffer countBuffer, VkDeviceSize countBufferOffset, uint32_t maxDrawCount, uint32_t stride) {
@@ -2774,6 +2857,11 @@ namespace xvk { namespace Interface {
 			vkSetLocalDimmingAMD(handle, swapChain, localDimmingEnable);
 		}
 
+		inline VkDeviceAddress GetBufferDeviceAddressEXT (const VkBufferDeviceAddressInfo* pInfo) {
+			XVK_CHECK_FUNC(vkGetBufferDeviceAddressEXT)
+			return vkGetBufferDeviceAddressEXT(handle, pInfo);
+		}
+
 		inline void CmdSetLineStippleEXT (VkCommandBuffer commandBuffer, uint32_t lineStippleFactor, uint16_t lineStipplePattern) {
 			XVK_CHECK_FUNC(vkCmdSetLineStippleEXT)
 			vkCmdSetLineStippleEXT(commandBuffer, lineStippleFactor, lineStipplePattern);
@@ -2955,6 +3043,7 @@ namespace xvk { namespace Interface {
 			#ifdef VK_ENABLE_BETA_EXTENSIONS
 			XVK_LOAD_DEVICE_FUNC( vkCreateDeferredOperationKHR )
 			XVK_LOAD_DEVICE_FUNC( vkDestroyDeferredOperationKHR )
+			XVK_LOAD_DEVICE_FUNC( vkGetDeferredOperationMaxConcurrencyKHR )
 			XVK_LOAD_DEVICE_FUNC( vkGetDeferredOperationResultKHR )
 			XVK_LOAD_DEVICE_FUNC( vkDeferredOperationJoinKHR )
 			XVK_LOAD_DEVICE_FUNC( vkCreateAccelerationStructureKHR )
@@ -2971,6 +3060,7 @@ namespace xvk { namespace Interface {
 			XVK_LOAD_DEVICE_FUNC( vkCmdCopyMemoryToAccelerationStructureKHR )
 			XVK_LOAD_DEVICE_FUNC( vkCmdTraceRaysKHR )
 			XVK_LOAD_DEVICE_FUNC( vkCreateRayTracingPipelinesKHR )
+			XVK_LOAD_DEVICE_FUNC( vkGetAccelerationStructureDeviceAddressKHR )
 			XVK_LOAD_DEVICE_FUNC( vkGetRayTracingCaptureReplayShaderGroupHandlesKHR )
 			XVK_LOAD_DEVICE_FUNC( vkCmdTraceRaysIndirectKHR )
 			XVK_LOAD_DEVICE_FUNC( vkGetDeviceAccelerationStructureCompatibilityKHR )
@@ -3122,6 +3212,9 @@ namespace xvk { namespace Interface {
 			XVK_LOAD_DEVICE_FUNC( vkGetSemaphoreCounterValue )
 			XVK_LOAD_DEVICE_FUNC( vkWaitSemaphores )
 			XVK_LOAD_DEVICE_FUNC( vkSignalSemaphore )
+			XVK_LOAD_DEVICE_FUNC( vkGetBufferDeviceAddress )
+			XVK_LOAD_DEVICE_FUNC( vkGetBufferOpaqueCaptureAddress )
+			XVK_LOAD_DEVICE_FUNC( vkGetDeviceMemoryOpaqueCaptureAddress )
 			XVK_LOAD_DEVICE_FUNC( vkCreateSwapchainKHR )
 			XVK_LOAD_DEVICE_FUNC( vkDestroySwapchainKHR )
 			XVK_LOAD_DEVICE_FUNC( vkGetSwapchainImagesKHR )
@@ -3166,6 +3259,9 @@ namespace xvk { namespace Interface {
 			XVK_LOAD_DEVICE_FUNC( vkGetSemaphoreCounterValueKHR )
 			XVK_LOAD_DEVICE_FUNC( vkWaitSemaphoresKHR )
 			XVK_LOAD_DEVICE_FUNC( vkSignalSemaphoreKHR )
+			XVK_LOAD_DEVICE_FUNC( vkGetBufferDeviceAddressKHR )
+			XVK_LOAD_DEVICE_FUNC( vkGetBufferOpaqueCaptureAddressKHR )
+			XVK_LOAD_DEVICE_FUNC( vkGetDeviceMemoryOpaqueCaptureAddressKHR )
 			XVK_LOAD_DEVICE_FUNC( vkGetPipelineExecutablePropertiesKHR )
 			XVK_LOAD_DEVICE_FUNC( vkGetPipelineExecutableStatisticsKHR )
 			XVK_LOAD_DEVICE_FUNC( vkGetPipelineExecutableInternalRepresentationsKHR )
@@ -3180,6 +3276,7 @@ namespace xvk { namespace Interface {
 			XVK_LOAD_DEVICE_FUNC( vkCmdBeginQueryIndexedEXT )
 			XVK_LOAD_DEVICE_FUNC( vkCmdEndQueryIndexedEXT )
 			XVK_LOAD_DEVICE_FUNC( vkCmdDrawIndirectByteCountEXT )
+			XVK_LOAD_DEVICE_FUNC( vkGetImageViewHandleNVX )
 			XVK_LOAD_DEVICE_FUNC( vkCmdDrawIndirectCountAMD )
 			XVK_LOAD_DEVICE_FUNC( vkCmdDrawIndexedIndirectCountAMD )
 			XVK_LOAD_DEVICE_FUNC( vkGetShaderInfoAMD )
@@ -3246,6 +3343,7 @@ namespace xvk { namespace Interface {
 			XVK_LOAD_DEVICE_FUNC( vkQueueSetPerformanceConfigurationINTEL )
 			XVK_LOAD_DEVICE_FUNC( vkGetPerformanceParameterINTEL )
 			XVK_LOAD_DEVICE_FUNC( vkSetLocalDimmingAMD )
+			XVK_LOAD_DEVICE_FUNC( vkGetBufferDeviceAddressEXT )
 			XVK_LOAD_DEVICE_FUNC( vkCmdSetLineStippleEXT )
 			XVK_LOAD_DEVICE_FUNC( vkResetQueryPoolEXT )
 			XVK_LOAD_DEVICE_FUNC( vkGetGeneratedCommandsMemoryRequirementsNV )

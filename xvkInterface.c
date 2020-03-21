@@ -178,22 +178,26 @@ namespace XVK_EXPOSE_NATIVE_VULKAN_FUNCTIONS_NAMESPACE {
 	
 	#ifdef VK_USE_PLATFORM_WAYLAND_KHR
 	XVK_DEF_INTERFACE_FUNC_C( vkCreateWaylandSurfaceKHR )
+	XVK_DEF_INTERFACE_FUNC_C( vkGetPhysicalDeviceWaylandPresentationSupportKHR )
 	#endif
 
 	
 	#ifdef VK_USE_PLATFORM_WIN32_KHR
 	XVK_DEF_INTERFACE_FUNC_C( vkCreateWin32SurfaceKHR )
+	XVK_DEF_INTERFACE_FUNC_C( vkGetPhysicalDeviceWin32PresentationSupportKHR )
 	XVK_DEF_INTERFACE_FUNC_C( vkGetPhysicalDeviceSurfacePresentModes2EXT )
 	#endif
 
 	
 	#ifdef VK_USE_PLATFORM_XCB_KHR
 	XVK_DEF_INTERFACE_FUNC_C( vkCreateXcbSurfaceKHR )
+	XVK_DEF_INTERFACE_FUNC_C( vkGetPhysicalDeviceXcbPresentationSupportKHR )
 	#endif
 
 	
 	#ifdef VK_USE_PLATFORM_XLIB_KHR
 	XVK_DEF_INTERFACE_FUNC_C( vkCreateXlibSurfaceKHR )
+	XVK_DEF_INTERFACE_FUNC_C( vkGetPhysicalDeviceXlibPresentationSupportKHR )
 	#endif
 
 	
@@ -213,6 +217,7 @@ namespace XVK_EXPOSE_NATIVE_VULKAN_FUNCTIONS_NAMESPACE {
 	#ifdef VK_ENABLE_BETA_EXTENSIONS
 	XVK_DEF_INTERFACE_FUNC_C( vkCreateDeferredOperationKHR )
 	XVK_DEF_INTERFACE_FUNC_C( vkDestroyDeferredOperationKHR )
+	XVK_DEF_INTERFACE_FUNC_C( vkGetDeferredOperationMaxConcurrencyKHR )
 	XVK_DEF_INTERFACE_FUNC_C( vkGetDeferredOperationResultKHR )
 	XVK_DEF_INTERFACE_FUNC_C( vkDeferredOperationJoinKHR )
 	XVK_DEF_INTERFACE_FUNC_C( vkCreateAccelerationStructureKHR )
@@ -229,6 +234,7 @@ namespace XVK_EXPOSE_NATIVE_VULKAN_FUNCTIONS_NAMESPACE {
 	XVK_DEF_INTERFACE_FUNC_C( vkCmdCopyMemoryToAccelerationStructureKHR )
 	XVK_DEF_INTERFACE_FUNC_C( vkCmdTraceRaysKHR )
 	XVK_DEF_INTERFACE_FUNC_C( vkCreateRayTracingPipelinesKHR )
+	XVK_DEF_INTERFACE_FUNC_C( vkGetAccelerationStructureDeviceAddressKHR )
 	XVK_DEF_INTERFACE_FUNC_C( vkGetRayTracingCaptureReplayShaderGroupHandlesKHR )
 	XVK_DEF_INTERFACE_FUNC_C( vkCmdTraceRaysIndirectKHR )
 	XVK_DEF_INTERFACE_FUNC_C( vkGetDeviceAccelerationStructureCompatibilityKHR )
@@ -380,6 +386,9 @@ namespace XVK_EXPOSE_NATIVE_VULKAN_FUNCTIONS_NAMESPACE {
 	XVK_DEF_INTERFACE_FUNC_C( vkGetSemaphoreCounterValue )
 	XVK_DEF_INTERFACE_FUNC_C( vkWaitSemaphores )
 	XVK_DEF_INTERFACE_FUNC_C( vkSignalSemaphore )
+	XVK_DEF_INTERFACE_FUNC_C( vkGetBufferDeviceAddress )
+	XVK_DEF_INTERFACE_FUNC_C( vkGetBufferOpaqueCaptureAddress )
+	XVK_DEF_INTERFACE_FUNC_C( vkGetDeviceMemoryOpaqueCaptureAddress )
 	XVK_DEF_INTERFACE_FUNC_C( vkCreateSwapchainKHR )
 	XVK_DEF_INTERFACE_FUNC_C( vkDestroySwapchainKHR )
 	XVK_DEF_INTERFACE_FUNC_C( vkGetSwapchainImagesKHR )
@@ -424,6 +433,9 @@ namespace XVK_EXPOSE_NATIVE_VULKAN_FUNCTIONS_NAMESPACE {
 	XVK_DEF_INTERFACE_FUNC_C( vkGetSemaphoreCounterValueKHR )
 	XVK_DEF_INTERFACE_FUNC_C( vkWaitSemaphoresKHR )
 	XVK_DEF_INTERFACE_FUNC_C( vkSignalSemaphoreKHR )
+	XVK_DEF_INTERFACE_FUNC_C( vkGetBufferDeviceAddressKHR )
+	XVK_DEF_INTERFACE_FUNC_C( vkGetBufferOpaqueCaptureAddressKHR )
+	XVK_DEF_INTERFACE_FUNC_C( vkGetDeviceMemoryOpaqueCaptureAddressKHR )
 	XVK_DEF_INTERFACE_FUNC_C( vkGetPipelineExecutablePropertiesKHR )
 	XVK_DEF_INTERFACE_FUNC_C( vkGetPipelineExecutableStatisticsKHR )
 	XVK_DEF_INTERFACE_FUNC_C( vkGetPipelineExecutableInternalRepresentationsKHR )
@@ -438,6 +450,7 @@ namespace XVK_EXPOSE_NATIVE_VULKAN_FUNCTIONS_NAMESPACE {
 	XVK_DEF_INTERFACE_FUNC_C( vkCmdBeginQueryIndexedEXT )
 	XVK_DEF_INTERFACE_FUNC_C( vkCmdEndQueryIndexedEXT )
 	XVK_DEF_INTERFACE_FUNC_C( vkCmdDrawIndirectByteCountEXT )
+	XVK_DEF_INTERFACE_FUNC_C( vkGetImageViewHandleNVX )
 	XVK_DEF_INTERFACE_FUNC_C( vkCmdDrawIndirectCountAMD )
 	XVK_DEF_INTERFACE_FUNC_C( vkCmdDrawIndexedIndirectCountAMD )
 	XVK_DEF_INTERFACE_FUNC_C( vkGetShaderInfoAMD )
@@ -504,6 +517,7 @@ namespace XVK_EXPOSE_NATIVE_VULKAN_FUNCTIONS_NAMESPACE {
 	XVK_DEF_INTERFACE_FUNC_C( vkQueueSetPerformanceConfigurationINTEL )
 	XVK_DEF_INTERFACE_FUNC_C( vkGetPerformanceParameterINTEL )
 	XVK_DEF_INTERFACE_FUNC_C( vkSetLocalDimmingAMD )
+	XVK_DEF_INTERFACE_FUNC_C( vkGetBufferDeviceAddressEXT )
 	XVK_DEF_INTERFACE_FUNC_C( vkCmdSetLineStippleEXT )
 	XVK_DEF_INTERFACE_FUNC_C( vkResetQueryPoolEXT )
 	XVK_DEF_INTERFACE_FUNC_C( vkGetGeneratedCommandsMemoryRequirementsNV )
