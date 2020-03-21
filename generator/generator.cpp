@@ -12,7 +12,7 @@
 
 using namespace std;
 
-#define GENERATOR_VERSION "0.3.0"
+#define GENERATOR_VERSION "0.3.1"
 
 const regex versionLineMatchRegex{R"(\s*#define\s*VK_HEADER_VERSION\s+(\d+)\s*.*)"};
 const regex lineMatchRegex{R"(\s*typedef\s*(void|VkResult|VkDeviceAddress|uint32_t|uint64_t|VkBool32)\s*\(VKAPI_PTR\s*\*PFN_vk(.*)\)\(\s*(.*)\s*\);)"}; // 1 = return type, 2 = function name, 3 = args
