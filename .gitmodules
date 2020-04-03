@@ -10,3 +10,6 @@
 [submodule "glslang"]
 	path = glslang
 	url = https://github.com/KhronosGroup/glslang.git
+[submodule "Vulkan-ValidationLayers"]
+	path = Vulkan-ValidationLayers
+	url = git@github.com:KhronosGroup/Vulkan-ValidationLayers.git
