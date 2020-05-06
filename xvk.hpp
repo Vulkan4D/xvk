@@ -2,6 +2,23 @@
 
 #include "xvkInterface.hpp"
 
+// GLFW
+#ifdef XVK_INCLUDE_GLFW
+	#include "glfw/include/GLFW/glfw3.h"
+#endif
+
+// GLM
+#ifdef XVK_INCLUDE_GLM
+	// GLM
+	#define GLM_FORCE_RADIANS
+	#define GLM_FORCE_DEPTH_ZERO_TO_ONE
+	#define GLM_ENABLE_EXPERIMENTAL
+	#include "glm/glm/glm.hpp"
+	#include "glm/glm/gtc/matrix_transform.hpp"
+	#include "glm/glm/gtx/hash.hpp"
+	#include "glm/glm/gtx/texture.hpp"
+#endif
+
 namespace xvk {
 	
 	class Loader : public xvk::Interface::LoaderInterface {
