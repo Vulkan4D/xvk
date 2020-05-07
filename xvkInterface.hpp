@@ -282,7 +282,7 @@ namespace xvk { namespace Interface {
 
 		inline VkResult CreateAndroidSurfaceKHR (const VkAndroidSurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface) {
 			XVK_CHECK_FUNC(vkCreateAndroidSurfaceKHR)
-			return vkCreateAndroidSurfaceKHR(handle, pCreateInfo, pAllocator, pSurface);
+			return vkCreateAndroidSurfaceKHR(this->handle, pCreateInfo, pAllocator, pSurface);
 		}
 
 		#endif
@@ -297,12 +297,12 @@ namespace xvk { namespace Interface {
 
 		inline void DestroyInstance (const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyInstance)
-			vkDestroyInstance(handle, pAllocator);
+			vkDestroyInstance(this->handle, pAllocator);
 		}
 
 		inline VkResult EnumeratePhysicalDevices (uint32_t* pPhysicalDeviceCount, VkPhysicalDevice* pPhysicalDevices) {
 			XVK_CHECK_FUNC(vkEnumeratePhysicalDevices)
-			return vkEnumeratePhysicalDevices(handle, pPhysicalDeviceCount, pPhysicalDevices);
+			return vkEnumeratePhysicalDevices(this->handle, pPhysicalDeviceCount, pPhysicalDevices);
 		}
 
 		inline void GetPhysicalDeviceFeatures (VkPhysicalDevice physicalDevice, VkPhysicalDeviceFeatures* pFeatures) {
@@ -357,7 +357,7 @@ namespace xvk { namespace Interface {
 
 		inline VkResult EnumeratePhysicalDeviceGroups (uint32_t* pPhysicalDeviceGroupCount, VkPhysicalDeviceGroupProperties* pPhysicalDeviceGroupProperties) {
 			XVK_CHECK_FUNC(vkEnumeratePhysicalDeviceGroups)
-			return vkEnumeratePhysicalDeviceGroups(handle, pPhysicalDeviceGroupCount, pPhysicalDeviceGroupProperties);
+			return vkEnumeratePhysicalDeviceGroups(this->handle, pPhysicalDeviceGroupCount, pPhysicalDeviceGroupProperties);
 		}
 
 		inline void GetPhysicalDeviceFeatures2 (VkPhysicalDevice physicalDevice, VkPhysicalDeviceFeatures2* pFeatures) {
@@ -412,7 +412,7 @@ namespace xvk { namespace Interface {
 
 		inline void DestroySurfaceKHR (VkSurfaceKHR surface, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroySurfaceKHR)
-			vkDestroySurfaceKHR(handle, surface, pAllocator);
+			vkDestroySurfaceKHR(this->handle, surface, pAllocator);
 		}
 
 		inline VkResult GetPhysicalDeviceSurfaceSupportKHR (VkPhysicalDevice physicalDevice, uint32_t queueFamilyIndex, VkSurfaceKHR surface, VkBool32* pSupported) {
@@ -472,7 +472,7 @@ namespace xvk { namespace Interface {
 
 		inline VkResult CreateDisplayPlaneSurfaceKHR (const VkDisplaySurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface) {
 			XVK_CHECK_FUNC(vkCreateDisplayPlaneSurfaceKHR)
-			return vkCreateDisplayPlaneSurfaceKHR(handle, pCreateInfo, pAllocator, pSurface);
+			return vkCreateDisplayPlaneSurfaceKHR(this->handle, pCreateInfo, pAllocator, pSurface);
 		}
 
 		inline void GetPhysicalDeviceFeatures2KHR (VkPhysicalDevice physicalDevice, VkPhysicalDeviceFeatures2* pFeatures) {
@@ -512,7 +512,7 @@ namespace xvk { namespace Interface {
 
 		inline VkResult EnumeratePhysicalDeviceGroupsKHR (uint32_t* pPhysicalDeviceGroupCount, VkPhysicalDeviceGroupProperties* pPhysicalDeviceGroupProperties) {
 			XVK_CHECK_FUNC(vkEnumeratePhysicalDeviceGroupsKHR)
-			return vkEnumeratePhysicalDeviceGroupsKHR(handle, pPhysicalDeviceGroupCount, pPhysicalDeviceGroupProperties);
+			return vkEnumeratePhysicalDeviceGroupsKHR(this->handle, pPhysicalDeviceGroupCount, pPhysicalDeviceGroupProperties);
 		}
 
 		inline void GetPhysicalDeviceExternalBufferPropertiesKHR (VkPhysicalDevice physicalDevice, const VkPhysicalDeviceExternalBufferInfo* pExternalBufferInfo, VkExternalBufferProperties* pExternalBufferProperties) {
@@ -572,17 +572,17 @@ namespace xvk { namespace Interface {
 
 		inline VkResult CreateDebugReportCallbackEXT (const VkDebugReportCallbackCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDebugReportCallbackEXT* pCallback) {
 			XVK_CHECK_FUNC(vkCreateDebugReportCallbackEXT)
-			return vkCreateDebugReportCallbackEXT(handle, pCreateInfo, pAllocator, pCallback);
+			return vkCreateDebugReportCallbackEXT(this->handle, pCreateInfo, pAllocator, pCallback);
 		}
 
 		inline void DestroyDebugReportCallbackEXT (VkDebugReportCallbackEXT callback, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyDebugReportCallbackEXT)
-			vkDestroyDebugReportCallbackEXT(handle, callback, pAllocator);
+			vkDestroyDebugReportCallbackEXT(this->handle, callback, pAllocator);
 		}
 
 		inline void DebugReportMessageEXT (VkDebugReportFlagsEXT flags, VkDebugReportObjectTypeEXT objectType, uint64_t object, size_t location, int32_t messageCode, const char* pLayerPrefix, const char* pMessage) {
 			XVK_CHECK_FUNC(vkDebugReportMessageEXT)
-			vkDebugReportMessageEXT(handle, flags, objectType, object, location, messageCode, pLayerPrefix, pMessage);
+			vkDebugReportMessageEXT(this->handle, flags, objectType, object, location, messageCode, pLayerPrefix, pMessage);
 		}
 
 		inline VkResult GetPhysicalDeviceExternalImageFormatPropertiesNV (VkPhysicalDevice physicalDevice, VkFormat format, VkImageType type, VkImageTiling tiling, VkImageUsageFlags usage, VkImageCreateFlags flags, VkExternalMemoryHandleTypeFlagsNV externalHandleType, VkExternalImageFormatPropertiesNV* pExternalImageFormatProperties) {
@@ -602,17 +602,17 @@ namespace xvk { namespace Interface {
 
 		inline VkResult CreateDebugUtilsMessengerEXT (const VkDebugUtilsMessengerCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDebugUtilsMessengerEXT* pMessenger) {
 			XVK_CHECK_FUNC(vkCreateDebugUtilsMessengerEXT)
-			return vkCreateDebugUtilsMessengerEXT(handle, pCreateInfo, pAllocator, pMessenger);
+			return vkCreateDebugUtilsMessengerEXT(this->handle, pCreateInfo, pAllocator, pMessenger);
 		}
 
 		inline void DestroyDebugUtilsMessengerEXT (VkDebugUtilsMessengerEXT messenger, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyDebugUtilsMessengerEXT)
-			vkDestroyDebugUtilsMessengerEXT(handle, messenger, pAllocator);
+			vkDestroyDebugUtilsMessengerEXT(this->handle, messenger, pAllocator);
 		}
 
 		inline void SubmitDebugUtilsMessageEXT (VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageTypes, const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData) {
 			XVK_CHECK_FUNC(vkSubmitDebugUtilsMessageEXT)
-			vkSubmitDebugUtilsMessageEXT(handle, messageSeverity, messageTypes, pCallbackData);
+			vkSubmitDebugUtilsMessageEXT(this->handle, messageSeverity, messageTypes, pCallbackData);
 		}
 
 		inline void GetPhysicalDeviceMultisamplePropertiesEXT (VkPhysicalDevice physicalDevice, VkSampleCountFlagBits samples, VkMultisamplePropertiesEXT* pMultisampleProperties) {
@@ -642,7 +642,7 @@ namespace xvk { namespace Interface {
 
 		inline VkResult CreateHeadlessSurfaceEXT (const VkHeadlessSurfaceCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface) {
 			XVK_CHECK_FUNC(vkCreateHeadlessSurfaceEXT)
-			return vkCreateHeadlessSurfaceEXT(handle, pCreateInfo, pAllocator, pSurface);
+			return vkCreateHeadlessSurfaceEXT(this->handle, pCreateInfo, pAllocator, pSurface);
 		}
 
 		
@@ -651,7 +651,7 @@ namespace xvk { namespace Interface {
 
 		inline VkResult CreateImagePipeSurfaceFUCHSIA (const VkImagePipeSurfaceCreateInfoFUCHSIA* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface) {
 			XVK_CHECK_FUNC(vkCreateImagePipeSurfaceFUCHSIA)
-			return vkCreateImagePipeSurfaceFUCHSIA(handle, pCreateInfo, pAllocator, pSurface);
+			return vkCreateImagePipeSurfaceFUCHSIA(this->handle, pCreateInfo, pAllocator, pSurface);
 		}
 
 		#endif
@@ -663,7 +663,7 @@ namespace xvk { namespace Interface {
 
 		inline VkResult CreateStreamDescriptorSurfaceGGP (const VkStreamDescriptorSurfaceCreateInfoGGP* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface) {
 			XVK_CHECK_FUNC(vkCreateStreamDescriptorSurfaceGGP)
-			return vkCreateStreamDescriptorSurfaceGGP(handle, pCreateInfo, pAllocator, pSurface);
+			return vkCreateStreamDescriptorSurfaceGGP(this->handle, pCreateInfo, pAllocator, pSurface);
 		}
 
 		#endif
@@ -675,7 +675,7 @@ namespace xvk { namespace Interface {
 
 		inline VkResult CreateIOSSurfaceMVK (const VkIOSSurfaceCreateInfoMVK* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface) {
 			XVK_CHECK_FUNC(vkCreateIOSSurfaceMVK)
-			return vkCreateIOSSurfaceMVK(handle, pCreateInfo, pAllocator, pSurface);
+			return vkCreateIOSSurfaceMVK(this->handle, pCreateInfo, pAllocator, pSurface);
 		}
 
 		#endif
@@ -687,7 +687,7 @@ namespace xvk { namespace Interface {
 
 		inline VkResult CreateMacOSSurfaceMVK (const VkMacOSSurfaceCreateInfoMVK* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface) {
 			XVK_CHECK_FUNC(vkCreateMacOSSurfaceMVK)
-			return vkCreateMacOSSurfaceMVK(handle, pCreateInfo, pAllocator, pSurface);
+			return vkCreateMacOSSurfaceMVK(this->handle, pCreateInfo, pAllocator, pSurface);
 		}
 
 		#endif
@@ -699,7 +699,7 @@ namespace xvk { namespace Interface {
 
 		inline VkResult CreateMetalSurfaceEXT (const VkMetalSurfaceCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface) {
 			XVK_CHECK_FUNC(vkCreateMetalSurfaceEXT)
-			return vkCreateMetalSurfaceEXT(handle, pCreateInfo, pAllocator, pSurface);
+			return vkCreateMetalSurfaceEXT(this->handle, pCreateInfo, pAllocator, pSurface);
 		}
 
 		#endif
@@ -711,7 +711,7 @@ namespace xvk { namespace Interface {
 
 		inline VkResult CreateViSurfaceNN (const VkViSurfaceCreateInfoNN* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface) {
 			XVK_CHECK_FUNC(vkCreateViSurfaceNN)
-			return vkCreateViSurfaceNN(handle, pCreateInfo, pAllocator, pSurface);
+			return vkCreateViSurfaceNN(this->handle, pCreateInfo, pAllocator, pSurface);
 		}
 
 		#endif
@@ -723,7 +723,7 @@ namespace xvk { namespace Interface {
 
 		inline VkResult CreateWaylandSurfaceKHR (const VkWaylandSurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface) {
 			XVK_CHECK_FUNC(vkCreateWaylandSurfaceKHR)
-			return vkCreateWaylandSurfaceKHR(handle, pCreateInfo, pAllocator, pSurface);
+			return vkCreateWaylandSurfaceKHR(this->handle, pCreateInfo, pAllocator, pSurface);
 		}
 
 		inline VkBool32 GetPhysicalDeviceWaylandPresentationSupportKHR (VkPhysicalDevice physicalDevice, uint32_t queueFamilyIndex, struct wl_display* display) {
@@ -740,7 +740,7 @@ namespace xvk { namespace Interface {
 
 		inline VkResult CreateWin32SurfaceKHR (const VkWin32SurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface) {
 			XVK_CHECK_FUNC(vkCreateWin32SurfaceKHR)
-			return vkCreateWin32SurfaceKHR(handle, pCreateInfo, pAllocator, pSurface);
+			return vkCreateWin32SurfaceKHR(this->handle, pCreateInfo, pAllocator, pSurface);
 		}
 
 		inline VkBool32 GetPhysicalDeviceWin32PresentationSupportKHR (VkPhysicalDevice physicalDevice, uint32_t queueFamilyIndex) {
@@ -762,7 +762,7 @@ namespace xvk { namespace Interface {
 
 		inline VkResult CreateXcbSurfaceKHR (const VkXcbSurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface) {
 			XVK_CHECK_FUNC(vkCreateXcbSurfaceKHR)
-			return vkCreateXcbSurfaceKHR(handle, pCreateInfo, pAllocator, pSurface);
+			return vkCreateXcbSurfaceKHR(this->handle, pCreateInfo, pAllocator, pSurface);
 		}
 
 		inline VkBool32 GetPhysicalDeviceXcbPresentationSupportKHR (VkPhysicalDevice physicalDevice, uint32_t queueFamilyIndex, xcb_connection_t* connection, xcb_visualid_t visual_id) {
@@ -779,7 +779,7 @@ namespace xvk { namespace Interface {
 
 		inline VkResult CreateXlibSurfaceKHR (const VkXlibSurfaceCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSurfaceKHR* pSurface) {
 			XVK_CHECK_FUNC(vkCreateXlibSurfaceKHR)
-			return vkCreateXlibSurfaceKHR(handle, pCreateInfo, pAllocator, pSurface);
+			return vkCreateXlibSurfaceKHR(this->handle, pCreateInfo, pAllocator, pSurface);
 		}
 
 		inline VkBool32 GetPhysicalDeviceXlibPresentationSupportKHR (VkPhysicalDevice physicalDevice, uint32_t queueFamilyIndex, Display* dpy, VisualID visualID) {
@@ -1344,12 +1344,12 @@ namespace xvk { namespace Interface {
 
 		inline VkResult GetAndroidHardwareBufferPropertiesANDROID (const struct AHardwareBuffer* buffer, VkAndroidHardwareBufferPropertiesANDROID* pProperties) {
 			XVK_CHECK_FUNC(vkGetAndroidHardwareBufferPropertiesANDROID)
-			return vkGetAndroidHardwareBufferPropertiesANDROID(handle, buffer, pProperties);
+			return vkGetAndroidHardwareBufferPropertiesANDROID(this->handle, buffer, pProperties);
 		}
 
 		inline VkResult GetMemoryAndroidHardwareBufferANDROID (const VkMemoryGetAndroidHardwareBufferInfoANDROID* pInfo, struct AHardwareBuffer** pBuffer) {
 			XVK_CHECK_FUNC(vkGetMemoryAndroidHardwareBufferANDROID)
-			return vkGetMemoryAndroidHardwareBufferANDROID(handle, pInfo, pBuffer);
+			return vkGetMemoryAndroidHardwareBufferANDROID(this->handle, pInfo, pBuffer);
 		}
 
 		#endif
@@ -1361,37 +1361,37 @@ namespace xvk { namespace Interface {
 
 		inline VkResult CreateDeferredOperationKHR (const VkAllocationCallbacks* pAllocator, VkDeferredOperationKHR* pDeferredOperation) {
 			XVK_CHECK_FUNC(vkCreateDeferredOperationKHR)
-			return vkCreateDeferredOperationKHR(handle, pAllocator, pDeferredOperation);
+			return vkCreateDeferredOperationKHR(this->handle, pAllocator, pDeferredOperation);
 		}
 
 		inline void DestroyDeferredOperationKHR (VkDeferredOperationKHR operation, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyDeferredOperationKHR)
-			vkDestroyDeferredOperationKHR(handle, operation, pAllocator);
+			vkDestroyDeferredOperationKHR(this->handle, operation, pAllocator);
 		}
 
 		inline uint32_t GetDeferredOperationMaxConcurrencyKHR (VkDeferredOperationKHR operation) {
 			XVK_CHECK_FUNC(vkGetDeferredOperationMaxConcurrencyKHR)
-			return vkGetDeferredOperationMaxConcurrencyKHR(handle, operation);
+			return vkGetDeferredOperationMaxConcurrencyKHR(this->handle, operation);
 		}
 
 		inline VkResult GetDeferredOperationResultKHR (VkDeferredOperationKHR operation) {
 			XVK_CHECK_FUNC(vkGetDeferredOperationResultKHR)
-			return vkGetDeferredOperationResultKHR(handle, operation);
+			return vkGetDeferredOperationResultKHR(this->handle, operation);
 		}
 
 		inline VkResult DeferredOperationJoinKHR (VkDeferredOperationKHR operation) {
 			XVK_CHECK_FUNC(vkDeferredOperationJoinKHR)
-			return vkDeferredOperationJoinKHR(handle, operation);
+			return vkDeferredOperationJoinKHR(this->handle, operation);
 		}
 
 		inline VkResult CreateAccelerationStructureKHR (const VkAccelerationStructureCreateInfoKHR*        pCreateInfo, const VkAllocationCallbacks*       pAllocator, VkAccelerationStructureKHR*                        pAccelerationStructure) {
 			XVK_CHECK_FUNC(vkCreateAccelerationStructureKHR)
-			return vkCreateAccelerationStructureKHR(handle, pCreateInfo, pAllocator, pAccelerationStructure);
+			return vkCreateAccelerationStructureKHR(this->handle, pCreateInfo, pAllocator, pAccelerationStructure);
 		}
 
 		inline void GetAccelerationStructureMemoryRequirementsKHR (const VkAccelerationStructureMemoryRequirementsInfoKHR* pInfo, VkMemoryRequirements2* pMemoryRequirements) {
 			XVK_CHECK_FUNC(vkGetAccelerationStructureMemoryRequirementsKHR)
-			vkGetAccelerationStructureMemoryRequirementsKHR(handle, pInfo, pMemoryRequirements);
+			vkGetAccelerationStructureMemoryRequirementsKHR(this->handle, pInfo, pMemoryRequirements);
 		}
 
 		inline void CmdBuildAccelerationStructureKHR (VkCommandBuffer                                    commandBuffer, uint32_t infoCount, const VkAccelerationStructureBuildGeometryInfoKHR* pInfos, const VkAccelerationStructureBuildOffsetInfoKHR* const* ppOffsetInfos) {
@@ -1406,27 +1406,27 @@ namespace xvk { namespace Interface {
 
 		inline VkResult BuildAccelerationStructureKHR (uint32_t infoCount, const VkAccelerationStructureBuildGeometryInfoKHR* pInfos, const VkAccelerationStructureBuildOffsetInfoKHR* const* ppOffsetInfos) {
 			XVK_CHECK_FUNC(vkBuildAccelerationStructureKHR)
-			return vkBuildAccelerationStructureKHR(handle, infoCount, pInfos, ppOffsetInfos);
+			return vkBuildAccelerationStructureKHR(this->handle, infoCount, pInfos, ppOffsetInfos);
 		}
 
 		inline VkResult CopyAccelerationStructureKHR (const VkCopyAccelerationStructureInfoKHR* pInfo) {
 			XVK_CHECK_FUNC(vkCopyAccelerationStructureKHR)
-			return vkCopyAccelerationStructureKHR(handle, pInfo);
+			return vkCopyAccelerationStructureKHR(this->handle, pInfo);
 		}
 
 		inline VkResult CopyAccelerationStructureToMemoryKHR (const VkCopyAccelerationStructureToMemoryInfoKHR* pInfo) {
 			XVK_CHECK_FUNC(vkCopyAccelerationStructureToMemoryKHR)
-			return vkCopyAccelerationStructureToMemoryKHR(handle, pInfo);
+			return vkCopyAccelerationStructureToMemoryKHR(this->handle, pInfo);
 		}
 
 		inline VkResult CopyMemoryToAccelerationStructureKHR (const VkCopyMemoryToAccelerationStructureInfoKHR* pInfo) {
 			XVK_CHECK_FUNC(vkCopyMemoryToAccelerationStructureKHR)
-			return vkCopyMemoryToAccelerationStructureKHR(handle, pInfo);
+			return vkCopyMemoryToAccelerationStructureKHR(this->handle, pInfo);
 		}
 
 		inline VkResult WriteAccelerationStructuresPropertiesKHR (uint32_t accelerationStructureCount, const VkAccelerationStructureKHR* pAccelerationStructures, VkQueryType  queryType, size_t       dataSize, void* pData, size_t stride) {
 			XVK_CHECK_FUNC(vkWriteAccelerationStructuresPropertiesKHR)
-			return vkWriteAccelerationStructuresPropertiesKHR(handle, accelerationStructureCount, pAccelerationStructures, queryType, dataSize, pData, stride);
+			return vkWriteAccelerationStructuresPropertiesKHR(this->handle, accelerationStructureCount, pAccelerationStructures, queryType, dataSize, pData, stride);
 		}
 
 		inline void CmdCopyAccelerationStructureKHR (VkCommandBuffer commandBuffer, const VkCopyAccelerationStructureInfoKHR* pInfo) {
@@ -1451,17 +1451,17 @@ namespace xvk { namespace Interface {
 
 		inline VkResult CreateRayTracingPipelinesKHR (VkPipelineCache pipelineCache, uint32_t createInfoCount, const VkRayTracingPipelineCreateInfoKHR* pCreateInfos, const VkAllocationCallbacks* pAllocator, VkPipeline* pPipelines) {
 			XVK_CHECK_FUNC(vkCreateRayTracingPipelinesKHR)
-			return vkCreateRayTracingPipelinesKHR(handle, pipelineCache, createInfoCount, pCreateInfos, pAllocator, pPipelines);
+			return vkCreateRayTracingPipelinesKHR(this->handle, pipelineCache, createInfoCount, pCreateInfos, pAllocator, pPipelines);
 		}
 
 		inline VkDeviceAddress GetAccelerationStructureDeviceAddressKHR (const VkAccelerationStructureDeviceAddressInfoKHR* pInfo) {
 			XVK_CHECK_FUNC(vkGetAccelerationStructureDeviceAddressKHR)
-			return vkGetAccelerationStructureDeviceAddressKHR(handle, pInfo);
+			return vkGetAccelerationStructureDeviceAddressKHR(this->handle, pInfo);
 		}
 
 		inline VkResult GetRayTracingCaptureReplayShaderGroupHandlesKHR (VkPipeline pipeline, uint32_t firstGroup, uint32_t groupCount, size_t dataSize, void* pData) {
 			XVK_CHECK_FUNC(vkGetRayTracingCaptureReplayShaderGroupHandlesKHR)
-			return vkGetRayTracingCaptureReplayShaderGroupHandlesKHR(handle, pipeline, firstGroup, groupCount, dataSize, pData);
+			return vkGetRayTracingCaptureReplayShaderGroupHandlesKHR(this->handle, pipeline, firstGroup, groupCount, dataSize, pData);
 		}
 
 		inline void CmdTraceRaysIndirectKHR (VkCommandBuffer commandBuffer, const VkStridedBufferRegionKHR* pRaygenShaderBindingTable, const VkStridedBufferRegionKHR* pMissShaderBindingTable, const VkStridedBufferRegionKHR* pHitShaderBindingTable, const VkStridedBufferRegionKHR* pCallableShaderBindingTable, VkBuffer buffer, VkDeviceSize offset) {
@@ -1471,7 +1471,7 @@ namespace xvk { namespace Interface {
 
 		inline VkResult GetDeviceAccelerationStructureCompatibilityKHR (const VkAccelerationStructureVersionKHR* version) {
 			XVK_CHECK_FUNC(vkGetDeviceAccelerationStructureCompatibilityKHR)
-			return vkGetDeviceAccelerationStructureCompatibilityKHR(handle, version);
+			return vkGetDeviceAccelerationStructureCompatibilityKHR(this->handle, version);
 		}
 
 		#endif
@@ -1479,12 +1479,12 @@ namespace xvk { namespace Interface {
 
 		inline void DestroyDevice (const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyDevice)
-			vkDestroyDevice(handle, pAllocator);
+			vkDestroyDevice(this->handle, pAllocator);
 		}
 
 		inline void GetDeviceQueue (uint32_t queueFamilyIndex, uint32_t queueIndex, VkQueue* pQueue) {
 			XVK_CHECK_FUNC(vkGetDeviceQueue)
-			vkGetDeviceQueue(handle, queueFamilyIndex, queueIndex, pQueue);
+			vkGetDeviceQueue(this->handle, queueFamilyIndex, queueIndex, pQueue);
 		}
 
 		inline VkResult QueueSubmit (VkQueue queue, uint32_t submitCount, const VkSubmitInfo* pSubmits, VkFence fence) {
@@ -1499,67 +1499,67 @@ namespace xvk { namespace Interface {
 
 		inline VkResult DeviceWaitIdle () {
 			XVK_CHECK_FUNC(vkDeviceWaitIdle)
-			return vkDeviceWaitIdle(handle);
+			return vkDeviceWaitIdle(this->handle);
 		}
 
 		inline VkResult AllocateMemory (const VkMemoryAllocateInfo* pAllocateInfo, const VkAllocationCallbacks* pAllocator, VkDeviceMemory* pMemory) {
 			XVK_CHECK_FUNC(vkAllocateMemory)
-			return vkAllocateMemory(handle, pAllocateInfo, pAllocator, pMemory);
+			return vkAllocateMemory(this->handle, pAllocateInfo, pAllocator, pMemory);
 		}
 
 		inline void FreeMemory (VkDeviceMemory memory, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkFreeMemory)
-			vkFreeMemory(handle, memory, pAllocator);
+			vkFreeMemory(this->handle, memory, pAllocator);
 		}
 
 		inline VkResult MapMemory (VkDeviceMemory memory, VkDeviceSize offset, VkDeviceSize size, VkMemoryMapFlags flags, void** ppData) {
 			XVK_CHECK_FUNC(vkMapMemory)
-			return vkMapMemory(handle, memory, offset, size, flags, ppData);
+			return vkMapMemory(this->handle, memory, offset, size, flags, ppData);
 		}
 
 		inline void UnmapMemory (VkDeviceMemory memory) {
 			XVK_CHECK_FUNC(vkUnmapMemory)
-			vkUnmapMemory(handle, memory);
+			vkUnmapMemory(this->handle, memory);
 		}
 
 		inline VkResult FlushMappedMemoryRanges (uint32_t memoryRangeCount, const VkMappedMemoryRange* pMemoryRanges) {
 			XVK_CHECK_FUNC(vkFlushMappedMemoryRanges)
-			return vkFlushMappedMemoryRanges(handle, memoryRangeCount, pMemoryRanges);
+			return vkFlushMappedMemoryRanges(this->handle, memoryRangeCount, pMemoryRanges);
 		}
 
 		inline VkResult InvalidateMappedMemoryRanges (uint32_t memoryRangeCount, const VkMappedMemoryRange* pMemoryRanges) {
 			XVK_CHECK_FUNC(vkInvalidateMappedMemoryRanges)
-			return vkInvalidateMappedMemoryRanges(handle, memoryRangeCount, pMemoryRanges);
+			return vkInvalidateMappedMemoryRanges(this->handle, memoryRangeCount, pMemoryRanges);
 		}
 
 		inline void GetDeviceMemoryCommitment (VkDeviceMemory memory, VkDeviceSize* pCommittedMemoryInBytes) {
 			XVK_CHECK_FUNC(vkGetDeviceMemoryCommitment)
-			vkGetDeviceMemoryCommitment(handle, memory, pCommittedMemoryInBytes);
+			vkGetDeviceMemoryCommitment(this->handle, memory, pCommittedMemoryInBytes);
 		}
 
 		inline VkResult BindBufferMemory (VkBuffer buffer, VkDeviceMemory memory, VkDeviceSize memoryOffset) {
 			XVK_CHECK_FUNC(vkBindBufferMemory)
-			return vkBindBufferMemory(handle, buffer, memory, memoryOffset);
+			return vkBindBufferMemory(this->handle, buffer, memory, memoryOffset);
 		}
 
 		inline VkResult BindImageMemory (VkImage image, VkDeviceMemory memory, VkDeviceSize memoryOffset) {
 			XVK_CHECK_FUNC(vkBindImageMemory)
-			return vkBindImageMemory(handle, image, memory, memoryOffset);
+			return vkBindImageMemory(this->handle, image, memory, memoryOffset);
 		}
 
 		inline void GetBufferMemoryRequirements (VkBuffer buffer, VkMemoryRequirements* pMemoryRequirements) {
 			XVK_CHECK_FUNC(vkGetBufferMemoryRequirements)
-			vkGetBufferMemoryRequirements(handle, buffer, pMemoryRequirements);
+			vkGetBufferMemoryRequirements(this->handle, buffer, pMemoryRequirements);
 		}
 
 		inline void GetImageMemoryRequirements (VkImage image, VkMemoryRequirements* pMemoryRequirements) {
 			XVK_CHECK_FUNC(vkGetImageMemoryRequirements)
-			vkGetImageMemoryRequirements(handle, image, pMemoryRequirements);
+			vkGetImageMemoryRequirements(this->handle, image, pMemoryRequirements);
 		}
 
 		inline void GetImageSparseMemoryRequirements (VkImage image, uint32_t* pSparseMemoryRequirementCount, VkSparseImageMemoryRequirements* pSparseMemoryRequirements) {
 			XVK_CHECK_FUNC(vkGetImageSparseMemoryRequirements)
-			vkGetImageSparseMemoryRequirements(handle, image, pSparseMemoryRequirementCount, pSparseMemoryRequirements);
+			vkGetImageSparseMemoryRequirements(this->handle, image, pSparseMemoryRequirementCount, pSparseMemoryRequirements);
 		}
 
 		inline VkResult QueueBindSparse (VkQueue queue, uint32_t bindInfoCount, const VkBindSparseInfo* pBindInfo, VkFence fence) {
@@ -1569,277 +1569,277 @@ namespace xvk { namespace Interface {
 
 		inline VkResult CreateFence (const VkFenceCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkFence* pFence) {
 			XVK_CHECK_FUNC(vkCreateFence)
-			return vkCreateFence(handle, pCreateInfo, pAllocator, pFence);
+			return vkCreateFence(this->handle, pCreateInfo, pAllocator, pFence);
 		}
 
 		inline void DestroyFence (VkFence fence, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyFence)
-			vkDestroyFence(handle, fence, pAllocator);
+			vkDestroyFence(this->handle, fence, pAllocator);
 		}
 
 		inline VkResult ResetFences (uint32_t fenceCount, const VkFence* pFences) {
 			XVK_CHECK_FUNC(vkResetFences)
-			return vkResetFences(handle, fenceCount, pFences);
+			return vkResetFences(this->handle, fenceCount, pFences);
 		}
 
 		inline VkResult GetFenceStatus (VkFence fence) {
 			XVK_CHECK_FUNC(vkGetFenceStatus)
-			return vkGetFenceStatus(handle, fence);
+			return vkGetFenceStatus(this->handle, fence);
 		}
 
 		inline VkResult WaitForFences (uint32_t fenceCount, const VkFence* pFences, VkBool32 waitAll, uint64_t timeout) {
 			XVK_CHECK_FUNC(vkWaitForFences)
-			return vkWaitForFences(handle, fenceCount, pFences, waitAll, timeout);
+			return vkWaitForFences(this->handle, fenceCount, pFences, waitAll, timeout);
 		}
 
 		inline VkResult CreateSemaphore (const VkSemaphoreCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSemaphore* pSemaphore) {
 			XVK_CHECK_FUNC(vkCreateSemaphore)
-			return vkCreateSemaphore(handle, pCreateInfo, pAllocator, pSemaphore);
+			return vkCreateSemaphore(this->handle, pCreateInfo, pAllocator, pSemaphore);
 		}
 
 		inline void DestroySemaphore (VkSemaphore semaphore, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroySemaphore)
-			vkDestroySemaphore(handle, semaphore, pAllocator);
+			vkDestroySemaphore(this->handle, semaphore, pAllocator);
 		}
 
 		inline VkResult CreateEvent (const VkEventCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkEvent* pEvent) {
 			XVK_CHECK_FUNC(vkCreateEvent)
-			return vkCreateEvent(handle, pCreateInfo, pAllocator, pEvent);
+			return vkCreateEvent(this->handle, pCreateInfo, pAllocator, pEvent);
 		}
 
 		inline void DestroyEvent (VkEvent event, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyEvent)
-			vkDestroyEvent(handle, event, pAllocator);
+			vkDestroyEvent(this->handle, event, pAllocator);
 		}
 
 		inline VkResult GetEventStatus (VkEvent event) {
 			XVK_CHECK_FUNC(vkGetEventStatus)
-			return vkGetEventStatus(handle, event);
+			return vkGetEventStatus(this->handle, event);
 		}
 
 		inline VkResult SetEvent (VkEvent event) {
 			XVK_CHECK_FUNC(vkSetEvent)
-			return vkSetEvent(handle, event);
+			return vkSetEvent(this->handle, event);
 		}
 
 		inline VkResult ResetEvent (VkEvent event) {
 			XVK_CHECK_FUNC(vkResetEvent)
-			return vkResetEvent(handle, event);
+			return vkResetEvent(this->handle, event);
 		}
 
 		inline VkResult CreateQueryPool (const VkQueryPoolCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkQueryPool* pQueryPool) {
 			XVK_CHECK_FUNC(vkCreateQueryPool)
-			return vkCreateQueryPool(handle, pCreateInfo, pAllocator, pQueryPool);
+			return vkCreateQueryPool(this->handle, pCreateInfo, pAllocator, pQueryPool);
 		}
 
 		inline void DestroyQueryPool (VkQueryPool queryPool, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyQueryPool)
-			vkDestroyQueryPool(handle, queryPool, pAllocator);
+			vkDestroyQueryPool(this->handle, queryPool, pAllocator);
 		}
 
 		inline VkResult GetQueryPoolResults (VkQueryPool queryPool, uint32_t firstQuery, uint32_t queryCount, size_t dataSize, void* pData, VkDeviceSize stride, VkQueryResultFlags flags) {
 			XVK_CHECK_FUNC(vkGetQueryPoolResults)
-			return vkGetQueryPoolResults(handle, queryPool, firstQuery, queryCount, dataSize, pData, stride, flags);
+			return vkGetQueryPoolResults(this->handle, queryPool, firstQuery, queryCount, dataSize, pData, stride, flags);
 		}
 
 		inline VkResult CreateBuffer (const VkBufferCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkBuffer* pBuffer) {
 			XVK_CHECK_FUNC(vkCreateBuffer)
-			return vkCreateBuffer(handle, pCreateInfo, pAllocator, pBuffer);
+			return vkCreateBuffer(this->handle, pCreateInfo, pAllocator, pBuffer);
 		}
 
 		inline void DestroyBuffer (VkBuffer buffer, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyBuffer)
-			vkDestroyBuffer(handle, buffer, pAllocator);
+			vkDestroyBuffer(this->handle, buffer, pAllocator);
 		}
 
 		inline VkResult CreateBufferView (const VkBufferViewCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkBufferView* pView) {
 			XVK_CHECK_FUNC(vkCreateBufferView)
-			return vkCreateBufferView(handle, pCreateInfo, pAllocator, pView);
+			return vkCreateBufferView(this->handle, pCreateInfo, pAllocator, pView);
 		}
 
 		inline void DestroyBufferView (VkBufferView bufferView, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyBufferView)
-			vkDestroyBufferView(handle, bufferView, pAllocator);
+			vkDestroyBufferView(this->handle, bufferView, pAllocator);
 		}
 
 		inline VkResult CreateImage (const VkImageCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkImage* pImage) {
 			XVK_CHECK_FUNC(vkCreateImage)
-			return vkCreateImage(handle, pCreateInfo, pAllocator, pImage);
+			return vkCreateImage(this->handle, pCreateInfo, pAllocator, pImage);
 		}
 
 		inline void DestroyImage (VkImage image, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyImage)
-			vkDestroyImage(handle, image, pAllocator);
+			vkDestroyImage(this->handle, image, pAllocator);
 		}
 
 		inline void GetImageSubresourceLayout (VkImage image, const VkImageSubresource* pSubresource, VkSubresourceLayout* pLayout) {
 			XVK_CHECK_FUNC(vkGetImageSubresourceLayout)
-			vkGetImageSubresourceLayout(handle, image, pSubresource, pLayout);
+			vkGetImageSubresourceLayout(this->handle, image, pSubresource, pLayout);
 		}
 
 		inline VkResult CreateImageView (const VkImageViewCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkImageView* pView) {
 			XVK_CHECK_FUNC(vkCreateImageView)
-			return vkCreateImageView(handle, pCreateInfo, pAllocator, pView);
+			return vkCreateImageView(this->handle, pCreateInfo, pAllocator, pView);
 		}
 
 		inline void DestroyImageView (VkImageView imageView, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyImageView)
-			vkDestroyImageView(handle, imageView, pAllocator);
+			vkDestroyImageView(this->handle, imageView, pAllocator);
 		}
 
 		inline VkResult CreateShaderModule (const VkShaderModuleCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkShaderModule* pShaderModule) {
 			XVK_CHECK_FUNC(vkCreateShaderModule)
-			return vkCreateShaderModule(handle, pCreateInfo, pAllocator, pShaderModule);
+			return vkCreateShaderModule(this->handle, pCreateInfo, pAllocator, pShaderModule);
 		}
 
 		inline void DestroyShaderModule (VkShaderModule shaderModule, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyShaderModule)
-			vkDestroyShaderModule(handle, shaderModule, pAllocator);
+			vkDestroyShaderModule(this->handle, shaderModule, pAllocator);
 		}
 
 		inline VkResult CreatePipelineCache (const VkPipelineCacheCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkPipelineCache* pPipelineCache) {
 			XVK_CHECK_FUNC(vkCreatePipelineCache)
-			return vkCreatePipelineCache(handle, pCreateInfo, pAllocator, pPipelineCache);
+			return vkCreatePipelineCache(this->handle, pCreateInfo, pAllocator, pPipelineCache);
 		}
 
 		inline void DestroyPipelineCache (VkPipelineCache pipelineCache, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyPipelineCache)
-			vkDestroyPipelineCache(handle, pipelineCache, pAllocator);
+			vkDestroyPipelineCache(this->handle, pipelineCache, pAllocator);
 		}
 
 		inline VkResult GetPipelineCacheData (VkPipelineCache pipelineCache, size_t* pDataSize, void* pData) {
 			XVK_CHECK_FUNC(vkGetPipelineCacheData)
-			return vkGetPipelineCacheData(handle, pipelineCache, pDataSize, pData);
+			return vkGetPipelineCacheData(this->handle, pipelineCache, pDataSize, pData);
 		}
 
 		inline VkResult MergePipelineCaches (VkPipelineCache dstCache, uint32_t srcCacheCount, const VkPipelineCache* pSrcCaches) {
 			XVK_CHECK_FUNC(vkMergePipelineCaches)
-			return vkMergePipelineCaches(handle, dstCache, srcCacheCount, pSrcCaches);
+			return vkMergePipelineCaches(this->handle, dstCache, srcCacheCount, pSrcCaches);
 		}
 
 		inline VkResult CreateGraphicsPipelines (VkPipelineCache pipelineCache, uint32_t createInfoCount, const VkGraphicsPipelineCreateInfo* pCreateInfos, const VkAllocationCallbacks* pAllocator, VkPipeline* pPipelines) {
 			XVK_CHECK_FUNC(vkCreateGraphicsPipelines)
-			return vkCreateGraphicsPipelines(handle, pipelineCache, createInfoCount, pCreateInfos, pAllocator, pPipelines);
+			return vkCreateGraphicsPipelines(this->handle, pipelineCache, createInfoCount, pCreateInfos, pAllocator, pPipelines);
 		}
 
 		inline VkResult CreateComputePipelines (VkPipelineCache pipelineCache, uint32_t createInfoCount, const VkComputePipelineCreateInfo* pCreateInfos, const VkAllocationCallbacks* pAllocator, VkPipeline* pPipelines) {
 			XVK_CHECK_FUNC(vkCreateComputePipelines)
-			return vkCreateComputePipelines(handle, pipelineCache, createInfoCount, pCreateInfos, pAllocator, pPipelines);
+			return vkCreateComputePipelines(this->handle, pipelineCache, createInfoCount, pCreateInfos, pAllocator, pPipelines);
 		}
 
 		inline void DestroyPipeline (VkPipeline pipeline, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyPipeline)
-			vkDestroyPipeline(handle, pipeline, pAllocator);
+			vkDestroyPipeline(this->handle, pipeline, pAllocator);
 		}
 
 		inline VkResult CreatePipelineLayout (const VkPipelineLayoutCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkPipelineLayout* pPipelineLayout) {
 			XVK_CHECK_FUNC(vkCreatePipelineLayout)
-			return vkCreatePipelineLayout(handle, pCreateInfo, pAllocator, pPipelineLayout);
+			return vkCreatePipelineLayout(this->handle, pCreateInfo, pAllocator, pPipelineLayout);
 		}
 
 		inline void DestroyPipelineLayout (VkPipelineLayout pipelineLayout, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyPipelineLayout)
-			vkDestroyPipelineLayout(handle, pipelineLayout, pAllocator);
+			vkDestroyPipelineLayout(this->handle, pipelineLayout, pAllocator);
 		}
 
 		inline VkResult CreateSampler (const VkSamplerCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSampler* pSampler) {
 			XVK_CHECK_FUNC(vkCreateSampler)
-			return vkCreateSampler(handle, pCreateInfo, pAllocator, pSampler);
+			return vkCreateSampler(this->handle, pCreateInfo, pAllocator, pSampler);
 		}
 
 		inline void DestroySampler (VkSampler sampler, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroySampler)
-			vkDestroySampler(handle, sampler, pAllocator);
+			vkDestroySampler(this->handle, sampler, pAllocator);
 		}
 
 		inline VkResult CreateDescriptorSetLayout (const VkDescriptorSetLayoutCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDescriptorSetLayout* pSetLayout) {
 			XVK_CHECK_FUNC(vkCreateDescriptorSetLayout)
-			return vkCreateDescriptorSetLayout(handle, pCreateInfo, pAllocator, pSetLayout);
+			return vkCreateDescriptorSetLayout(this->handle, pCreateInfo, pAllocator, pSetLayout);
 		}
 
 		inline void DestroyDescriptorSetLayout (VkDescriptorSetLayout descriptorSetLayout, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyDescriptorSetLayout)
-			vkDestroyDescriptorSetLayout(handle, descriptorSetLayout, pAllocator);
+			vkDestroyDescriptorSetLayout(this->handle, descriptorSetLayout, pAllocator);
 		}
 
 		inline VkResult CreateDescriptorPool (const VkDescriptorPoolCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDescriptorPool* pDescriptorPool) {
 			XVK_CHECK_FUNC(vkCreateDescriptorPool)
-			return vkCreateDescriptorPool(handle, pCreateInfo, pAllocator, pDescriptorPool);
+			return vkCreateDescriptorPool(this->handle, pCreateInfo, pAllocator, pDescriptorPool);
 		}
 
 		inline void DestroyDescriptorPool (VkDescriptorPool descriptorPool, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyDescriptorPool)
-			vkDestroyDescriptorPool(handle, descriptorPool, pAllocator);
+			vkDestroyDescriptorPool(this->handle, descriptorPool, pAllocator);
 		}
 
 		inline VkResult ResetDescriptorPool (VkDescriptorPool descriptorPool, VkDescriptorPoolResetFlags flags) {
 			XVK_CHECK_FUNC(vkResetDescriptorPool)
-			return vkResetDescriptorPool(handle, descriptorPool, flags);
+			return vkResetDescriptorPool(this->handle, descriptorPool, flags);
 		}
 
 		inline VkResult AllocateDescriptorSets (const VkDescriptorSetAllocateInfo* pAllocateInfo, VkDescriptorSet* pDescriptorSets) {
 			XVK_CHECK_FUNC(vkAllocateDescriptorSets)
-			return vkAllocateDescriptorSets(handle, pAllocateInfo, pDescriptorSets);
+			return vkAllocateDescriptorSets(this->handle, pAllocateInfo, pDescriptorSets);
 		}
 
 		inline VkResult FreeDescriptorSets (VkDescriptorPool descriptorPool, uint32_t descriptorSetCount, const VkDescriptorSet* pDescriptorSets) {
 			XVK_CHECK_FUNC(vkFreeDescriptorSets)
-			return vkFreeDescriptorSets(handle, descriptorPool, descriptorSetCount, pDescriptorSets);
+			return vkFreeDescriptorSets(this->handle, descriptorPool, descriptorSetCount, pDescriptorSets);
 		}
 
 		inline void UpdateDescriptorSets (uint32_t descriptorWriteCount, const VkWriteDescriptorSet* pDescriptorWrites, uint32_t descriptorCopyCount, const VkCopyDescriptorSet* pDescriptorCopies) {
 			XVK_CHECK_FUNC(vkUpdateDescriptorSets)
-			vkUpdateDescriptorSets(handle, descriptorWriteCount, pDescriptorWrites, descriptorCopyCount, pDescriptorCopies);
+			vkUpdateDescriptorSets(this->handle, descriptorWriteCount, pDescriptorWrites, descriptorCopyCount, pDescriptorCopies);
 		}
 
 		inline VkResult CreateFramebuffer (const VkFramebufferCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkFramebuffer* pFramebuffer) {
 			XVK_CHECK_FUNC(vkCreateFramebuffer)
-			return vkCreateFramebuffer(handle, pCreateInfo, pAllocator, pFramebuffer);
+			return vkCreateFramebuffer(this->handle, pCreateInfo, pAllocator, pFramebuffer);
 		}
 
 		inline void DestroyFramebuffer (VkFramebuffer framebuffer, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyFramebuffer)
-			vkDestroyFramebuffer(handle, framebuffer, pAllocator);
+			vkDestroyFramebuffer(this->handle, framebuffer, pAllocator);
 		}
 
 		inline VkResult CreateRenderPass (const VkRenderPassCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkRenderPass* pRenderPass) {
 			XVK_CHECK_FUNC(vkCreateRenderPass)
-			return vkCreateRenderPass(handle, pCreateInfo, pAllocator, pRenderPass);
+			return vkCreateRenderPass(this->handle, pCreateInfo, pAllocator, pRenderPass);
 		}
 
 		inline void DestroyRenderPass (VkRenderPass renderPass, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyRenderPass)
-			vkDestroyRenderPass(handle, renderPass, pAllocator);
+			vkDestroyRenderPass(this->handle, renderPass, pAllocator);
 		}
 
 		inline void GetRenderAreaGranularity (VkRenderPass renderPass, VkExtent2D* pGranularity) {
 			XVK_CHECK_FUNC(vkGetRenderAreaGranularity)
-			vkGetRenderAreaGranularity(handle, renderPass, pGranularity);
+			vkGetRenderAreaGranularity(this->handle, renderPass, pGranularity);
 		}
 
 		inline VkResult CreateCommandPool (const VkCommandPoolCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkCommandPool* pCommandPool) {
 			XVK_CHECK_FUNC(vkCreateCommandPool)
-			return vkCreateCommandPool(handle, pCreateInfo, pAllocator, pCommandPool);
+			return vkCreateCommandPool(this->handle, pCreateInfo, pAllocator, pCommandPool);
 		}
 
 		inline void DestroyCommandPool (VkCommandPool commandPool, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyCommandPool)
-			vkDestroyCommandPool(handle, commandPool, pAllocator);
+			vkDestroyCommandPool(this->handle, commandPool, pAllocator);
 		}
 
 		inline VkResult ResetCommandPool (VkCommandPool commandPool, VkCommandPoolResetFlags flags) {
 			XVK_CHECK_FUNC(vkResetCommandPool)
-			return vkResetCommandPool(handle, commandPool, flags);
+			return vkResetCommandPool(this->handle, commandPool, flags);
 		}
 
 		inline VkResult AllocateCommandBuffers (const VkCommandBufferAllocateInfo* pAllocateInfo, VkCommandBuffer* pCommandBuffers) {
 			XVK_CHECK_FUNC(vkAllocateCommandBuffers)
-			return vkAllocateCommandBuffers(handle, pAllocateInfo, pCommandBuffers);
+			return vkAllocateCommandBuffers(this->handle, pAllocateInfo, pCommandBuffers);
 		}
 
 		inline void FreeCommandBuffers (VkCommandPool commandPool, uint32_t commandBufferCount, const VkCommandBuffer* pCommandBuffers) {
 			XVK_CHECK_FUNC(vkFreeCommandBuffers)
-			vkFreeCommandBuffers(handle, commandPool, commandBufferCount, pCommandBuffers);
+			vkFreeCommandBuffers(this->handle, commandPool, commandBufferCount, pCommandBuffers);
 		}
 
 		inline VkResult BeginCommandBuffer (VkCommandBuffer commandBuffer, const VkCommandBufferBeginInfo* pBeginInfo) {
@@ -2079,17 +2079,17 @@ namespace xvk { namespace Interface {
 
 		inline VkResult BindBufferMemory2 (uint32_t bindInfoCount, const VkBindBufferMemoryInfo* pBindInfos) {
 			XVK_CHECK_FUNC(vkBindBufferMemory2)
-			return vkBindBufferMemory2(handle, bindInfoCount, pBindInfos);
+			return vkBindBufferMemory2(this->handle, bindInfoCount, pBindInfos);
 		}
 
 		inline VkResult BindImageMemory2 (uint32_t bindInfoCount, const VkBindImageMemoryInfo* pBindInfos) {
 			XVK_CHECK_FUNC(vkBindImageMemory2)
-			return vkBindImageMemory2(handle, bindInfoCount, pBindInfos);
+			return vkBindImageMemory2(this->handle, bindInfoCount, pBindInfos);
 		}
 
 		inline void GetDeviceGroupPeerMemoryFeatures (uint32_t heapIndex, uint32_t localDeviceIndex, uint32_t remoteDeviceIndex, VkPeerMemoryFeatureFlags* pPeerMemoryFeatures) {
 			XVK_CHECK_FUNC(vkGetDeviceGroupPeerMemoryFeatures)
-			vkGetDeviceGroupPeerMemoryFeatures(handle, heapIndex, localDeviceIndex, remoteDeviceIndex, pPeerMemoryFeatures);
+			vkGetDeviceGroupPeerMemoryFeatures(this->handle, heapIndex, localDeviceIndex, remoteDeviceIndex, pPeerMemoryFeatures);
 		}
 
 		inline void CmdSetDeviceMask (VkCommandBuffer commandBuffer, uint32_t deviceMask) {
@@ -2104,57 +2104,57 @@ namespace xvk { namespace Interface {
 
 		inline void GetImageMemoryRequirements2 (const VkImageMemoryRequirementsInfo2* pInfo, VkMemoryRequirements2* pMemoryRequirements) {
 			XVK_CHECK_FUNC(vkGetImageMemoryRequirements2)
-			vkGetImageMemoryRequirements2(handle, pInfo, pMemoryRequirements);
+			vkGetImageMemoryRequirements2(this->handle, pInfo, pMemoryRequirements);
 		}
 
 		inline void GetBufferMemoryRequirements2 (const VkBufferMemoryRequirementsInfo2* pInfo, VkMemoryRequirements2* pMemoryRequirements) {
 			XVK_CHECK_FUNC(vkGetBufferMemoryRequirements2)
-			vkGetBufferMemoryRequirements2(handle, pInfo, pMemoryRequirements);
+			vkGetBufferMemoryRequirements2(this->handle, pInfo, pMemoryRequirements);
 		}
 
 		inline void GetImageSparseMemoryRequirements2 (const VkImageSparseMemoryRequirementsInfo2* pInfo, uint32_t* pSparseMemoryRequirementCount, VkSparseImageMemoryRequirements2* pSparseMemoryRequirements) {
 			XVK_CHECK_FUNC(vkGetImageSparseMemoryRequirements2)
-			vkGetImageSparseMemoryRequirements2(handle, pInfo, pSparseMemoryRequirementCount, pSparseMemoryRequirements);
+			vkGetImageSparseMemoryRequirements2(this->handle, pInfo, pSparseMemoryRequirementCount, pSparseMemoryRequirements);
 		}
 
 		inline void TrimCommandPool (VkCommandPool commandPool, VkCommandPoolTrimFlags flags) {
 			XVK_CHECK_FUNC(vkTrimCommandPool)
-			vkTrimCommandPool(handle, commandPool, flags);
+			vkTrimCommandPool(this->handle, commandPool, flags);
 		}
 
 		inline void GetDeviceQueue2 (const VkDeviceQueueInfo2* pQueueInfo, VkQueue* pQueue) {
 			XVK_CHECK_FUNC(vkGetDeviceQueue2)
-			vkGetDeviceQueue2(handle, pQueueInfo, pQueue);
+			vkGetDeviceQueue2(this->handle, pQueueInfo, pQueue);
 		}
 
 		inline VkResult CreateSamplerYcbcrConversion (const VkSamplerYcbcrConversionCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSamplerYcbcrConversion* pYcbcrConversion) {
 			XVK_CHECK_FUNC(vkCreateSamplerYcbcrConversion)
-			return vkCreateSamplerYcbcrConversion(handle, pCreateInfo, pAllocator, pYcbcrConversion);
+			return vkCreateSamplerYcbcrConversion(this->handle, pCreateInfo, pAllocator, pYcbcrConversion);
 		}
 
 		inline void DestroySamplerYcbcrConversion (VkSamplerYcbcrConversion ycbcrConversion, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroySamplerYcbcrConversion)
-			vkDestroySamplerYcbcrConversion(handle, ycbcrConversion, pAllocator);
+			vkDestroySamplerYcbcrConversion(this->handle, ycbcrConversion, pAllocator);
 		}
 
 		inline VkResult CreateDescriptorUpdateTemplate (const VkDescriptorUpdateTemplateCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDescriptorUpdateTemplate* pDescriptorUpdateTemplate) {
 			XVK_CHECK_FUNC(vkCreateDescriptorUpdateTemplate)
-			return vkCreateDescriptorUpdateTemplate(handle, pCreateInfo, pAllocator, pDescriptorUpdateTemplate);
+			return vkCreateDescriptorUpdateTemplate(this->handle, pCreateInfo, pAllocator, pDescriptorUpdateTemplate);
 		}
 
 		inline void DestroyDescriptorUpdateTemplate (VkDescriptorUpdateTemplate descriptorUpdateTemplate, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyDescriptorUpdateTemplate)
-			vkDestroyDescriptorUpdateTemplate(handle, descriptorUpdateTemplate, pAllocator);
+			vkDestroyDescriptorUpdateTemplate(this->handle, descriptorUpdateTemplate, pAllocator);
 		}
 
 		inline void UpdateDescriptorSetWithTemplate (VkDescriptorSet descriptorSet, VkDescriptorUpdateTemplate descriptorUpdateTemplate, const void* pData) {
 			XVK_CHECK_FUNC(vkUpdateDescriptorSetWithTemplate)
-			vkUpdateDescriptorSetWithTemplate(handle, descriptorSet, descriptorUpdateTemplate, pData);
+			vkUpdateDescriptorSetWithTemplate(this->handle, descriptorSet, descriptorUpdateTemplate, pData);
 		}
 
 		inline void GetDescriptorSetLayoutSupport (const VkDescriptorSetLayoutCreateInfo* pCreateInfo, VkDescriptorSetLayoutSupport* pSupport) {
 			XVK_CHECK_FUNC(vkGetDescriptorSetLayoutSupport)
-			vkGetDescriptorSetLayoutSupport(handle, pCreateInfo, pSupport);
+			vkGetDescriptorSetLayoutSupport(this->handle, pCreateInfo, pSupport);
 		}
 
 		inline void CmdDrawIndirectCount (VkCommandBuffer commandBuffer, VkBuffer buffer, VkDeviceSize offset, VkBuffer countBuffer, VkDeviceSize countBufferOffset, uint32_t maxDrawCount, uint32_t stride) {
@@ -2169,7 +2169,7 @@ namespace xvk { namespace Interface {
 
 		inline VkResult CreateRenderPass2 (const VkRenderPassCreateInfo2* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkRenderPass* pRenderPass) {
 			XVK_CHECK_FUNC(vkCreateRenderPass2)
-			return vkCreateRenderPass2(handle, pCreateInfo, pAllocator, pRenderPass);
+			return vkCreateRenderPass2(this->handle, pCreateInfo, pAllocator, pRenderPass);
 		}
 
 		inline void CmdBeginRenderPass2 (VkCommandBuffer commandBuffer, const VkRenderPassBeginInfo*      pRenderPassBegin, const VkSubpassBeginInfo*      pSubpassBeginInfo) {
@@ -2189,57 +2189,57 @@ namespace xvk { namespace Interface {
 
 		inline void ResetQueryPool (VkQueryPool queryPool, uint32_t firstQuery, uint32_t queryCount) {
 			XVK_CHECK_FUNC(vkResetQueryPool)
-			vkResetQueryPool(handle, queryPool, firstQuery, queryCount);
+			vkResetQueryPool(this->handle, queryPool, firstQuery, queryCount);
 		}
 
 		inline VkResult GetSemaphoreCounterValue (VkSemaphore semaphore, uint64_t* pValue) {
 			XVK_CHECK_FUNC(vkGetSemaphoreCounterValue)
-			return vkGetSemaphoreCounterValue(handle, semaphore, pValue);
+			return vkGetSemaphoreCounterValue(this->handle, semaphore, pValue);
 		}
 
 		inline VkResult WaitSemaphores (const VkSemaphoreWaitInfo* pWaitInfo, uint64_t timeout) {
 			XVK_CHECK_FUNC(vkWaitSemaphores)
-			return vkWaitSemaphores(handle, pWaitInfo, timeout);
+			return vkWaitSemaphores(this->handle, pWaitInfo, timeout);
 		}
 
 		inline VkResult SignalSemaphore (const VkSemaphoreSignalInfo* pSignalInfo) {
 			XVK_CHECK_FUNC(vkSignalSemaphore)
-			return vkSignalSemaphore(handle, pSignalInfo);
+			return vkSignalSemaphore(this->handle, pSignalInfo);
 		}
 
 		inline VkDeviceAddress GetBufferDeviceAddress (const VkBufferDeviceAddressInfo* pInfo) {
 			XVK_CHECK_FUNC(vkGetBufferDeviceAddress)
-			return vkGetBufferDeviceAddress(handle, pInfo);
+			return vkGetBufferDeviceAddress(this->handle, pInfo);
 		}
 
 		inline uint64_t GetBufferOpaqueCaptureAddress (const VkBufferDeviceAddressInfo* pInfo) {
 			XVK_CHECK_FUNC(vkGetBufferOpaqueCaptureAddress)
-			return vkGetBufferOpaqueCaptureAddress(handle, pInfo);
+			return vkGetBufferOpaqueCaptureAddress(this->handle, pInfo);
 		}
 
 		inline uint64_t GetDeviceMemoryOpaqueCaptureAddress (const VkDeviceMemoryOpaqueCaptureAddressInfo* pInfo) {
 			XVK_CHECK_FUNC(vkGetDeviceMemoryOpaqueCaptureAddress)
-			return vkGetDeviceMemoryOpaqueCaptureAddress(handle, pInfo);
+			return vkGetDeviceMemoryOpaqueCaptureAddress(this->handle, pInfo);
 		}
 
 		inline VkResult CreateSwapchainKHR (const VkSwapchainCreateInfoKHR* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSwapchainKHR* pSwapchain) {
 			XVK_CHECK_FUNC(vkCreateSwapchainKHR)
-			return vkCreateSwapchainKHR(handle, pCreateInfo, pAllocator, pSwapchain);
+			return vkCreateSwapchainKHR(this->handle, pCreateInfo, pAllocator, pSwapchain);
 		}
 
 		inline void DestroySwapchainKHR (VkSwapchainKHR swapchain, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroySwapchainKHR)
-			vkDestroySwapchainKHR(handle, swapchain, pAllocator);
+			vkDestroySwapchainKHR(this->handle, swapchain, pAllocator);
 		}
 
 		inline VkResult GetSwapchainImagesKHR (VkSwapchainKHR swapchain, uint32_t* pSwapchainImageCount, VkImage* pSwapchainImages) {
 			XVK_CHECK_FUNC(vkGetSwapchainImagesKHR)
-			return vkGetSwapchainImagesKHR(handle, swapchain, pSwapchainImageCount, pSwapchainImages);
+			return vkGetSwapchainImagesKHR(this->handle, swapchain, pSwapchainImageCount, pSwapchainImages);
 		}
 
 		inline VkResult AcquireNextImageKHR (VkSwapchainKHR swapchain, uint64_t timeout, VkSemaphore semaphore, VkFence fence, uint32_t* pImageIndex) {
 			XVK_CHECK_FUNC(vkAcquireNextImageKHR)
-			return vkAcquireNextImageKHR(handle, swapchain, timeout, semaphore, fence, pImageIndex);
+			return vkAcquireNextImageKHR(this->handle, swapchain, timeout, semaphore, fence, pImageIndex);
 		}
 
 		inline VkResult QueuePresentKHR (VkQueue queue, const VkPresentInfoKHR* pPresentInfo) {
@@ -2249,27 +2249,27 @@ namespace xvk { namespace Interface {
 
 		inline VkResult GetDeviceGroupPresentCapabilitiesKHR (VkDeviceGroupPresentCapabilitiesKHR* pDeviceGroupPresentCapabilities) {
 			XVK_CHECK_FUNC(vkGetDeviceGroupPresentCapabilitiesKHR)
-			return vkGetDeviceGroupPresentCapabilitiesKHR(handle, pDeviceGroupPresentCapabilities);
+			return vkGetDeviceGroupPresentCapabilitiesKHR(this->handle, pDeviceGroupPresentCapabilities);
 		}
 
 		inline VkResult GetDeviceGroupSurfacePresentModesKHR (VkSurfaceKHR surface, VkDeviceGroupPresentModeFlagsKHR* pModes) {
 			XVK_CHECK_FUNC(vkGetDeviceGroupSurfacePresentModesKHR)
-			return vkGetDeviceGroupSurfacePresentModesKHR(handle, surface, pModes);
+			return vkGetDeviceGroupSurfacePresentModesKHR(this->handle, surface, pModes);
 		}
 
 		inline VkResult AcquireNextImage2KHR (const VkAcquireNextImageInfoKHR* pAcquireInfo, uint32_t* pImageIndex) {
 			XVK_CHECK_FUNC(vkAcquireNextImage2KHR)
-			return vkAcquireNextImage2KHR(handle, pAcquireInfo, pImageIndex);
+			return vkAcquireNextImage2KHR(this->handle, pAcquireInfo, pImageIndex);
 		}
 
 		inline VkResult CreateSharedSwapchainsKHR (uint32_t swapchainCount, const VkSwapchainCreateInfoKHR* pCreateInfos, const VkAllocationCallbacks* pAllocator, VkSwapchainKHR* pSwapchains) {
 			XVK_CHECK_FUNC(vkCreateSharedSwapchainsKHR)
-			return vkCreateSharedSwapchainsKHR(handle, swapchainCount, pCreateInfos, pAllocator, pSwapchains);
+			return vkCreateSharedSwapchainsKHR(this->handle, swapchainCount, pCreateInfos, pAllocator, pSwapchains);
 		}
 
 		inline void GetDeviceGroupPeerMemoryFeaturesKHR (uint32_t heapIndex, uint32_t localDeviceIndex, uint32_t remoteDeviceIndex, VkPeerMemoryFeatureFlags* pPeerMemoryFeatures) {
 			XVK_CHECK_FUNC(vkGetDeviceGroupPeerMemoryFeaturesKHR)
-			vkGetDeviceGroupPeerMemoryFeaturesKHR(handle, heapIndex, localDeviceIndex, remoteDeviceIndex, pPeerMemoryFeatures);
+			vkGetDeviceGroupPeerMemoryFeaturesKHR(this->handle, heapIndex, localDeviceIndex, remoteDeviceIndex, pPeerMemoryFeatures);
 		}
 
 		inline void CmdSetDeviceMaskKHR (VkCommandBuffer commandBuffer, uint32_t deviceMask) {
@@ -2284,27 +2284,27 @@ namespace xvk { namespace Interface {
 
 		inline void TrimCommandPoolKHR (VkCommandPool commandPool, VkCommandPoolTrimFlags flags) {
 			XVK_CHECK_FUNC(vkTrimCommandPoolKHR)
-			vkTrimCommandPoolKHR(handle, commandPool, flags);
+			vkTrimCommandPoolKHR(this->handle, commandPool, flags);
 		}
 
 		inline VkResult GetMemoryFdKHR (const VkMemoryGetFdInfoKHR* pGetFdInfo, int* pFd) {
 			XVK_CHECK_FUNC(vkGetMemoryFdKHR)
-			return vkGetMemoryFdKHR(handle, pGetFdInfo, pFd);
+			return vkGetMemoryFdKHR(this->handle, pGetFdInfo, pFd);
 		}
 
 		inline VkResult GetMemoryFdPropertiesKHR (VkExternalMemoryHandleTypeFlagBits handleType, int fd, VkMemoryFdPropertiesKHR* pMemoryFdProperties) {
 			XVK_CHECK_FUNC(vkGetMemoryFdPropertiesKHR)
-			return vkGetMemoryFdPropertiesKHR(handle, handleType, fd, pMemoryFdProperties);
+			return vkGetMemoryFdPropertiesKHR(this->handle, handleType, fd, pMemoryFdProperties);
 		}
 
 		inline VkResult ImportSemaphoreFdKHR (const VkImportSemaphoreFdInfoKHR* pImportSemaphoreFdInfo) {
 			XVK_CHECK_FUNC(vkImportSemaphoreFdKHR)
-			return vkImportSemaphoreFdKHR(handle, pImportSemaphoreFdInfo);
+			return vkImportSemaphoreFdKHR(this->handle, pImportSemaphoreFdInfo);
 		}
 
 		inline VkResult GetSemaphoreFdKHR (const VkSemaphoreGetFdInfoKHR* pGetFdInfo, int* pFd) {
 			XVK_CHECK_FUNC(vkGetSemaphoreFdKHR)
-			return vkGetSemaphoreFdKHR(handle, pGetFdInfo, pFd);
+			return vkGetSemaphoreFdKHR(this->handle, pGetFdInfo, pFd);
 		}
 
 		inline void CmdPushDescriptorSetKHR (VkCommandBuffer commandBuffer, VkPipelineBindPoint pipelineBindPoint, VkPipelineLayout layout, uint32_t set, uint32_t descriptorWriteCount, const VkWriteDescriptorSet* pDescriptorWrites) {
@@ -2319,22 +2319,22 @@ namespace xvk { namespace Interface {
 
 		inline VkResult CreateDescriptorUpdateTemplateKHR (const VkDescriptorUpdateTemplateCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDescriptorUpdateTemplate* pDescriptorUpdateTemplate) {
 			XVK_CHECK_FUNC(vkCreateDescriptorUpdateTemplateKHR)
-			return vkCreateDescriptorUpdateTemplateKHR(handle, pCreateInfo, pAllocator, pDescriptorUpdateTemplate);
+			return vkCreateDescriptorUpdateTemplateKHR(this->handle, pCreateInfo, pAllocator, pDescriptorUpdateTemplate);
 		}
 
 		inline void DestroyDescriptorUpdateTemplateKHR (VkDescriptorUpdateTemplate descriptorUpdateTemplate, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyDescriptorUpdateTemplateKHR)
-			vkDestroyDescriptorUpdateTemplateKHR(handle, descriptorUpdateTemplate, pAllocator);
+			vkDestroyDescriptorUpdateTemplateKHR(this->handle, descriptorUpdateTemplate, pAllocator);
 		}
 
 		inline void UpdateDescriptorSetWithTemplateKHR (VkDescriptorSet descriptorSet, VkDescriptorUpdateTemplate descriptorUpdateTemplate, const void* pData) {
 			XVK_CHECK_FUNC(vkUpdateDescriptorSetWithTemplateKHR)
-			vkUpdateDescriptorSetWithTemplateKHR(handle, descriptorSet, descriptorUpdateTemplate, pData);
+			vkUpdateDescriptorSetWithTemplateKHR(this->handle, descriptorSet, descriptorUpdateTemplate, pData);
 		}
 
 		inline VkResult CreateRenderPass2KHR (const VkRenderPassCreateInfo2* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkRenderPass* pRenderPass) {
 			XVK_CHECK_FUNC(vkCreateRenderPass2KHR)
-			return vkCreateRenderPass2KHR(handle, pCreateInfo, pAllocator, pRenderPass);
+			return vkCreateRenderPass2KHR(this->handle, pCreateInfo, pAllocator, pRenderPass);
 		}
 
 		inline void CmdBeginRenderPass2KHR (VkCommandBuffer commandBuffer, const VkRenderPassBeginInfo*      pRenderPassBegin, const VkSubpassBeginInfo*      pSubpassBeginInfo) {
@@ -2354,67 +2354,67 @@ namespace xvk { namespace Interface {
 
 		inline VkResult GetSwapchainStatusKHR (VkSwapchainKHR swapchain) {
 			XVK_CHECK_FUNC(vkGetSwapchainStatusKHR)
-			return vkGetSwapchainStatusKHR(handle, swapchain);
+			return vkGetSwapchainStatusKHR(this->handle, swapchain);
 		}
 
 		inline VkResult ImportFenceFdKHR (const VkImportFenceFdInfoKHR* pImportFenceFdInfo) {
 			XVK_CHECK_FUNC(vkImportFenceFdKHR)
-			return vkImportFenceFdKHR(handle, pImportFenceFdInfo);
+			return vkImportFenceFdKHR(this->handle, pImportFenceFdInfo);
 		}
 
 		inline VkResult GetFenceFdKHR (const VkFenceGetFdInfoKHR* pGetFdInfo, int* pFd) {
 			XVK_CHECK_FUNC(vkGetFenceFdKHR)
-			return vkGetFenceFdKHR(handle, pGetFdInfo, pFd);
+			return vkGetFenceFdKHR(this->handle, pGetFdInfo, pFd);
 		}
 
 		inline VkResult AcquireProfilingLockKHR (const VkAcquireProfilingLockInfoKHR* pInfo) {
 			XVK_CHECK_FUNC(vkAcquireProfilingLockKHR)
-			return vkAcquireProfilingLockKHR(handle, pInfo);
+			return vkAcquireProfilingLockKHR(this->handle, pInfo);
 		}
 
 		inline void ReleaseProfilingLockKHR () {
 			XVK_CHECK_FUNC(vkReleaseProfilingLockKHR)
-			vkReleaseProfilingLockKHR(handle);
+			vkReleaseProfilingLockKHR(this->handle);
 		}
 
 		inline void GetImageMemoryRequirements2KHR (const VkImageMemoryRequirementsInfo2* pInfo, VkMemoryRequirements2* pMemoryRequirements) {
 			XVK_CHECK_FUNC(vkGetImageMemoryRequirements2KHR)
-			vkGetImageMemoryRequirements2KHR(handle, pInfo, pMemoryRequirements);
+			vkGetImageMemoryRequirements2KHR(this->handle, pInfo, pMemoryRequirements);
 		}
 
 		inline void GetBufferMemoryRequirements2KHR (const VkBufferMemoryRequirementsInfo2* pInfo, VkMemoryRequirements2* pMemoryRequirements) {
 			XVK_CHECK_FUNC(vkGetBufferMemoryRequirements2KHR)
-			vkGetBufferMemoryRequirements2KHR(handle, pInfo, pMemoryRequirements);
+			vkGetBufferMemoryRequirements2KHR(this->handle, pInfo, pMemoryRequirements);
 		}
 
 		inline void GetImageSparseMemoryRequirements2KHR (const VkImageSparseMemoryRequirementsInfo2* pInfo, uint32_t* pSparseMemoryRequirementCount, VkSparseImageMemoryRequirements2* pSparseMemoryRequirements) {
 			XVK_CHECK_FUNC(vkGetImageSparseMemoryRequirements2KHR)
-			vkGetImageSparseMemoryRequirements2KHR(handle, pInfo, pSparseMemoryRequirementCount, pSparseMemoryRequirements);
+			vkGetImageSparseMemoryRequirements2KHR(this->handle, pInfo, pSparseMemoryRequirementCount, pSparseMemoryRequirements);
 		}
 
 		inline VkResult CreateSamplerYcbcrConversionKHR (const VkSamplerYcbcrConversionCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkSamplerYcbcrConversion* pYcbcrConversion) {
 			XVK_CHECK_FUNC(vkCreateSamplerYcbcrConversionKHR)
-			return vkCreateSamplerYcbcrConversionKHR(handle, pCreateInfo, pAllocator, pYcbcrConversion);
+			return vkCreateSamplerYcbcrConversionKHR(this->handle, pCreateInfo, pAllocator, pYcbcrConversion);
 		}
 
 		inline void DestroySamplerYcbcrConversionKHR (VkSamplerYcbcrConversion ycbcrConversion, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroySamplerYcbcrConversionKHR)
-			vkDestroySamplerYcbcrConversionKHR(handle, ycbcrConversion, pAllocator);
+			vkDestroySamplerYcbcrConversionKHR(this->handle, ycbcrConversion, pAllocator);
 		}
 
 		inline VkResult BindBufferMemory2KHR (uint32_t bindInfoCount, const VkBindBufferMemoryInfo* pBindInfos) {
 			XVK_CHECK_FUNC(vkBindBufferMemory2KHR)
-			return vkBindBufferMemory2KHR(handle, bindInfoCount, pBindInfos);
+			return vkBindBufferMemory2KHR(this->handle, bindInfoCount, pBindInfos);
 		}
 
 		inline VkResult BindImageMemory2KHR (uint32_t bindInfoCount, const VkBindImageMemoryInfo* pBindInfos) {
 			XVK_CHECK_FUNC(vkBindImageMemory2KHR)
-			return vkBindImageMemory2KHR(handle, bindInfoCount, pBindInfos);
+			return vkBindImageMemory2KHR(this->handle, bindInfoCount, pBindInfos);
 		}
 
 		inline void GetDescriptorSetLayoutSupportKHR (const VkDescriptorSetLayoutCreateInfo* pCreateInfo, VkDescriptorSetLayoutSupport* pSupport) {
 			XVK_CHECK_FUNC(vkGetDescriptorSetLayoutSupportKHR)
-			vkGetDescriptorSetLayoutSupportKHR(handle, pCreateInfo, pSupport);
+			vkGetDescriptorSetLayoutSupportKHR(this->handle, pCreateInfo, pSupport);
 		}
 
 		inline void CmdDrawIndirectCountKHR (VkCommandBuffer commandBuffer, VkBuffer buffer, VkDeviceSize offset, VkBuffer countBuffer, VkDeviceSize countBufferOffset, uint32_t maxDrawCount, uint32_t stride) {
@@ -2429,57 +2429,57 @@ namespace xvk { namespace Interface {
 
 		inline VkResult GetSemaphoreCounterValueKHR (VkSemaphore semaphore, uint64_t* pValue) {
 			XVK_CHECK_FUNC(vkGetSemaphoreCounterValueKHR)
-			return vkGetSemaphoreCounterValueKHR(handle, semaphore, pValue);
+			return vkGetSemaphoreCounterValueKHR(this->handle, semaphore, pValue);
 		}
 
 		inline VkResult WaitSemaphoresKHR (const VkSemaphoreWaitInfo* pWaitInfo, uint64_t timeout) {
 			XVK_CHECK_FUNC(vkWaitSemaphoresKHR)
-			return vkWaitSemaphoresKHR(handle, pWaitInfo, timeout);
+			return vkWaitSemaphoresKHR(this->handle, pWaitInfo, timeout);
 		}
 
 		inline VkResult SignalSemaphoreKHR (const VkSemaphoreSignalInfo* pSignalInfo) {
 			XVK_CHECK_FUNC(vkSignalSemaphoreKHR)
-			return vkSignalSemaphoreKHR(handle, pSignalInfo);
+			return vkSignalSemaphoreKHR(this->handle, pSignalInfo);
 		}
 
 		inline VkDeviceAddress GetBufferDeviceAddressKHR (const VkBufferDeviceAddressInfo* pInfo) {
 			XVK_CHECK_FUNC(vkGetBufferDeviceAddressKHR)
-			return vkGetBufferDeviceAddressKHR(handle, pInfo);
+			return vkGetBufferDeviceAddressKHR(this->handle, pInfo);
 		}
 
 		inline uint64_t GetBufferOpaqueCaptureAddressKHR (const VkBufferDeviceAddressInfo* pInfo) {
 			XVK_CHECK_FUNC(vkGetBufferOpaqueCaptureAddressKHR)
-			return vkGetBufferOpaqueCaptureAddressKHR(handle, pInfo);
+			return vkGetBufferOpaqueCaptureAddressKHR(this->handle, pInfo);
 		}
 
 		inline uint64_t GetDeviceMemoryOpaqueCaptureAddressKHR (const VkDeviceMemoryOpaqueCaptureAddressInfo* pInfo) {
 			XVK_CHECK_FUNC(vkGetDeviceMemoryOpaqueCaptureAddressKHR)
-			return vkGetDeviceMemoryOpaqueCaptureAddressKHR(handle, pInfo);
+			return vkGetDeviceMemoryOpaqueCaptureAddressKHR(this->handle, pInfo);
 		}
 
 		inline VkResult GetPipelineExecutablePropertiesKHR (const VkPipelineInfoKHR*        pPipelineInfo, uint32_t* pExecutableCount, VkPipelineExecutablePropertiesKHR* pProperties) {
 			XVK_CHECK_FUNC(vkGetPipelineExecutablePropertiesKHR)
-			return vkGetPipelineExecutablePropertiesKHR(handle, pPipelineInfo, pExecutableCount, pProperties);
+			return vkGetPipelineExecutablePropertiesKHR(this->handle, pPipelineInfo, pExecutableCount, pProperties);
 		}
 
 		inline VkResult GetPipelineExecutableStatisticsKHR (const VkPipelineExecutableInfoKHR*  pExecutableInfo, uint32_t* pStatisticCount, VkPipelineExecutableStatisticKHR* pStatistics) {
 			XVK_CHECK_FUNC(vkGetPipelineExecutableStatisticsKHR)
-			return vkGetPipelineExecutableStatisticsKHR(handle, pExecutableInfo, pStatisticCount, pStatistics);
+			return vkGetPipelineExecutableStatisticsKHR(this->handle, pExecutableInfo, pStatisticCount, pStatistics);
 		}
 
 		inline VkResult GetPipelineExecutableInternalRepresentationsKHR (const VkPipelineExecutableInfoKHR*  pExecutableInfo, uint32_t* pInternalRepresentationCount, VkPipelineExecutableInternalRepresentationKHR* pInternalRepresentations) {
 			XVK_CHECK_FUNC(vkGetPipelineExecutableInternalRepresentationsKHR)
-			return vkGetPipelineExecutableInternalRepresentationsKHR(handle, pExecutableInfo, pInternalRepresentationCount, pInternalRepresentations);
+			return vkGetPipelineExecutableInternalRepresentationsKHR(this->handle, pExecutableInfo, pInternalRepresentationCount, pInternalRepresentations);
 		}
 
 		inline VkResult DebugMarkerSetObjectTagEXT (const VkDebugMarkerObjectTagInfoEXT* pTagInfo) {
 			XVK_CHECK_FUNC(vkDebugMarkerSetObjectTagEXT)
-			return vkDebugMarkerSetObjectTagEXT(handle, pTagInfo);
+			return vkDebugMarkerSetObjectTagEXT(this->handle, pTagInfo);
 		}
 
 		inline VkResult DebugMarkerSetObjectNameEXT (const VkDebugMarkerObjectNameInfoEXT* pNameInfo) {
 			XVK_CHECK_FUNC(vkDebugMarkerSetObjectNameEXT)
-			return vkDebugMarkerSetObjectNameEXT(handle, pNameInfo);
+			return vkDebugMarkerSetObjectNameEXT(this->handle, pNameInfo);
 		}
 
 		inline void CmdDebugMarkerBeginEXT (VkCommandBuffer commandBuffer, const VkDebugMarkerMarkerInfoEXT* pMarkerInfo) {
@@ -2529,12 +2529,12 @@ namespace xvk { namespace Interface {
 
 		inline uint32_t GetImageViewHandleNVX (const VkImageViewHandleInfoNVX* pInfo) {
 			XVK_CHECK_FUNC(vkGetImageViewHandleNVX)
-			return vkGetImageViewHandleNVX(handle, pInfo);
+			return vkGetImageViewHandleNVX(this->handle, pInfo);
 		}
 
 		inline VkResult GetImageViewAddressNVX (VkImageView imageView, VkImageViewAddressPropertiesNVX* pProperties) {
 			XVK_CHECK_FUNC(vkGetImageViewAddressNVX)
-			return vkGetImageViewAddressNVX(handle, imageView, pProperties);
+			return vkGetImageViewAddressNVX(this->handle, imageView, pProperties);
 		}
 
 		inline void CmdDrawIndirectCountAMD (VkCommandBuffer commandBuffer, VkBuffer buffer, VkDeviceSize offset, VkBuffer countBuffer, VkDeviceSize countBufferOffset, uint32_t maxDrawCount, uint32_t stride) {
@@ -2549,7 +2549,7 @@ namespace xvk { namespace Interface {
 
 		inline VkResult GetShaderInfoAMD (VkPipeline pipeline, VkShaderStageFlagBits shaderStage, VkShaderInfoTypeAMD infoType, size_t* pInfoSize, void* pInfo) {
 			XVK_CHECK_FUNC(vkGetShaderInfoAMD)
-			return vkGetShaderInfoAMD(handle, pipeline, shaderStage, infoType, pInfoSize, pInfo);
+			return vkGetShaderInfoAMD(this->handle, pipeline, shaderStage, infoType, pInfoSize, pInfo);
 		}
 
 		inline void CmdBeginConditionalRenderingEXT (VkCommandBuffer commandBuffer, const VkConditionalRenderingBeginInfoEXT* pConditionalRenderingBegin) {
@@ -2569,32 +2569,32 @@ namespace xvk { namespace Interface {
 
 		inline VkResult DisplayPowerControlEXT (VkDisplayKHR display, const VkDisplayPowerInfoEXT* pDisplayPowerInfo) {
 			XVK_CHECK_FUNC(vkDisplayPowerControlEXT)
-			return vkDisplayPowerControlEXT(handle, display, pDisplayPowerInfo);
+			return vkDisplayPowerControlEXT(this->handle, display, pDisplayPowerInfo);
 		}
 
 		inline VkResult RegisterDeviceEventEXT (const VkDeviceEventInfoEXT* pDeviceEventInfo, const VkAllocationCallbacks* pAllocator, VkFence* pFence) {
 			XVK_CHECK_FUNC(vkRegisterDeviceEventEXT)
-			return vkRegisterDeviceEventEXT(handle, pDeviceEventInfo, pAllocator, pFence);
+			return vkRegisterDeviceEventEXT(this->handle, pDeviceEventInfo, pAllocator, pFence);
 		}
 
 		inline VkResult RegisterDisplayEventEXT (VkDisplayKHR display, const VkDisplayEventInfoEXT* pDisplayEventInfo, const VkAllocationCallbacks* pAllocator, VkFence* pFence) {
 			XVK_CHECK_FUNC(vkRegisterDisplayEventEXT)
-			return vkRegisterDisplayEventEXT(handle, display, pDisplayEventInfo, pAllocator, pFence);
+			return vkRegisterDisplayEventEXT(this->handle, display, pDisplayEventInfo, pAllocator, pFence);
 		}
 
 		inline VkResult GetSwapchainCounterEXT (VkSwapchainKHR swapchain, VkSurfaceCounterFlagBitsEXT counter, uint64_t* pCounterValue) {
 			XVK_CHECK_FUNC(vkGetSwapchainCounterEXT)
-			return vkGetSwapchainCounterEXT(handle, swapchain, counter, pCounterValue);
+			return vkGetSwapchainCounterEXT(this->handle, swapchain, counter, pCounterValue);
 		}
 
 		inline VkResult GetRefreshCycleDurationGOOGLE (VkSwapchainKHR swapchain, VkRefreshCycleDurationGOOGLE* pDisplayTimingProperties) {
 			XVK_CHECK_FUNC(vkGetRefreshCycleDurationGOOGLE)
-			return vkGetRefreshCycleDurationGOOGLE(handle, swapchain, pDisplayTimingProperties);
+			return vkGetRefreshCycleDurationGOOGLE(this->handle, swapchain, pDisplayTimingProperties);
 		}
 
 		inline VkResult GetPastPresentationTimingGOOGLE (VkSwapchainKHR swapchain, uint32_t* pPresentationTimingCount, VkPastPresentationTimingGOOGLE* pPresentationTimings) {
 			XVK_CHECK_FUNC(vkGetPastPresentationTimingGOOGLE)
-			return vkGetPastPresentationTimingGOOGLE(handle, swapchain, pPresentationTimingCount, pPresentationTimings);
+			return vkGetPastPresentationTimingGOOGLE(this->handle, swapchain, pPresentationTimingCount, pPresentationTimings);
 		}
 
 		inline void CmdSetDiscardRectangleEXT (VkCommandBuffer commandBuffer, uint32_t firstDiscardRectangle, uint32_t discardRectangleCount, const VkRect2D* pDiscardRectangles) {
@@ -2604,17 +2604,17 @@ namespace xvk { namespace Interface {
 
 		inline void SetHdrMetadataEXT (uint32_t swapchainCount, const VkSwapchainKHR* pSwapchains, const VkHdrMetadataEXT* pMetadata) {
 			XVK_CHECK_FUNC(vkSetHdrMetadataEXT)
-			vkSetHdrMetadataEXT(handle, swapchainCount, pSwapchains, pMetadata);
+			vkSetHdrMetadataEXT(this->handle, swapchainCount, pSwapchains, pMetadata);
 		}
 
 		inline VkResult SetDebugUtilsObjectNameEXT (const VkDebugUtilsObjectNameInfoEXT* pNameInfo) {
 			XVK_CHECK_FUNC(vkSetDebugUtilsObjectNameEXT)
-			return vkSetDebugUtilsObjectNameEXT(handle, pNameInfo);
+			return vkSetDebugUtilsObjectNameEXT(this->handle, pNameInfo);
 		}
 
 		inline VkResult SetDebugUtilsObjectTagEXT (const VkDebugUtilsObjectTagInfoEXT* pTagInfo) {
 			XVK_CHECK_FUNC(vkSetDebugUtilsObjectTagEXT)
-			return vkSetDebugUtilsObjectTagEXT(handle, pTagInfo);
+			return vkSetDebugUtilsObjectTagEXT(this->handle, pTagInfo);
 		}
 
 		inline void QueueBeginDebugUtilsLabelEXT (VkQueue queue, const VkDebugUtilsLabelEXT* pLabelInfo) {
@@ -2654,27 +2654,27 @@ namespace xvk { namespace Interface {
 
 		inline VkResult GetImageDrmFormatModifierPropertiesEXT (VkImage image, VkImageDrmFormatModifierPropertiesEXT* pProperties) {
 			XVK_CHECK_FUNC(vkGetImageDrmFormatModifierPropertiesEXT)
-			return vkGetImageDrmFormatModifierPropertiesEXT(handle, image, pProperties);
+			return vkGetImageDrmFormatModifierPropertiesEXT(this->handle, image, pProperties);
 		}
 
 		inline VkResult CreateValidationCacheEXT (const VkValidationCacheCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkValidationCacheEXT* pValidationCache) {
 			XVK_CHECK_FUNC(vkCreateValidationCacheEXT)
-			return vkCreateValidationCacheEXT(handle, pCreateInfo, pAllocator, pValidationCache);
+			return vkCreateValidationCacheEXT(this->handle, pCreateInfo, pAllocator, pValidationCache);
 		}
 
 		inline void DestroyValidationCacheEXT (VkValidationCacheEXT validationCache, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyValidationCacheEXT)
-			vkDestroyValidationCacheEXT(handle, validationCache, pAllocator);
+			vkDestroyValidationCacheEXT(this->handle, validationCache, pAllocator);
 		}
 
 		inline VkResult MergeValidationCachesEXT (VkValidationCacheEXT dstCache, uint32_t srcCacheCount, const VkValidationCacheEXT* pSrcCaches) {
 			XVK_CHECK_FUNC(vkMergeValidationCachesEXT)
-			return vkMergeValidationCachesEXT(handle, dstCache, srcCacheCount, pSrcCaches);
+			return vkMergeValidationCachesEXT(this->handle, dstCache, srcCacheCount, pSrcCaches);
 		}
 
 		inline VkResult GetValidationCacheDataEXT (VkValidationCacheEXT validationCache, size_t* pDataSize, void* pData) {
 			XVK_CHECK_FUNC(vkGetValidationCacheDataEXT)
-			return vkGetValidationCacheDataEXT(handle, validationCache, pDataSize, pData);
+			return vkGetValidationCacheDataEXT(this->handle, validationCache, pDataSize, pData);
 		}
 
 		inline void CmdBindShadingRateImageNV (VkCommandBuffer commandBuffer, VkImageView imageView, VkImageLayout imageLayout) {
@@ -2694,32 +2694,32 @@ namespace xvk { namespace Interface {
 
 		inline VkResult CreateAccelerationStructureNV (const VkAccelerationStructureCreateInfoNV* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkAccelerationStructureNV* pAccelerationStructure) {
 			XVK_CHECK_FUNC(vkCreateAccelerationStructureNV)
-			return vkCreateAccelerationStructureNV(handle, pCreateInfo, pAllocator, pAccelerationStructure);
+			return vkCreateAccelerationStructureNV(this->handle, pCreateInfo, pAllocator, pAccelerationStructure);
 		}
 
 		inline void DestroyAccelerationStructureKHR (VkAccelerationStructureKHR accelerationStructure, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyAccelerationStructureKHR)
-			vkDestroyAccelerationStructureKHR(handle, accelerationStructure, pAllocator);
+			vkDestroyAccelerationStructureKHR(this->handle, accelerationStructure, pAllocator);
 		}
 
 		inline void DestroyAccelerationStructureNV (VkAccelerationStructureKHR accelerationStructure, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyAccelerationStructureNV)
-			vkDestroyAccelerationStructureNV(handle, accelerationStructure, pAllocator);
+			vkDestroyAccelerationStructureNV(this->handle, accelerationStructure, pAllocator);
 		}
 
 		inline void GetAccelerationStructureMemoryRequirementsNV (const VkAccelerationStructureMemoryRequirementsInfoNV* pInfo, VkMemoryRequirements2KHR* pMemoryRequirements) {
 			XVK_CHECK_FUNC(vkGetAccelerationStructureMemoryRequirementsNV)
-			vkGetAccelerationStructureMemoryRequirementsNV(handle, pInfo, pMemoryRequirements);
+			vkGetAccelerationStructureMemoryRequirementsNV(this->handle, pInfo, pMemoryRequirements);
 		}
 
 		inline VkResult BindAccelerationStructureMemoryKHR (uint32_t bindInfoCount, const VkBindAccelerationStructureMemoryInfoKHR* pBindInfos) {
 			XVK_CHECK_FUNC(vkBindAccelerationStructureMemoryKHR)
-			return vkBindAccelerationStructureMemoryKHR(handle, bindInfoCount, pBindInfos);
+			return vkBindAccelerationStructureMemoryKHR(this->handle, bindInfoCount, pBindInfos);
 		}
 
 		inline VkResult BindAccelerationStructureMemoryNV (uint32_t bindInfoCount, const VkBindAccelerationStructureMemoryInfoKHR* pBindInfos) {
 			XVK_CHECK_FUNC(vkBindAccelerationStructureMemoryNV)
-			return vkBindAccelerationStructureMemoryNV(handle, bindInfoCount, pBindInfos);
+			return vkBindAccelerationStructureMemoryNV(this->handle, bindInfoCount, pBindInfos);
 		}
 
 		inline void CmdBuildAccelerationStructureNV (VkCommandBuffer commandBuffer, const VkAccelerationStructureInfoNV* pInfo, VkBuffer instanceData, VkDeviceSize instanceOffset, VkBool32 update, VkAccelerationStructureKHR dst, VkAccelerationStructureKHR src, VkBuffer scratch, VkDeviceSize scratchOffset) {
@@ -2739,22 +2739,22 @@ namespace xvk { namespace Interface {
 
 		inline VkResult CreateRayTracingPipelinesNV (VkPipelineCache pipelineCache, uint32_t createInfoCount, const VkRayTracingPipelineCreateInfoNV* pCreateInfos, const VkAllocationCallbacks* pAllocator, VkPipeline* pPipelines) {
 			XVK_CHECK_FUNC(vkCreateRayTracingPipelinesNV)
-			return vkCreateRayTracingPipelinesNV(handle, pipelineCache, createInfoCount, pCreateInfos, pAllocator, pPipelines);
+			return vkCreateRayTracingPipelinesNV(this->handle, pipelineCache, createInfoCount, pCreateInfos, pAllocator, pPipelines);
 		}
 
 		inline VkResult GetRayTracingShaderGroupHandlesKHR (VkPipeline pipeline, uint32_t firstGroup, uint32_t groupCount, size_t dataSize, void* pData) {
 			XVK_CHECK_FUNC(vkGetRayTracingShaderGroupHandlesKHR)
-			return vkGetRayTracingShaderGroupHandlesKHR(handle, pipeline, firstGroup, groupCount, dataSize, pData);
+			return vkGetRayTracingShaderGroupHandlesKHR(this->handle, pipeline, firstGroup, groupCount, dataSize, pData);
 		}
 
 		inline VkResult GetRayTracingShaderGroupHandlesNV (VkPipeline pipeline, uint32_t firstGroup, uint32_t groupCount, size_t dataSize, void* pData) {
 			XVK_CHECK_FUNC(vkGetRayTracingShaderGroupHandlesNV)
-			return vkGetRayTracingShaderGroupHandlesNV(handle, pipeline, firstGroup, groupCount, dataSize, pData);
+			return vkGetRayTracingShaderGroupHandlesNV(this->handle, pipeline, firstGroup, groupCount, dataSize, pData);
 		}
 
 		inline VkResult GetAccelerationStructureHandleNV (VkAccelerationStructureKHR accelerationStructure, size_t dataSize, void* pData) {
 			XVK_CHECK_FUNC(vkGetAccelerationStructureHandleNV)
-			return vkGetAccelerationStructureHandleNV(handle, accelerationStructure, dataSize, pData);
+			return vkGetAccelerationStructureHandleNV(this->handle, accelerationStructure, dataSize, pData);
 		}
 
 		inline void CmdWriteAccelerationStructuresPropertiesKHR (VkCommandBuffer commandBuffer, uint32_t accelerationStructureCount, const VkAccelerationStructureKHR* pAccelerationStructures, VkQueryType queryType, VkQueryPool queryPool, uint32_t firstQuery) {
@@ -2769,12 +2769,12 @@ namespace xvk { namespace Interface {
 
 		inline VkResult CompileDeferredNV (VkPipeline pipeline, uint32_t shader) {
 			XVK_CHECK_FUNC(vkCompileDeferredNV)
-			return vkCompileDeferredNV(handle, pipeline, shader);
+			return vkCompileDeferredNV(this->handle, pipeline, shader);
 		}
 
 		inline VkResult GetMemoryHostPointerPropertiesEXT (VkExternalMemoryHandleTypeFlagBits handleType, const void* pHostPointer, VkMemoryHostPointerPropertiesEXT* pMemoryHostPointerProperties) {
 			XVK_CHECK_FUNC(vkGetMemoryHostPointerPropertiesEXT)
-			return vkGetMemoryHostPointerPropertiesEXT(handle, handleType, pHostPointer, pMemoryHostPointerProperties);
+			return vkGetMemoryHostPointerPropertiesEXT(this->handle, handleType, pHostPointer, pMemoryHostPointerProperties);
 		}
 
 		inline void CmdWriteBufferMarkerAMD (VkCommandBuffer commandBuffer, VkPipelineStageFlagBits pipelineStage, VkBuffer dstBuffer, VkDeviceSize dstOffset, uint32_t marker) {
@@ -2784,7 +2784,7 @@ namespace xvk { namespace Interface {
 
 		inline VkResult GetCalibratedTimestampsEXT (uint32_t timestampCount, const VkCalibratedTimestampInfoEXT* pTimestampInfos, uint64_t* pTimestamps, uint64_t* pMaxDeviation) {
 			XVK_CHECK_FUNC(vkGetCalibratedTimestampsEXT)
-			return vkGetCalibratedTimestampsEXT(handle, timestampCount, pTimestampInfos, pTimestamps, pMaxDeviation);
+			return vkGetCalibratedTimestampsEXT(this->handle, timestampCount, pTimestampInfos, pTimestamps, pMaxDeviation);
 		}
 
 		inline void CmdDrawMeshTasksNV (VkCommandBuffer commandBuffer, uint32_t taskCount, uint32_t firstTask) {
@@ -2819,12 +2819,12 @@ namespace xvk { namespace Interface {
 
 		inline VkResult InitializePerformanceApiINTEL (const VkInitializePerformanceApiInfoINTEL* pInitializeInfo) {
 			XVK_CHECK_FUNC(vkInitializePerformanceApiINTEL)
-			return vkInitializePerformanceApiINTEL(handle, pInitializeInfo);
+			return vkInitializePerformanceApiINTEL(this->handle, pInitializeInfo);
 		}
 
 		inline void UninitializePerformanceApiINTEL () {
 			XVK_CHECK_FUNC(vkUninitializePerformanceApiINTEL)
-			vkUninitializePerformanceApiINTEL(handle);
+			vkUninitializePerformanceApiINTEL(this->handle);
 		}
 
 		inline VkResult CmdSetPerformanceMarkerINTEL (VkCommandBuffer commandBuffer, const VkPerformanceMarkerInfoINTEL* pMarkerInfo) {
@@ -2844,12 +2844,12 @@ namespace xvk { namespace Interface {
 
 		inline VkResult AcquirePerformanceConfigurationINTEL (const VkPerformanceConfigurationAcquireInfoINTEL* pAcquireInfo, VkPerformanceConfigurationINTEL* pConfiguration) {
 			XVK_CHECK_FUNC(vkAcquirePerformanceConfigurationINTEL)
-			return vkAcquirePerformanceConfigurationINTEL(handle, pAcquireInfo, pConfiguration);
+			return vkAcquirePerformanceConfigurationINTEL(this->handle, pAcquireInfo, pConfiguration);
 		}
 
 		inline VkResult ReleasePerformanceConfigurationINTEL (VkPerformanceConfigurationINTEL configuration) {
 			XVK_CHECK_FUNC(vkReleasePerformanceConfigurationINTEL)
-			return vkReleasePerformanceConfigurationINTEL(handle, configuration);
+			return vkReleasePerformanceConfigurationINTEL(this->handle, configuration);
 		}
 
 		inline VkResult QueueSetPerformanceConfigurationINTEL (VkQueue queue, VkPerformanceConfigurationINTEL configuration) {
@@ -2859,17 +2859,17 @@ namespace xvk { namespace Interface {
 
 		inline VkResult GetPerformanceParameterINTEL (VkPerformanceParameterTypeINTEL parameter, VkPerformanceValueINTEL* pValue) {
 			XVK_CHECK_FUNC(vkGetPerformanceParameterINTEL)
-			return vkGetPerformanceParameterINTEL(handle, parameter, pValue);
+			return vkGetPerformanceParameterINTEL(this->handle, parameter, pValue);
 		}
 
 		inline void SetLocalDimmingAMD (VkSwapchainKHR swapChain, VkBool32 localDimmingEnable) {
 			XVK_CHECK_FUNC(vkSetLocalDimmingAMD)
-			vkSetLocalDimmingAMD(handle, swapChain, localDimmingEnable);
+			vkSetLocalDimmingAMD(this->handle, swapChain, localDimmingEnable);
 		}
 
 		inline VkDeviceAddress GetBufferDeviceAddressEXT (const VkBufferDeviceAddressInfo* pInfo) {
 			XVK_CHECK_FUNC(vkGetBufferDeviceAddressEXT)
-			return vkGetBufferDeviceAddressEXT(handle, pInfo);
+			return vkGetBufferDeviceAddressEXT(this->handle, pInfo);
 		}
 
 		inline void CmdSetLineStippleEXT (VkCommandBuffer commandBuffer, uint32_t lineStippleFactor, uint16_t lineStipplePattern) {
@@ -2879,12 +2879,12 @@ namespace xvk { namespace Interface {
 
 		inline void ResetQueryPoolEXT (VkQueryPool queryPool, uint32_t firstQuery, uint32_t queryCount) {
 			XVK_CHECK_FUNC(vkResetQueryPoolEXT)
-			vkResetQueryPoolEXT(handle, queryPool, firstQuery, queryCount);
+			vkResetQueryPoolEXT(this->handle, queryPool, firstQuery, queryCount);
 		}
 
 		inline void GetGeneratedCommandsMemoryRequirementsNV (const VkGeneratedCommandsMemoryRequirementsInfoNV* pInfo, VkMemoryRequirements2* pMemoryRequirements) {
 			XVK_CHECK_FUNC(vkGetGeneratedCommandsMemoryRequirementsNV)
-			vkGetGeneratedCommandsMemoryRequirementsNV(handle, pInfo, pMemoryRequirements);
+			vkGetGeneratedCommandsMemoryRequirementsNV(this->handle, pInfo, pMemoryRequirements);
 		}
 
 		inline void CmdPreprocessGeneratedCommandsNV (VkCommandBuffer commandBuffer, const VkGeneratedCommandsInfoNV* pGeneratedCommandsInfo) {
@@ -2904,32 +2904,32 @@ namespace xvk { namespace Interface {
 
 		inline VkResult CreateIndirectCommandsLayoutNV (const VkIndirectCommandsLayoutCreateInfoNV* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkIndirectCommandsLayoutNV* pIndirectCommandsLayout) {
 			XVK_CHECK_FUNC(vkCreateIndirectCommandsLayoutNV)
-			return vkCreateIndirectCommandsLayoutNV(handle, pCreateInfo, pAllocator, pIndirectCommandsLayout);
+			return vkCreateIndirectCommandsLayoutNV(this->handle, pCreateInfo, pAllocator, pIndirectCommandsLayout);
 		}
 
 		inline void DestroyIndirectCommandsLayoutNV (VkIndirectCommandsLayoutNV indirectCommandsLayout, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyIndirectCommandsLayoutNV)
-			vkDestroyIndirectCommandsLayoutNV(handle, indirectCommandsLayout, pAllocator);
+			vkDestroyIndirectCommandsLayoutNV(this->handle, indirectCommandsLayout, pAllocator);
 		}
 
 		inline VkResult CreatePrivateDataSlotEXT (const VkPrivateDataSlotCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkPrivateDataSlotEXT* pPrivateDataSlot) {
 			XVK_CHECK_FUNC(vkCreatePrivateDataSlotEXT)
-			return vkCreatePrivateDataSlotEXT(handle, pCreateInfo, pAllocator, pPrivateDataSlot);
+			return vkCreatePrivateDataSlotEXT(this->handle, pCreateInfo, pAllocator, pPrivateDataSlot);
 		}
 
 		inline void DestroyPrivateDataSlotEXT (VkPrivateDataSlotEXT privateDataSlot, const VkAllocationCallbacks* pAllocator) {
 			XVK_CHECK_FUNC(vkDestroyPrivateDataSlotEXT)
-			vkDestroyPrivateDataSlotEXT(handle, privateDataSlot, pAllocator);
+			vkDestroyPrivateDataSlotEXT(this->handle, privateDataSlot, pAllocator);
 		}
 
 		inline VkResult SetPrivateDataEXT (VkObjectType objectType, uint64_t objectHandle, VkPrivateDataSlotEXT privateDataSlot, uint64_t data) {
 			XVK_CHECK_FUNC(vkSetPrivateDataEXT)
-			return vkSetPrivateDataEXT(handle, objectType, objectHandle, privateDataSlot, data);
+			return vkSetPrivateDataEXT(this->handle, objectType, objectHandle, privateDataSlot, data);
 		}
 
 		inline void GetPrivateDataEXT (VkObjectType objectType, uint64_t objectHandle, VkPrivateDataSlotEXT privateDataSlot, uint64_t* pData) {
 			XVK_CHECK_FUNC(vkGetPrivateDataEXT)
-			vkGetPrivateDataEXT(handle, objectType, objectHandle, privateDataSlot, pData);
+			vkGetPrivateDataEXT(this->handle, objectType, objectHandle, privateDataSlot, pData);
 		}
 
 		
@@ -2987,52 +2987,52 @@ namespace xvk { namespace Interface {
 
 		inline VkResult GetMemoryWin32HandleKHR (const VkMemoryGetWin32HandleInfoKHR* pGetWin32HandleInfo, HANDLE* pHandle) {
 			XVK_CHECK_FUNC(vkGetMemoryWin32HandleKHR)
-			return vkGetMemoryWin32HandleKHR(handle, pGetWin32HandleInfo, pHandle);
+			return vkGetMemoryWin32HandleKHR(this->handle, pGetWin32HandleInfo, pHandle);
 		}
 
 		inline VkResult GetMemoryWin32HandlePropertiesKHR (VkExternalMemoryHandleTypeFlagBits handleType, HANDLE handle, VkMemoryWin32HandlePropertiesKHR* pMemoryWin32HandleProperties) {
 			XVK_CHECK_FUNC(vkGetMemoryWin32HandlePropertiesKHR)
-			return vkGetMemoryWin32HandlePropertiesKHR(handle, handleType, handle, pMemoryWin32HandleProperties);
+			return vkGetMemoryWin32HandlePropertiesKHR(this->handle, handleType, handle, pMemoryWin32HandleProperties);
 		}
 
 		inline VkResult ImportSemaphoreWin32HandleKHR (const VkImportSemaphoreWin32HandleInfoKHR* pImportSemaphoreWin32HandleInfo) {
 			XVK_CHECK_FUNC(vkImportSemaphoreWin32HandleKHR)
-			return vkImportSemaphoreWin32HandleKHR(handle, pImportSemaphoreWin32HandleInfo);
+			return vkImportSemaphoreWin32HandleKHR(this->handle, pImportSemaphoreWin32HandleInfo);
 		}
 
 		inline VkResult GetSemaphoreWin32HandleKHR (const VkSemaphoreGetWin32HandleInfoKHR* pGetWin32HandleInfo, HANDLE* pHandle) {
 			XVK_CHECK_FUNC(vkGetSemaphoreWin32HandleKHR)
-			return vkGetSemaphoreWin32HandleKHR(handle, pGetWin32HandleInfo, pHandle);
+			return vkGetSemaphoreWin32HandleKHR(this->handle, pGetWin32HandleInfo, pHandle);
 		}
 
 		inline VkResult ImportFenceWin32HandleKHR (const VkImportFenceWin32HandleInfoKHR* pImportFenceWin32HandleInfo) {
 			XVK_CHECK_FUNC(vkImportFenceWin32HandleKHR)
-			return vkImportFenceWin32HandleKHR(handle, pImportFenceWin32HandleInfo);
+			return vkImportFenceWin32HandleKHR(this->handle, pImportFenceWin32HandleInfo);
 		}
 
 		inline VkResult GetFenceWin32HandleKHR (const VkFenceGetWin32HandleInfoKHR* pGetWin32HandleInfo, HANDLE* pHandle) {
 			XVK_CHECK_FUNC(vkGetFenceWin32HandleKHR)
-			return vkGetFenceWin32HandleKHR(handle, pGetWin32HandleInfo, pHandle);
+			return vkGetFenceWin32HandleKHR(this->handle, pGetWin32HandleInfo, pHandle);
 		}
 
 		inline VkResult GetMemoryWin32HandleNV (VkDeviceMemory memory, VkExternalMemoryHandleTypeFlagsNV handleType, HANDLE* pHandle) {
 			XVK_CHECK_FUNC(vkGetMemoryWin32HandleNV)
-			return vkGetMemoryWin32HandleNV(handle, memory, handleType, pHandle);
+			return vkGetMemoryWin32HandleNV(this->handle, memory, handleType, pHandle);
 		}
 
 		inline VkResult AcquireFullScreenExclusiveModeEXT (VkSwapchainKHR swapchain) {
 			XVK_CHECK_FUNC(vkAcquireFullScreenExclusiveModeEXT)
-			return vkAcquireFullScreenExclusiveModeEXT(handle, swapchain);
+			return vkAcquireFullScreenExclusiveModeEXT(this->handle, swapchain);
 		}
 
 		inline VkResult ReleaseFullScreenExclusiveModeEXT (VkSwapchainKHR swapchain) {
 			XVK_CHECK_FUNC(vkReleaseFullScreenExclusiveModeEXT)
-			return vkReleaseFullScreenExclusiveModeEXT(handle, swapchain);
+			return vkReleaseFullScreenExclusiveModeEXT(this->handle, swapchain);
 		}
 
 		inline VkResult GetDeviceGroupSurfacePresentModes2EXT (const VkPhysicalDeviceSurfaceInfo2KHR* pSurfaceInfo, VkDeviceGroupPresentModeFlagsKHR* pModes) {
 			XVK_CHECK_FUNC(vkGetDeviceGroupSurfacePresentModes2EXT)
-			return vkGetDeviceGroupSurfacePresentModes2EXT(handle, pSurfaceInfo, pModes);
+			return vkGetDeviceGroupSurfacePresentModes2EXT(this->handle, pSurfaceInfo, pModes);
 		}
 
 		#endif

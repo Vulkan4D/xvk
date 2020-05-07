@@ -140,7 +140,7 @@ int main(int argc, char** argv) {
 		cmatch handleMatch;
 		if (regex_match(func.args.c_str(), handleMatch, regex(R"(VkInstance\s*instance,?\s*(.*))"))) {
 			inputArgs = handleMatch[1];
-			forwardedArgs << "handle";
+			forwardedArgs << "this->handle";
 			forwardedArgsCount++;
 		}
 		string tmpArgs = inputArgs;
@@ -186,7 +186,7 @@ int main(int argc, char** argv) {
 		cmatch handleMatch;
 		if (regex_match(func.args.c_str(), handleMatch, regex(R"(VkDevice\s*device,?\s*(.*))"))) {
 			inputArgs = handleMatch[1];
-			forwardedArgs << "handle";
+			forwardedArgs << "this->handle";
 			forwardedArgsCount++;
 		}
 		string tmpArgs = inputArgs;
