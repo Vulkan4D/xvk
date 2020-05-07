@@ -151,7 +151,7 @@ namespace xvk { namespace Base {
 			#ifndef XVK_USE_QT_VULKAN_LOADER
 			if (vulkanLib) return true;
 			#ifdef _WIN32
-				vulkanLib = LoadLibrary("vulkan-1.dll");
+				vulkanLib = LoadLibrary(L"vulkan-1.dll"); // Fix issue with LPCWSTR compilation
 			#else
 				vulkanLib = dlopen("libvulkan.so", RTLD_NOW);
 			#endif

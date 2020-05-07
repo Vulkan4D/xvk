@@ -42,10 +42,11 @@ namespace xvk {
 			}
 		}
 		
-		Instance(const Instance&) = delete;
-		Instance& operator=(const Instance&) = delete;
-		Instance(Instance&&) = delete;
-		Instance& operator=(Instance&&) = delete;
+		// NOT always can refer as pointers
+		//Instance(const Instance&) = delete;
+		//Instance& operator=(const Instance&) = delete;
+		//Instance(Instance&&) = delete;
+		//Instance& operator=(Instance&&) = delete;
 		
 		void operator()(Loader* loader, const VkInstanceCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator = nullptr){
 			this->loader = loader;
@@ -73,10 +74,11 @@ namespace xvk {
 			}
 		}
 		
-		Device(const Device&) = delete;
-		Device& operator=(const Device&) = delete;
-		Device(Device&&) = delete;
-		Device& operator=(Device&&) = delete;
+		// NOT always can refer as pointers
+		//Device(const Device&) = delete;
+		//Device& operator=(const Device&) = delete;
+		//Device(Device&&) = delete;
+		//Device& operator=(Device&&) = delete;
 		
 		void operator()(Instance* instance, VkPhysicalDevice physicalDevice, const VkDeviceCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator = nullptr){
 			this->instance = instance;

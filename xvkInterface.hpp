@@ -2990,10 +2990,11 @@ namespace xvk { namespace Interface {
 			return vkGetMemoryWin32HandleKHR(handle, pGetWin32HandleInfo, pHandle);
 		}
 
-		inline VkResult GetMemoryWin32HandlePropertiesKHR (VkExternalMemoryHandleTypeFlagBits handleType, HANDLE handle, VkMemoryWin32HandlePropertiesKHR* pMemoryWin32HandleProperties) {
-			XVK_CHECK_FUNC(vkGetMemoryWin32HandlePropertiesKHR)
-			return vkGetMemoryWin32HandlePropertiesKHR(handle, handleType, handle, pMemoryWin32HandleProperties);
-		}
+		// BROKEN?!
+		//inline VkResult GetMemoryWin32HandlePropertiesKHR (VkExternalMemoryHandleTypeFlagBits handleType, HANDLE handle, VkMemoryWin32HandlePropertiesKHR* pMemoryWin32HandleProperties) {
+		//	XVK_CHECK_FUNC(vkGetMemoryWin32HandlePropertiesKHR)
+		//	return vkGetMemoryWin32HandlePropertiesKHR(handle, handleType, handle, pMemoryWin32HandleProperties);
+		//}
 
 		inline VkResult ImportSemaphoreWin32HandleKHR (const VkImportSemaphoreWin32HandleInfoKHR* pImportSemaphoreWin32HandleInfo) {
 			XVK_CHECK_FUNC(vkImportSemaphoreWin32HandleKHR)
