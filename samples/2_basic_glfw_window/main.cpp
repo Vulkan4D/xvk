@@ -187,6 +187,9 @@ void CreateSwapChainAndRecordCommandBuffers(xvk::Instance* instance, xvk::Device
 	if (std::find(presentModes.begin(), presentModes.end(), presentMode) == presentModes.end()) {
 		presentMode = VK_PRESENT_MODE_FIFO_KHR;
 	}
+	if (std::find(presentModes.begin(), presentModes.end(), presentMode) == presentModes.end()) {
+		presentMode = VK_PRESENT_MODE_IMMEDIATE_KHR;
+	}
 	
 	// Select transform
 	VkSurfaceTransformFlagBitsKHR transform = VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR;
