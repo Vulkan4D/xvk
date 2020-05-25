@@ -149,27 +149,27 @@ namespace xvk { namespace Base {
 		bool operator()() {
 
 			#ifndef XVK_USE_QT_VULKAN_LOADER
-			if (vulkanLib) return true;
-			#ifdef _WIN32
-				#ifdef _T
-					vulkanLib = LoadLibrary(_T("vulkan-1.dll"));
+				if (vulkanLib) return true;
+				#ifdef _WIN32
+					#ifdef _T
+						vulkanLib = LoadLibrary(_T("vulkan-1.dll"));
+					#else
+						vulkanLib = LoadLibrary("vulkan-1.dll");
+					#endif
 				#else
-					vulkanLib = LoadLibrary("vulkan-1.dll");
+					vulkanLib = dlopen("libvulkan.so", RTLD_NOW);
 				#endif
-			#else
-				vulkanLib = dlopen("libvulkan.so", RTLD_NOW);
-			#endif
-			if (!vulkanLib) {
-				return false;
-			}
-			#ifdef _WIN32
-				vkGetInstanceProcAddr = (PFN_vkGetInstanceProcAddr)GetProcAddress(vulkanLib, "vkGetInstanceProcAddr");
-			#else
-				vkGetInstanceProcAddr = (PFN_vkGetInstanceProcAddr)dlsym(vulkanLib, "vkGetInstanceProcAddr");
-			#endif
-			if (!vkGetInstanceProcAddr) {
-				return false;
-			}
+				if (!vulkanLib) {
+					return false;
+				}
+				#ifdef _WIN32
+					vkGetInstanceProcAddr = (PFN_vkGetInstanceProcAddr)GetProcAddress(vulkanLib, "vkGetInstanceProcAddr");
+				#else
+					vkGetInstanceProcAddr = (PFN_vkGetInstanceProcAddr)dlsym(vulkanLib, "vkGetInstanceProcAddr");
+				#endif
+				if (!vkGetInstanceProcAddr) {
+					return false;
+				}
 			#endif
 
 			LoadFunctionPointersInterface();
