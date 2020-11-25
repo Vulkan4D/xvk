@@ -13,3 +13,6 @@
 [submodule "Vulkan-ValidationLayers"]
 	path = Vulkan-ValidationLayers
 	url = git@github.com:KhronosGroup/Vulkan-ValidationLayers.git
+[submodule "VulkanMemoryAllocator"]
+	path = VulkanMemoryAllocator
+	url = git@github.com:GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator.git

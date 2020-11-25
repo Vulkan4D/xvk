@@ -2,6 +2,13 @@
 
 #include "xvkInterface.hpp"
 
+// VMA (Vulkan Memory Allocator)
+#ifdef XVK_INCLUDE_VMA
+	#define VMA_STATIC_VULKAN_FUNCTIONS 0
+	#define VMA_DYNAMIC_VULKAN_FUNCTIONS 0
+	#include "VulkanMemoryAllocator/src/vk_mem_alloc.h"
+#endif
+
 // GLFW
 #ifdef XVK_INCLUDE_GLFW
 	#include "glfw/include/GLFW/glfw3.h"
