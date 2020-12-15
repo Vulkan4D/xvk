@@ -22,6 +22,7 @@
 	#define GLM_ENABLE_EXPERIMENTAL
 	#include "glm/glm/glm.hpp"
 	#include "glm/glm/gtc/matrix_transform.hpp"
+	#include "glm/glm/gtx/matrix_interpolation.hpp"
 	#include "glm/glm/gtx/hash.hpp"
 	#include "glm/glm/gtx/texture.hpp"
 #endif
