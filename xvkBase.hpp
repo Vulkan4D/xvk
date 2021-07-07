@@ -77,7 +77,9 @@
 	#define XVK_DEF_INTERFACE_FUNC_C(func) PFN_##func func = 0;
 	#define XVK_LOAD_GLOBAL_FUNC(func) \
 		if (!(this->func = (PFN_##func) vkGetInstanceProcAddr(nullptr, #func))){\
-			throw std::runtime_error("Failed to load vulkan global function pointer for " #func);\
+			if (std::string("vkCreateInstance") == #func || std::string("vkEnumerateInstanceExtensionProperties") == #func || std::string("vkEnumerateInstanceLayerProperties") == #func || std::string("vkEnumerateInstanceVersion") == #func) {\
+				throw std::runtime_error("Failed to load vulkan global function pointer for " #func);\
+			}\
 		}\
 		XVK_EXPOSE_NATIVE_VULKAN_FUNCTIONS_NAMESPACE::func = this->func;
 	#define XVK_LOAD_INSTANCE_FUNC(func) \
@@ -92,7 +94,9 @@
 	#define XVK_DEF_INTERFACE_FUNC_C(func)
 	#define XVK_LOAD_GLOBAL_FUNC(func) \
 		if (!(func = (PFN_##func) vkGetInstanceProcAddr(nullptr, #func))){\
-			throw std::runtime_error("Failed to load vulkan global function pointer for " #func);\
+			if (std::string("vkCreateInstance") == #func || std::string("vkEnumerateInstanceExtensionProperties") == #func || std::string("vkEnumerateInstanceLayerProperties") == #func || std::string("vkEnumerateInstanceVersion") == #func) {\
+				throw std::runtime_error("Failed to load vulkan global function pointer for " #func);\
+			}\
 		}
 	#define XVK_LOAD_INSTANCE_FUNC(func) \
 		func = (PFN_##func) loader->vkGetInstanceProcAddr(handle, #func);
