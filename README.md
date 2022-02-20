@@ -1,33 +1,25 @@
 # `xvk` a fast Vulkan wrapper / dynamic loader
 
-`xvk` is a zero-cost **Vulkan Dynamic Loader** with only two very lightweight abstractions (for `VkInstance` and `VkDevice`) that do not require the developer to re-learn new functions. 
+`xvk` is a zero-cost **Vulkan Dynamic Loader** with only two very lightweight abstractions (for `VkInstance` and `VkDevice`) that do NOT require the developer to re-learn new functions. 
 It literally does not have any public functions other than the ones from the classical Vulkan C API. 
 
-Developers have the full flexibily of implementing higher-level abstractions around `xvk`'s dynamically loaded Vulkan functions that are very fast and safe (literally faster than using the functions from the usual linked vulkan loader). 
+Developers have the full flexibily of implementing higher-level abstractions around `xvk`'s dynamically loaded Vulkan functions that are very fast and safe (actually faster than using the functions from the usual linked vulkan loader). 
 
 `xvk` is platform & compiler agnostic (except for a few `if WIN32` here and there, but this should be enough to compile/run anywhere)
 
-Using `xvk` is probably the easiest and fastest way to get started with making your first Vulkan application, but is also very fast and zero-cost abstraction for performance-critical functions. 
-
 You simply need to clone this repository (and submodules) then include a single header file.
 
-`xvk` implements all vk* functions as is, meaning no need to re-learn vulkan, but also gives you a few additionnal and convenient inlined functions that abstracts away VkInstance and VkDevice handles, all in a zero-cost way. 
+`xvk` implements all vk* functions with zero cost. 
 
 `xvk` also loads all khr and vendor-specific functions when available. 
 
 `xvk` loads Vulkan 100% at runtime (which is also the best way to load vulkan according to Khronos). 
-
-`xvk` will run faster than a naive linked-library implementation, because of the fact that we are loading the function pointers at runtime, when calling these functions we also save some cpu time usually spent inside an abstraction in the loader, we are now directly accessing the function pointers inside the drivers instead, which is perfectly safe and officially the best way to do it according to khronos, although not very popular in the samples/tutorials that you may find online. 
-
-`xvk` is very lightweight and implements all vk functions directly, and abstracted functions are implemented with an inlined forwarded call to the function pointers. This makes `xvk` very safe and not very prone to bugs. 
 
 Also, `xvk` takes care of downloading and including the necessary Vulkan headers (downloaded via a git submodule).
 
 This `xvk` repository also includes a few submodules for your convenience (like `glfw`), although you do not have to use them. 
 
 Must you need the most recent vk functions that were added yesterday and not yet added in `xvk`, you simply have to build & run the included generator after updating the vulkan headers submodule. 
-
-No seriously, it's the easiest, fastest and safest way to implement Vulkan in your project... 
 
 ## Adding it to your project
 ```bash
@@ -49,30 +41,30 @@ int main() {
 	
 	// Dynamically Load the Vulkan library
 	if (!vulkanLoader()) { // convenient operator() to actually load the library
-		// ERROR: Failed to load vulkan library. 
+		// ERROR: Failed to load vulkan library.
 		// The application does not have to crash here, you may simply choose to use OpenGL instead...
 		return -1;
 	}
 	
-	// Create the vulkan Instance using a simple wrapper
+	// Create the vulkan Instance using a simple wrapper (you first have to fill a 'createInfo' struct)
 	xvk::Instance vulkanInstance(&vulkanLoader, &createInfo); // throws if failed to create the instance
 	
-	// Call any instance-specific vulkan functions like this : 
+	// Call any instance-specific vulkan functions like this:
 	// 	vulkanInstance.vkEnumeratePhysicalDevices(vulkanInstance.handle, ......)
-	// Or like this without the vk prefix and first parameter removed (a convenient zero-cost abstraction)
+	//  or like this without the vk prefix and first parameter removed (a convenient zero-cost abstraction)
 	vulkanInstance.EnumeratePhysicalDevices(......)
 	
-	// Once you have found a suitable VkPhysicalDevice, 
-	// you can create a logical device like this with a simple wrapper : 
+	// Once you have found a suitable VkPhysicalDevice,
+	//  you can create a logical device like this with this simple wrapper to VkDevice:
 	xvk::Device vulkanDevice(&vulkanInstance, selectedPhysicalDevice, &deviceCreateInfo);
 	
 	// Now you may call any device-specific vulkan functions the same way as with the instance...
 	// 	vulkanDevice.vkGetDeviceQueue(vulkanDevice.handle, ......);
-	// Or, Again, you may use the convenient zero-cost device abstraction without the vk prefix...
+	//  or, again, you may use the convenient zero-cost device abstraction without the vk prefix...
 	vulkanDevice.GetDeviceQueue(......);
 	
 	// No need to destroy the original vulkan handles stored in xvk::Device and xvk::Instance
-	//	their destructors will take care of that for you !
+	//	their destructors will take care of that for you!
 	
 	return 0;
 }
