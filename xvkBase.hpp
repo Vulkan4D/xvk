@@ -162,6 +162,7 @@ namespace xvk { namespace Base {
 					#endif
 				#else
 					vulkanLib = dlopen("libvulkan.so", RTLD_NOW);
+					if (!vulkanLib) vulkanLib = dlopen("libvulkan.so.1", RTLD_NOW);
 				#endif
 				if (!vulkanLib) {
 					return false;
